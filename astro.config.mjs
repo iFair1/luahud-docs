@@ -7,14 +7,14 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'LuaHUD',
-			customCss: ['./src/assets/css/custom.css'],
+			customCss: ['/src/assets/css/custom.css'],
       social: [{ icon: 'discord', label: 'Discord', href: 'change here when you create the server' }, { icon: 'github', label: 'GitHub', href: 'https://github.com/iFair1/luahud' }],
 			sidebar: [
 				{
-					label: 'Guides',
+					label: 'Getting Started',
 					items: [
 						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
+						{ autogenerate: { directory: 'getting-started' } }
 					],
 				},
 				{
