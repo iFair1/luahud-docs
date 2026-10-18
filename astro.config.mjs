@@ -17,6 +17,18 @@ export default defineConfig({
 						{ autogenerate: { directory: 'getting-started' } }
 					],
 				},
+        {
+          label: "Basic HUD",
+          items: [
+            { autogenerate: { directory: 'basic-hud' } }
+          ]
+        },
+        {
+          label: "Lua",
+          items: [
+            { autogenerate: { directory: 'lua' } }
+          ]
+				},
 				{
 					label: 'Reference',
 					items: [{ autogenerate: { directory: 'reference' } }],

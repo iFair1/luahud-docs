@@ -5,7 +5,7 @@ sidebar:
   order: 4
 ---
 
-Before starting, if you don't know [Lua](https:www.lua.org), I recommend you to take a look at [Lua Basics](../lua/about-lua). After this, I'll assume that you are familiar with Lua.
+Before starting, if you don't know [Lua](https://www.lua.org/), take a look at [Lua Basics](/lua/lua-basics/). It starts from zero, so you do not need any programming experience. After this, I'll assume that you are familiar with Lua.
 
 `lh` is the global api for **L**ua**H**UD.
 
@@ -13,7 +13,7 @@ The most fundamental function is `lh.draw(text, options?)`. This function draws 
 
 Create a profile and write this in it:
 ```lua
-lh.drawln("Hello, World!")
+lh.draw("Hello, World!")
 ```
 This code should output this:
 ![A basic HUD that says "Hello, World!"](/src/assets/hello-world.png)
