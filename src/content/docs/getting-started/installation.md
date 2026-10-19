@@ -32,6 +32,11 @@ Most common ones:
 ~/.local/share/PrismLauncher/instances/<your instance name>/minecraft/
 ```
 
+**Linux (Prism Launcher with Flatpak)**
+```text
+~/.var/app/org.prismlauncher.PrismLauncher/data/PrismLauncher/instances/<your instance name>/minecraft/
+```
+
 **MacOS:**
 honestly, i have no idea how that operating system works. I don't even test the mod there
 
