@@ -22,48 +22,34 @@ For example, you can do this:
 ```lua
 -- Let's assume you have an fps variable
 if fps >= 60 then
-    print("Your computer is very strong!")
+    lh.drawln("Your computer is very strong!")
 end
 ```
 
 You can optionally add an else part.
 ```lua
 if fps >= 60 then
-    print("Your computer is very strong!")
+    lh.drawln("Your computer is very strong!")
 else
-    print("How long do you bake your pc for?") -- this code never runs unless fps is less than or equal to 60.
+    lh.drawln("How long do you bake your pc for?") -- this code never runs unless fps is less than 60.
 end
 ```
 
-You don't have to use `end`. You can write one line operations without it.
 ```lua
-if fps >= 60 then print("Your computer is very strong!")
+if fps >= 60 then lh.drawln("Your computer is very strong!") end
 ```
 This reduces readability little bit, but it saves you from writing 2 additional lines.
 
-**Cool Use**
-
-You can chain `else` and `if` to make an `else if`
+Also, you can use elseif to do chains like this
 ```lua
 if fps < 60 then
-    print("How long do you bake your pc for?") -- ..60
-else if fps < 200 then
-    print("Your computer is very strong!") -- [60, 200)
+    lh.drawln("How long do you bake your pc for?") -- ..60
+elseif fps < 200 then
+    lh.drawln("Your computer is very strong!") -- [60, 200)
 else
-    print("Nasa wants your computer") -- 200..
+    lh.drawln("Nasa wants your computer") -- 200..
 end
 ```
-
-:::caution
-Be careful about `end`!
-```lua
-if fps >= 60 then
-    print("Your computer is very strong!")
-    print("I wish my computer had a fraction of the power of yours.") -- problem here
-```
-Second line of the print will run regardless of the condition. Because `if` without `end` only affects the next thing (line or code block) in front of it.
-:::
-
 
 ## What if the condition is not a boolean?
 Then it simply gets converted to a boolean.
@@ -89,7 +75,7 @@ result = "It is True!" if 10 > 5 else "It is false :("
 
 **Java**
 ```java
-boolean result = 10 > 5 ? "It is True!" : "It is false :("
+String result = 10 > 5 ? "It is True!" : "It is false :("
 ```
 
 Lua can do this too! But with a cool hack.

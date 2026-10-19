@@ -10,15 +10,38 @@ Operators are just cool looking [functions](functions). But since you don't know
 For example, let's take `+` operator, which adds 2 values.
 ```lua
 local result = 2 + 2
-print(result) -- Output: 4
+lh.drawln(result) -- Output: 4
 ```
 
 `local result = 2 + 2` became `local result = 4` just like `print(result)` became `print(4)`
 
-## Types
-There are 3 types of operators
+## General
 
-### 1. Arithmetic Operators
+### Assignment Operator
+This operator is used for assigning a value to a variable. For example:
+```lua
+local variable = 10
+```
+
+### Concatenation Operator
+You use this when you want to **concatenate** text. For example:
+```lua
+-- Assuming I have fps variable
+lh.drawln("FPS: " .. fps) -- Output: FPS: 120
+```
+It accepts only strings and numbers (casted to strings).
+:::caution
+Trying to concatenate types other than `string` and `number` (for example a `boolean`), Lua gives an error. You need to do `tostring(value)` first.
+:::
+
+### Length Operator
+This is straightforward. It gives the length of a string (or tables that are indexed).
+```lua
+local name = "iFair"
+lh.drawln(#name) -- Output: 5
+```
+
+## Arithmetic Operators
 These are essentially math operations. These take and return `number` [type](../variables/#types)
 
 | Operator | Description | Example expression | Result |
@@ -31,8 +54,8 @@ These are essentially math operations. These take and return `number` [type](../
 | `^` | Exponentiation | `10 ^ 4` | `10000.0` |
 | `-` | Unary minus | `-(10)` | `-10` |
 
-### 2. Relational Operators
-These are mostly used in [conditionals](../conditionals). They take `number` and return `true` or `false`.
+## Relational Operators
+These are mostly used in [conditionals](../conditionals). They return `true` or `false`.
 
 | Operator | Description | Example Expression | Result |
 | --- | --- | --- | --- |
@@ -43,8 +66,8 @@ These are mostly used in [conditionals](../conditionals). They take `number` and
 | `<=` | Less than or equal | `5 <= 5` | `true` |
 | `>=` | Greater than or equal | `5 >= 6` | `false` |
 
-### 3. Logical Operators
-These are also mostly used with [conditionals](../conditionals). They take `boolean` (`true` or `false`). But they are slightly different than what are they in other programming languages.
+## Logical Operators
+These are also mostly used with [conditionals](../conditionals). They return `true` or `false` too. But they are slightly different than what are they in other programming languages.
 
 I'll explain these in more detail later.
 

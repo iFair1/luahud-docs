@@ -16,9 +16,10 @@ while <condition> do -- do is the 'then' of loops
     doSomething()
 end
 ```
-1. Check if condition is true. If true continue, else go to the end of the code block
-2. Execute the code block
-3. Go to Step 1
+1. Check if condition is true. 
+2. If true continue, else go to the end of the code block
+3. Execute the code block
+4. Go to Step 1
 This is basically how it works.
 
 This can easily turn into an *infinite loop* which freezes your program until you terminate it.
@@ -32,35 +33,35 @@ until <condition>
 How it works:
 1. Execute the code from `repeat` to `until`
 2. Check if condition is true.
-3. If true go to step 1, else continue
+3. If `false` go to step 1, else continue
 
 ## For loop
-This is made for making common used loop tasks more convenient. In Lua, it has 3 different uses.
+This is made for making common used loop tasks more convenient. In Lua, it has 2 different uses.
 
-### fixed (for i = ,,, )
+### numeric
 ```lua
-for <variable> = <start>, <end>, <step> do -- <step> is optional. It defaults to 1.
+for <variable> = <start>, <limit>, <step> do -- <step> is optional. It defaults to 1.
     doSomething()
 end
 ```
 1. Define variable `<variable>` as `<start>`
-2. Check if `<variable> > <end>`.
+2. Check if `(step > 0 and variable > limit) or (step < 0 and variable < limit`.
 3. If true go to the end of the code block, else continue
 4. Execute the code block
 5. Increment `<variable>` by `<step>`.
-6. Go to Step 1
+6. Go to Step 2.
 
 You can visualize it as a while loop.
 ```lua
 local i = 1
-while i < 10 do
-    print(i)
+while i <= 10 do
+    lh.drawln(i)
     i = i + 1
 end
 ```
 ```lua
 for i = 1, 10 do
-    print(i)
+    lh.drawln(i)
 end
 ```
 
