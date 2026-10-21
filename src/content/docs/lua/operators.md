@@ -67,7 +67,7 @@ These are mostly used in [conditionals](../conditionals). They return `true` or 
 | `>=` | Greater than or equal | `5 >= 6` | `false` |
 
 ## Logical Operators
-These are also mostly used with [conditionals](../conditionals). They return `true` or `false` too. But they are slightly different than what are they in other programming languages.
+These are also mostly used with [conditionals](../conditionals). They are still used to manipulate `truthy` and `falsy` values. But they are slightly different than what are they in other programming languages.
 
 I'll explain these in more detail later.
 

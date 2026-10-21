@@ -45,7 +45,7 @@ for <variable> = <start>, <limit>, <step> do -- <step> is optional. It defaults 
 end
 ```
 1. Define variable `<variable>` as `<start>`
-2. Check if `(step > 0 and variable > limit) or (step < 0 and variable < limit`.
+2. Check if `(step > 0 and variable > limit) or (step < 0 and variable < limit)`.
 3. If true go to the end of the code block, else continue
 4. Execute the code block
 5. Increment `<variable>` by `<step>`.

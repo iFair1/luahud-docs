@@ -10,7 +10,7 @@ A variable holds a value.
 It's useful if you want to name a value, or store it for future operations.
 
 ### Types
-Every variable has a data type.
+Values have different data types.
 
 In Lua 5.2 *(the one LuaHUD uses)* has 6 main types. (There are 2 additional types, but they're not important for now.)
 
@@ -52,7 +52,7 @@ lh.drawln("iFair")
 because it replaced `lh.drawln(name)` with `lh.drawln("iFair")`
 
 :::caution
-You declare name variable inside quotes but you mustn't use it inside quotes.
+You write string **values** inside quotes, but you mustn't use the variable inside quotes.
 ```lua
 local name = "iFair"
 lh.drawln(name) -- Output iFair

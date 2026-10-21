@@ -114,7 +114,7 @@ local result = 10 > 5 and nil or "I shouldn't be returned"
 
 Here, `and` will return nil which is a **falsy** value.
 ```lua
-nil or "I shouldn't be returned" -- second value gets returned
+local result = nil or "I shouldn't be returned" -- second value gets returned
 ```
 We returned the second value which should have been returned if the condition were false. This is unwanted behavior.
 :::
