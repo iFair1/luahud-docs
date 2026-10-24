@@ -18,15 +18,15 @@ export default defineConfig({
 					],
 				},
         {
-          label: "Basic HUD",
-          items: [
-            { autogenerate: { directory: 'basic-hud' } }
-          ]
-        },
-        {
           label: "Lua",
           items: [
             { autogenerate: { directory: 'lua' } }
+          ]
+        },
+        {
+          label: "Basic HUD",
+          items: [
+            { autogenerate: { directory: 'basic-hud' } }
           ]
 				},
 				{
