@@ -34,7 +34,7 @@ The anchor decides which screen edge the sectoin sits against:
 |`topCenter`|`bottomCenter`|
 |`topRight`|`bottomRight`|
 
-For left and right anchors, a positive `offsetX` moves the section **inward** from that edge. For center anchors, positive `offsetY` moves it r ight and negative moves it left. A positive `offsetY` moves it inward from the top or bottom edge.
+For left and right anchors, a positive `offsetX` moves the section **inward** from that edge. For center anchors, positive `offsetX` moves it right and negative moves it left. A positive `offsetY` moves it inward from the top or bottom edge.
 
 A `bottomRight` section with `offsetX = 8, offsetY = 8` sits eight GUI units from the right and bottom. You don't have to subtract its width from the screen width yourself. Minecraft's GUI scale affects the apperent size of these units.
 :::tip

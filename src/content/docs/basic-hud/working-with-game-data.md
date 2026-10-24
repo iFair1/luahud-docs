@@ -7,7 +7,7 @@ sidebar:
 Most game information is exposed as fields under `lh`: `lh.perf.fps`, `lh.player.health`, `lh.pos.biome.name`, and so on. Read them with `.`. Thet are not functions. But they do call functions in the background, so don't think they are free.
 
 ```lua
-lh.on("tick", function
+lh.on("tick", function()
     lh.drawln(string.format("%s - %d / %d HP",
         lh.player.name, lh.player.health, lh.player.maxHealth))
     lh.drawln("Biome: " .. lh.pos.biome.name)

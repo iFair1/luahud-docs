@@ -54,7 +54,7 @@ lh.on("tick", function()
         inlineSpacing = 2,
     })
 
-    for _, stack in ipairs(lh.slots.slots)
+    for _, stack in ipairs(lh.slots.slots) do
         lh.drawStack(stack, { drawAir = true })
     end
 end)

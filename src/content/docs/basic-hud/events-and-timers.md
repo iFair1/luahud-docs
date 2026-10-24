@@ -10,7 +10,7 @@ A profile runs once when it loads. That first run is where you define helpers, c
 | Callback | When it runs | Good for |
 |-|-|-|
 | `lh.on("reload", callback)` | After active profiles have loaded, including first world entry | Initial output. Actually not needed because not using lh.on() does the same thing anyways. |
-| `lh.on("ticks", callback)` | At the end of every client tick | Counters, conditionals, most HUD text |
+| `lh.on("tick", callback)` | At the end of every client tick | Counters, conditionals, most HUD text |
 | `lh.on("render", callback)` | Immediately before each HUD frame is painted | Content that should update every frame |
 | `lh.setInterval(n, event, callback)` | Repeatedly after `n` `event` event fired. | Less frequent refreshes |
 
