@@ -1,61 +1,91 @@
 ---
 title: Variables
-description: Explains what are variables in lua
+description: Store values, understand their types, and keep variables local.
 sidebar:
   order: 10
 ---
 
-A variable holds a value.
+A variable gives a name to a value so you can use it later.
 
-It's useful if you want to name a value, or store it for future operations.
-
-### Types
-Values have different data types.
-
-In Lua 5.2 *(the one LuaHUD uses)* has 6 main types. (There are 2 additional types, but they're not important for now.)
-
-| Name | Description | Example |
-| --- | --- | --- |
-| `number` | Any numeric value | `10` |
-| `string` | Text value | `"LuaHUD"` |
-| `boolean` | Whether something is true or not, binary | `true` or `false` |
-| `nil` | Something being non-existent | only `nil` |
-| `function` | A block of code that can be called with arguments. Returns something | `lh.drawln` |
-| `table` | Any kind of grouped data. Can be a list, key-value pair, or both. | `lh` |
-
-`number`, `string`, and `boolean` are the most simple ones. You'll use them 80% of the time.
-
-`type(value)` function is used to get the type of a value/variable.
-
-## How to use one?
-You *declare* a variable like this:
-```lua
-local anyNameYouWant = 10
-```
-after this, when you write `anyNameYouWant` somewhere in your code, it'll act as you wrote `10` there.
-
-### Strings
-When writing strings as values, you must write them inside quotes (`""` or `''`). 
-
-This is for them not being confused with any other keyword, variable, function etc.
-###
-
-Let's use a variable.
 ```lua
 local name = "iFair"
-lh.drawln(name)
-```
-This code will make the same thing as
-```lua
-lh.drawln("iFair")
-```
-because it replaced `lh.drawln(name)` with `lh.drawln("iFair")`
-
-:::caution
-You write string **values** inside quotes, but you mustn't use the variable inside quotes.
-```lua
-local name = "iFair"
-lh.drawln(name) -- Output iFair
+lh.drawln(name) -- Output: iFair
 lh.drawln("name") -- Output: name
 ```
-:::
+
+Use quotes for text values, but not for variable names.
+
+## Declaring and changing variables
+
+Use `local` to create a variable. To change its value later, use `=` without another `local`:
+
+```lua
+local fps = 60
+fps = 120
+lh.drawln(fps) -- Output: 120
+
+fps = fps + 10
+lh.drawln(fps) -- Output: 130
+```
+
+The right side is calculated before the value is assigned. Lua does not have `+=` or `++`.
+
+Names can contain letters, digits, and underscores, but cannot start with a digit or be a keyword such as `end`. Names like `playerName` or `player_name` are fine.
+
+## Types
+
+Values have types. Here are the six you will usually work with:
+
+| Type | Meaning | Example |
+| --- | --- | --- |
+| `number` | A number, including decimals | `10`, `2.5` |
+| `string` | Text inside single or double quotes | `"LuaHUD"`, `'Hello'` |
+| `boolean` | True or false | `true`, `false` |
+| `nil` | No value | `nil` |
+| `function` | Code you can call | `lh.drawln` |
+| `table` | A group of values | `{ "FPS", "Position" }` |
+
+Lua also has `userdata` and `thread` types. You do not need them for these lessons.
+
+Use `type(value)` to check a type:
+
+```lua
+local value = 10
+lh.drawln(type(value)) -- Output: number
+
+value = "Hello"
+lh.drawln(type(value)) -- Output: string
+```
+
+A variable can hold values of different types, though keeping its purpose consistent makes code easier to read.
+
+## Missing values
+
+A local variable without a value starts as `nil`. Reading an undefined global also gives `nil`.
+
+```lua
+local name
+lh.drawln(type(name)) -- Output: nil
+
+name = "iFair"
+name = nil -- Remove the value again.
+```
+
+`nil`, `0`, and the string `"nil"` are different values.
+
+## Local and global variables
+
+A local variable is available from its declaration to the end of its block. A block can be a function, loop, or `if` branch. At the top of a file, it lasts until the end of that file.
+
+```lua
+local name = "iFair"
+
+if true then
+    local message = "Hello, " .. name
+    lh.drawln(message)
+end
+
+-- message is no longer available here.
+```
+
+Assigning to a name without `local` changes an existing variable if one is in scope. Otherwise, it creates or changes a global. Prefer `local` for your own variables to avoid accidentally sharing or overwriting names.

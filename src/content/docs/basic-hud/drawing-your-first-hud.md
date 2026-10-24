@@ -5,7 +5,7 @@ sidebar:
   order: 4
 ---
 
-Before starting, if you don't know [Lua](https://www.lua.org/), take a look at [Lua Basics](/lua/lua-basics/). It starts from zero, so you do not need any programming experience. After this, I'll assume that you are familiar with Lua.
+Before starting, if you don't know [Lua](https://www.lua.org/), take a look at [Lua Basics](/lua/about-lua/). It starts from zero, so you do not need any programming experience. After this, I'll assume that you are familiar with Lua.
 
 `lh` is the global api for **L**ua**H**UD.
 

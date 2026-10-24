@@ -1,80 +1,115 @@
 ---
 title: Loops
-description: What are loops and how do they work?
+description: Repeat code with for, while, and repeat loops.
 sidebar:
   order: 40
 ---
 
-Loops are very useful things that saves you from code repetition, and allows you to do incredible logic.
+Loops repeat a block of code so you do not have to write it several times.
 
-Lua has 3 types of them. Most used one is `for`, but each one is just a little bit tweaked version of other, so you can probably use the one you like.
+## Numeric for loop
 
-## While loop
-Syntax is like this:
+Use a numeric `for` loop when you know the range:
+
 ```lua
-while <condition> do -- do is the 'then' of loops
-    doSomething()
+for i = 1, 3 do
+    lh.drawln(i)
 end
 ```
-1. Check if condition is true. 
-2. If true continue, else go to the end of the code block
-3. Execute the code block
-4. Go to Step 1
-This is basically how it works.
 
-This can easily turn into an *infinite loop* which freezes your program until you terminate it.
+This draws `1`, `2`, and `3` on separate lines. The limit is included if the counter reaches it.
 
-## repeat .. until loop
+The optional third number is the step. It defaults to `1`. A negative step counts down:
+
 ```lua
-repeat
-    doSomething()
-until <condition>
-```
-How it works:
-1. Execute the code from `repeat` to `until`
-2. Check if condition is true.
-3. If `false` go to step 1, else continue
-
-## For loop
-This is made for making common used loop tasks more convenient. In Lua, it has 2 different uses.
-
-### numeric
-```lua
-for <variable> = <start>, <limit>, <step> do -- <step> is optional. It defaults to 1.
-    doSomething()
+for i = 5, 1, -2 do
+    lh.drawln(i) -- Output: 5, then 3, then 1
 end
 ```
-1. Define variable `<variable>` as `<start>`
-2. Check if `(step > 0 and variable > limit) or (step < 0 and variable < limit)`.
-3. If true go to the end of the code block, else continue
-4. Execute the code block
-5. Increment `<variable>` by `<step>`.
-6. Go to Step 2.
 
-You can visualize it as a while loop.
+Use a nonzero step. The start, limit, and step are evaluated once before the loop begins. The counter is local to the loop; do not change it inside the body.
+
+## while loop
+
+`while` checks its condition before each repetition. It may never run:
+
 ```lua
 local i = 1
-while i <= 10 do
+
+while i <= 3 do
     lh.drawln(i)
     i = i + 1
 end
 ```
+
+This produces the same output as the first `for` example.
+
+## repeat .. until loop
+
+`repeat` checks its condition after running the body. It always runs at least once, and stops when the condition becomes truthy:
+
 ```lua
-for i = 1, 10 do
+local i = 1
+
+repeat
     lh.drawln(i)
+    i = i + 1
+until i > 3
+```
+
+There is no `end` after `until`.
+
+:::caution
+Make sure your loop can finish. Forgetting `i = i + 1` in the `while` example would make it repeat forever. Do not use a loop to wait for the next game tick; use a [callback](/lua/functions/#callbacks) instead.
+:::
+
+## Looping through tables
+
+A [table](/lua/tables/) can hold a list or named values. Generic `for` loops let you visit its entries.
+
+Use `ipairs()` for a list, starting at index `1`:
+
+```lua
+local labels = { "FPS", "Position", "Biome" }
+
+for index, label in ipairs(labels) do
+    lh.drawln(index .. ": " .. label)
 end
 ```
 
-These 2 code will do the same thing, outputting:
-```plaintext
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
+This draws `1: FPS`, `2: Position`, and `3: Biome` in order. `ipairs()` stops at the first missing (`nil`) entry.
+
+Use `pairs()` for all keys and values, including named keys:
+
+```lua
+local settings = { scale = 2, visible = true }
+
+for key, value in pairs(settings) do
+    lh.drawln(key .. ": " .. tostring(value))
+end
+```
+
+`pairs()` does not guarantee an order. Use a list and `ipairs()` when display order matters.
+
+## Stopping early
+
+`break` exits the innermost loop:
+
+```lua
+for i = 1, 10 do
+    if i > 3 then
+        break
+    end
+    lh.drawln(i) -- Only draws 1, 2, and 3.
+end
+```
+
+Lua 5.2 has no `continue` keyword. Put the code you want to run inside an `if` instead:
+
+```lua
+for i = 1, 4 do
+    if i ~= 2 then
+        lh.drawln(i) -- Skips 2.
+    end
+end
 ```
