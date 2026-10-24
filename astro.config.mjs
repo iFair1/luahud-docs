@@ -28,11 +28,7 @@ export default defineConfig({
           items: [
             { autogenerate: { directory: 'basic-hud' } }
           ]
-				},
-				{
-					label: 'Reference',
-					items: [{ autogenerate: { directory: 'reference' } }],
-				},
+				}
 			],
 		}),
 	],
