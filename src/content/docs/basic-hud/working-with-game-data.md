@@ -13,7 +13,7 @@ lh.on("tick", function()
     lh.drawln("Biome: " .. lh.pos.biome.name)
 end)
 ```
-Use your editor's completion for the available fields. You doN't need to memorize the whole API.
+Use your editor's completion for the available fields. You don't need to memorize the whole API.
 
 ## Read values when you need them
 A number you store is just a numbers. It doesN't keep following the game after you read it:

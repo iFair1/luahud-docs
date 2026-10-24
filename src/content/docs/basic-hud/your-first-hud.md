@@ -45,7 +45,7 @@ end)
 ```
 `lh.on()` registers a callback. `"tick"` runs at the end of each client tick, so now the script reads fresh values regularly.
 
-The drawing from this callback is replaced each time it r uns. You don't have to erase the previous text yourself, and the rows won't keep piling up.
+The drawing from this callback is replaced each time it runs. You don't have to erase the previous text yourself, and the rows won't keep piling up.
 
 ## Show something only when it matters
 Here's a health warning. Replace the previous example with this, or add th econdition inside its callback:
