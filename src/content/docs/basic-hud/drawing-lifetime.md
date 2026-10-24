@@ -18,7 +18,7 @@ end)
 
 When you stop sprinting, the next call removes the old line even though it draws nothing. This is why conditional HUD elements don't need a separate erase function.
 
-Each registered callback has its own output. A tick callback doesN't clear a differenct callback's section, even if both are in the same profile. Each also starts from the default layout, so assing positions if they might overlap.
+Each registered callback has its own output. A tick callback doesn't clear a differenct callback's section, even if both are in the same profile. Each also starts from the default layout, so assing positions if they might overlap.
 
 Top-level drawins follow the same idea, but that code only runs on load. Their values won't refresh just because the game does. Drawing made in `reload` also remain until a runtime reload clears them.
 

@@ -16,7 +16,7 @@ end)
 Use your editor's completion for the available fields. You don't need to memorize the whole API.
 
 ## Read values when you need them
-A number you store is just a numbers. It doesN't keep following the game after you read it:
+A number you store is just a numbers. It doesn't keep following the game after you read it:
 ```lua
 local startingHealth = lh.player.health
 
