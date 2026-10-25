@@ -74,7 +74,7 @@ const { root } = Astro.props;
 
       input.addEventListener('input', filter);
       this.querySelector('[data-expand]')!.addEventListener('click', () => details.forEach(detail => { detail.open = true; }));
-      this.querySelector('[data-collapse]')!.addEventListener('click', () => details.forEach(detail => { detail.open = detail.classList.contains('api-root'); }));
+      this.querySelector('[data-collapse]')!.addEventListener('click', () => details.forEach(detail => { detail.open = false; }));
       window.addEventListener('hashchange', revealHash, { signal: this.abort.signal });
       revealHash();
     }

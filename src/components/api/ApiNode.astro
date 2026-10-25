@@ -8,7 +8,7 @@ const id = anchorId(node.path);
 ---
 <li data-api-node data-search={searchText(node)} data-kind={node.kind}>
   {node.kind === 'namespace' ? (
-    <details class:list={['api-namespace', { 'api-root': root }]} open id={id}>
+    <details class:list={['api-namespace', { 'api-root': root }]} id={id}>
       <summary class="api-row" style={`--api-depth: ${depth}`}>
         <span class="api-member"><span class="api-chevron" aria-hidden="true">›</span><span class="api-name">{node.name}<span class="api-punctuation">.</span></span></span>
         <span class="api-description" title={node.description}>{node.description}</span>
