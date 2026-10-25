@@ -34,7 +34,10 @@ means the value may be `nil`; these are separate concepts. Represent an optional
 options argument with `optional: true` and a reference type (no extra type wrapper
 is needed unless you also want to explicitly document nullable values).
 
-The renderer preserves array order, links each named part of compound types,
+The renderer groups children at every namespace level: namespaces first, properties
+next, and functions last. Within each kind, it preserves the JSON array order.
+This display order is handled by the website; the Java exporter does not need to sort children.
+Parameter order is preserved as exported. The renderer links each named part of compound types,
 and exposes stable member anchors, e.g. `/api/#api-lh-sound-record`.
 Deep links open collapsed ancestors and function details. The tree is rendered
 at build time and remains readable without JavaScript; filtering and bulk controls

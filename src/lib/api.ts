@@ -53,6 +53,12 @@ export const typePages: Record<string, { label: string; href: string }> = {
 export const anchorId = (path: string) => `api-${path.replaceAll('.', '-')}`;
 export const withBase = (href: string) => `${import.meta.env.BASE_URL.replace(/\/$/, '')}${href}`;
 
+// Group members for display while preserving export order within each kind.
+export function sortMembers(members: ApiNode[]): ApiNode[] {
+  const priority = { namespace: 0, property: 1, function: 2 };
+  return [...members].sort((a, b) => priority[a.kind] - priority[b.kind]);
+}
+
 export function typeLabel(type: TypeRef): string {
   switch (type.kind) {
     case 'primitive': return type.name;

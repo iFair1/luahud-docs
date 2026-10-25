@@ -1,6 +1,6 @@
 ---
 import type { ApiNode } from '../../lib/api';
-import { anchorId, searchText } from '../../lib/api';
+import { anchorId, searchText, sortMembers } from '../../lib/api';
 import TypeLink from './TypeLink.astro';
 interface Props { node: ApiNode; root?: boolean; depth?: number }
 const { node, root = false, depth = 0 } = Astro.props;
@@ -14,7 +14,7 @@ const id = anchorId(node.path);
         <span class="api-description" title={node.description}>{node.description}</span>
         <span class="api-kind">{node.children.length} members</span>
       </summary>
-      <ul class="api-children">{node.children.map(child => <Astro.self node={child} depth={depth + 1} />)}</ul>
+      <ul class="api-children">{sortMembers(node.children).map(child => <Astro.self node={child} depth={depth + 1} />)}</ul>
     </details>
   ) : node.kind === 'property' ? (
     <div class="api-row api-property" id={id} style={`--api-depth: ${depth}`}>
