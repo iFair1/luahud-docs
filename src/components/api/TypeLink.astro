@@ -1,0 +1,15 @@
+---
+import type { TypeRef } from '../../lib/api';
+import { typePages, withBase } from '../../lib/api';
+interface Props { type: TypeRef }
+const { type } = Astro.props;
+const page = type.kind === 'reference' ? typePages[type.id] : undefined;
+const grouped = (type.kind === 'optional' || type.kind === 'list') && type.element.kind === 'union';
+---
+<span class="api-type">{type.kind === 'primitive' ? type.name
+  : type.kind === 'reference' ? (page ? <a href={withBase(page.href)}>{page.label}</a> : type.id)
+  : type.kind === 'literal' ? JSON.stringify(type.value)
+  : type.kind === 'union' ? type.alternatives.map((alternative, i) => <>{i > 0 && ' | '}<Astro.self type={alternative} /></>)
+  : type.kind === 'map' ? <>table&lt;<Astro.self type={type.key} />, <Astro.self type={type.value} />&gt;</>
+  : <>{grouped && '('}<Astro.self type={type.element} />{grouped && ')'}{type.kind === 'optional' ? '?' : '[]'}</>
+}</span>

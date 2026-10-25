@@ -28,7 +28,15 @@ export default defineConfig({
           items: [
             { autogenerate: { directory: 'basic-hud' } }
           ]
-				}
+				},
+        {
+          label: 'Reference',
+          items: [
+            { label: 'API', link: '/api/' },
+            { label: 'Models', items: [{ autogenerate: { directory: 'models' } }] },
+            { label: 'Options', items: [{ autogenerate: { directory: 'options' } }] },
+          ],
+        }
 			],
 		}),
 	],

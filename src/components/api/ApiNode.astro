@@ -1,0 +1,39 @@
+---
+import type { ApiNode } from '../../lib/api';
+import { anchorId, searchText } from '../../lib/api';
+import TypeLink from './TypeLink.astro';
+interface Props { node: ApiNode; root?: boolean; depth?: number }
+const { node, root = false, depth = 0 } = Astro.props;
+const id = anchorId(node.path);
+---
+<li data-api-node data-search={searchText(node)} data-kind={node.kind}>
+  {node.kind === 'namespace' ? (
+    <details class:list={['api-namespace', { 'api-root': root }]} open id={id}>
+      <summary class="api-row" style={`--api-depth: ${depth}`}>
+        <span class="api-member"><span class="api-chevron" aria-hidden="true">›</span><span class="api-name">{node.name}<span class="api-punctuation">.</span></span></span>
+        <span class="api-description" title={node.description}>{node.description}</span>
+        <span class="api-kind">{node.children.length} members</span>
+      </summary>
+      <ul class="api-children">{node.children.map(child => <Astro.self node={child} depth={depth + 1} />)}</ul>
+    </details>
+  ) : node.kind === 'property' ? (
+    <div class="api-row api-property" id={id} style={`--api-depth: ${depth}`}>
+      <span class="api-member"><span class="api-branch" aria-hidden="true">└</span><a class="api-name api-member-link" href={`#${id}`} title={node.path}>{node.name}</a></span>
+      <span class="api-description" title={node.description}>{node.description}</span>
+      <span class="api-type-cell"><TypeLink type={node.type} /></span>
+    </div>
+  ) : (
+    <details class="api-function" id={id}>
+      <summary class="api-row" style={`--api-depth: ${depth}`}>
+        <span class="api-member"><span class="api-chevron" aria-hidden="true">›</span><a class="api-signature api-member-link" href={`#${id}`} title={node.path}><span class="api-name">{node.name}</span><span class="api-punctuation">(</span>{node.parameters.map((p, i) => <><span class="api-punctuation">{i > 0 ? ', ' : ''}</span><span>{p.name}{p.optional && '?'}</span></>)}<span class="api-punctuation">)</span></a></span>
+        <span class="api-description" title={node.description}>{node.description}</span>
+        <span class="api-type-cell"><TypeLink type={node.returnType} /></span>
+      </summary>
+      {node.parameters.length > 0 && <ul class="api-children api-parameters" aria-label={`${node.name} parameters`}>{node.parameters.map(p => <li class="api-row api-parameter" style={`--api-depth: ${depth + 1}`}>
+        <span class="api-member"><span class="api-branch" aria-hidden="true">└</span><span class="api-name" title={p.optional ? 'Optional parameter' : 'Required parameter'}>{p.name}{p.optional && '?'}</span></span>
+        <span class="api-description" title={p.description}>{p.description}</span>
+        <span class="api-type-cell"><TypeLink type={p.type} /></span>
+      </li>)}</ul>}
+    </details>
+  )}
+</li>

@@ -1,0 +1,16 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import ApiTree from '../../components/api/ApiTree.astro';
+import { api, anchorId } from '../../lib/api';
+
+const headings = api.root.children.map(node => ({ depth: 2, slug: anchorId(node.path), text: node.kind === 'function' ? `${node.name}()` : node.name }));
+---
+<StarlightPage frontmatter={{ title: 'API reference', description: 'Explore LuaHUD namespaces, properties, and functions.', editUrl: false }} headings={headings}>
+  <p>Explore the <code>lh</code> API. Open a namespace or function to see its members and parameter rows. Select a type to read its reference.</p>
+  <p><small>This preview uses sample data. Some members are illustrative and may differ from the released API. A <code>?</code> after a type means it can be <code>nil</code>; after a parameter name, it means the argument can be omitted.</small></p>
+  <ApiTree root={api.root} />
+</StarlightPage>
+
+<style is:global>
+  :root { --sl-content-width: 80rem; }
+</style>
