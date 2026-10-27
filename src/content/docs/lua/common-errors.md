@@ -71,4 +71,4 @@ lh.drawln("Type: " .. type(value) .. ", value: " .. tostring(value))
 
 Check that its counter changes and its stopping condition can be reached. To run code on later ticks, register a callback instead of waiting in a loop.
 
-Try a small example first, then add the rest back a little at a time. Once these basics make sense, continue to [Drawing Your First HUD](/basic-hud/drawing-your-first-hud/).
+Try a small example first, then add the rest back a little at a time. Once these basics make sense, continue to [Your First HUD](/basic-hud/your-first-hud/).
