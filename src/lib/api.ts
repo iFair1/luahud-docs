@@ -42,13 +42,9 @@ export const api = z.object({
   root: z.object({ ...base, kind: z.literal('namespace'), children: z.array(nodeSchema) }),
 }).parse(rawApi);
 
-// Website routes belong here, rather than in the Java export.
-export const typePages: Record<string, { label: string; href: string }> = {
-  Block: { label: 'Block', href: '/models/block/' },
-  Entity: { label: 'Entity', href: '/models/entity/' },
-  PlayingRecord: { label: 'PlayingRecord', href: '/models/playing-record/' },
-  TextOptions: { label: 'TextOptions', href: '/options/text-options/' },
-};
+// Register reference routes here only after their documentation pages exist.
+// Unmapped types remain readable as plain text in the API explorer.
+export const typePages: Record<string, { label: string; href: string }> = {};
 
 export const anchorId = (path: string) => `api-${path.replaceAll('.', '-')}`;
 export const withBase = (href: string) => `${import.meta.env.BASE_URL.replace(/\/$/, '')}${href}`;

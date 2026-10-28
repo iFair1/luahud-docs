@@ -4,11 +4,12 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://luahud.ifair.dev',
 	integrations: [
 		starlight({
 			title: 'LuaHUD',
 			customCss: ['/src/assets/css/custom.css'],
-      social: [{ icon: 'discord', label: 'Discord', href: 'change here when you create the server' }, { icon: 'github', label: 'GitHub', href: 'https://github.com/iFair1/luahud' }],
+      social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/iFair1/luahud' }],
 			sidebar: [
 				{
 					label: 'Getting Started',
@@ -33,8 +34,6 @@ export default defineConfig({
           label: 'Reference',
           items: [
             { label: 'API', link: '/api/' },
-            { label: 'Models', items: [{ autogenerate: { directory: 'models' } }] },
-            { label: 'Options', items: [{ autogenerate: { directory: 'options' } }] },
           ],
         }
 			],

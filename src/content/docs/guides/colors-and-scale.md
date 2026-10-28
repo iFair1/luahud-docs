@@ -5,7 +5,7 @@ sidebar:
   order: 20
 ---
 
-Section options give all its elements a common style. An element's own options can overide the parts it needs.
+Section options give all its elements a common style. An element's own options can override the parts it needs.
 ```lua
 lh.on("tick", function()
     lh.section({
@@ -29,7 +29,7 @@ end)
 The health value has its own text color. The next element still uses the section's default. An override doesn't change the options for later draw calls.
 
 ## Colors
-You can use a hex string or an integer. String are often easier to read, but you can always use integers for math.
+You can use a hex string or an integer. Strings are often easier to read, but you can always use integers for math.
 
 | Value | Meaning |
 |-|-|
@@ -47,7 +47,7 @@ You won't see anything if you use `0x55FF55`. Because `0x55FF55` is equal to `0x
 You can also use `backgroundColor = 0`, because it is the same thing as `0x00000000` anyways.
 
 ## Scale
-The section's `scale` scales the entire section, including text and its layout. `iconScale` sets the default relative scale for its items, item stacks, and entities.
+The section's `scale` scales the entire section, including text and its layout. `iconScale` sets the default relative scale for its items, item stacks, textures, and entities.
 ```lua
 lh.section({
     scale = 1.5,
@@ -63,4 +63,4 @@ Here the diamond block uses the section's `iconScale` of 2. The emerald's own `s
 Text options don't have a separate `scale` field.
 
 ## Local offsets
-`offsetX` and `offsetY` on an individual draw call shift that element within the layout. They are useful for small visual adjustments. Section offset position the whole block relative to its anchor. Use those when moving your HUD around.
+`offsetX` and `offsetY` on an individual draw call shift that element within the layout. They are useful for small visual adjustments. Section offsets position the whole block relative to its anchor. Use those when moving your HUD around.

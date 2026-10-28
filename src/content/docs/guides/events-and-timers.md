@@ -7,17 +7,17 @@ sidebar:
 
 A profile runs once when it loads. That first run is where you define helpers, create local state, and register callbacks. The callbacks do the ongoing work.
 
-## Choose and update point
+## Choose an update point
 | Callback | When it runs | Good for |
 |-|-|-|
-| `lh.on("reload", callback)` | After active profiles have loaded, including first world entry | Initial output. Actually not needed because not using lh.on() does the same thing anyways. |
+| `lh.on("reload", callback)` | After active profiles have loaded, including first world entry | Initialization that should run after all active profiles have loaded. |
 | `lh.on("tick", callback)` | At the end of every client tick | Counters, conditionals, most HUD text |
 | `lh.on("render", callback)` | Immediately before each HUD frame is painted | Content that should update every frame |
-| `lh.setInterval(n, event, callback)` | Repeatedly after `n` `event` event fired. | Less frequent refreshes |
+| `lh.setInterval(n, event, callback)` | After every `n` occurrences of the chosen event. | Less frequent refreshes |
 
-A client normally ticks about 20 times per second, while the frame rate varies. `render` can run much more often, so keep its work small. Use `tick` as a starting point unless you need frame-by-frame updates or *smooth* animatons.
+A client normally ticks about 20 times per second, while the frame rate varies. `render` can run much more often, so keep its work small. Use `tick` as a starting point unless you need frame-by-frame updates or *smooth* animations.
 
-`reload` is the built-in event name for initialization after profiles load. You can do the same thing by not using `lh.on()` though.
+Use top-level code to define helpers and register callbacks. Use `reload` for initialization that should happen after all active profiles have loaded.
 ```lua
 lh.on("reload", function()
     lh.sendMessage("My HUD is ready.")
@@ -42,11 +42,11 @@ lh.on("tick", function()
     lh.drawln("Client ticks since load: " .. ticks)
 end)
 ```
-The callback closes over `ticks`, so it remembers the value between calls. Declare it inside the c allback and it would start over every time.
+The callback closes over `ticks`, so it remembers the value between calls. Declare it inside the callback and it would start over every time.
 
-A reload resets this state, including when another profile is saved or enabled. Leaving the world also discard the runtime, entering a world loads profiles afresh.
+A reload resets this state, including when another profile is saved or enabled. Leaving the world also discards the runtime; entering a world loads profiles afresh.
 
 ## Register once
-Put event and interval registration at the top level. Registering and interval inside `tick` creates another timer on every tick. Registering a listener inside `render` similarly keeps adding listeners.
+Put event and interval registration at the top level. Registering an interval inside `tick` creates another timer on every tick. Registering a listener inside `render` similarly keeps adding listeners.
 
 Use callbacks to schedule work. A `while true` loop waiting for health to change blocks the game thread instead of waiting for the next tick. LuaHUD stops Lua executions that exceed the configured time budget. Keep each invocation short and let it return.

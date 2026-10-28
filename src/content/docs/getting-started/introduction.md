@@ -14,12 +14,12 @@ You build your HUD using Lua scripts called **profiles**. A profile can be as si
 LuaHUD provides an API for reading Minecraft data and drawing it on your HUD. For example, you can:
 
 - Draw text, items/blocks, item stacks, textures, and loaded entities.
-- Show a temporary (or permanent) hud after a specific event
+- Show temporary or persistent HUD elements in response to events.
 - Show performance, player, position, weather, time, and a lot more information.
 
-and you can:
+You can also:
 
-- Organize these huds with independent sections
+- Organize HUD elements into independent sections.
 - Choose different anchors, offsets, scales, colors, spacing, and way more for every section or element.
 - Use multiple profiles at once
 
@@ -34,6 +34,6 @@ Using a programming language gives you control over both the content and the beh
 
 LuaHUD also provides API definitions for code completion in editors that support the Lua language server. This helps you discover available properties and functions while writing a profile.
 
-Also, these definitons are created each time you start the game, so it can recommend you IDs of items, blocks, entities **including modded ones**; extended api from addons, and warn you if something is wrong.
+These definitions are generated when the game starts. Your editor can suggest item, block, and entity IDs **including modded ones**, discover APIs provided by addons, and flag mistakes.
 
-You don't need to know all of Lua to get started. Small script that reads values and draws text is enough for your first HUD.
+You don't need to know all of Lua to get started. A small script that reads values and draws text is enough for your first HUD. Continue to [Installation](/getting-started/installation/), then follow [Your First HUD](/guides/your-first-hud/).

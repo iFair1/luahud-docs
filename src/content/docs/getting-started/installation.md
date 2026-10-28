@@ -38,18 +38,20 @@ Most common ones:
 ```
 
 **MacOS:**
-honestly, i have no idea how that operating system works. I don't even test the mod there
+LuaHUD has not been tested on macOS. Use your launcher to open the instance's Minecraft folder; its location depends on the launcher.
 
 :::tip
 In Prism Launcher, you can also find the game directory by right-clicking the instance and selecting **Folder**. 
 :::
 
 ## Required mods
-You need to download these mods to `<minecraft directory>/mods/` in order to run the game.
+Download versions of these mods that match your Minecraft version, and place their `.jar` files in `<minecraft directory>/mods/`:
 
 * [Fabric API](https://modrinth.com/mod/fabric-api)
 
 * [LuaHUD](https://modrinth.com/mod/luahud) (the mod itself)
 
-* And I recommend you to use [Mod Menu](https://modrinth.com/mod/modmenu) since it makes it easier to configure fabric mods.
-![A Screenshot of mods that is required to use LuaHUD: fabric-api, luahud, modmenu](/src/assets/mods.png)
+* [Mod Menu](https://modrinth.com/mod/modmenu) is optional but recommended for opening mod settings.
+![A Screenshot of mods that is required to use LuaHUD: fabric-api, luahud, modmenu](../../../assets/mods.png)
+
+Launch the instance with Fabric Loader and enter a world. If LuaHUD appears in the mod list, continue to [Accessing Files](/getting-started/accessing-files/) to find your profiles, or follow [Your First HUD](/guides/your-first-hud/).

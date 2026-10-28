@@ -5,7 +5,7 @@ sidebar:
   order: 10
 ---
 
-A section is a group of rows with its own position and drawing defaults. Call `lh.section(options)` to start one. All following draw calls belong to it until you start another section or the [event callback](todo) ends.
+A section is a group of rows with its own position and drawing defaults. Call `lh.section(options)` to start one. All following draw calls belong to it until you start another section or the [event callback](/guides/events-and-timers/) ends.
 ```lua
 lh.section({
     anchor = "topLeft",
@@ -27,7 +27,7 @@ lh.drawln("Text 2 but on ToPrİgHt")
 These are two independent blocks. You don't need to close a section, and `lh.section()` starts with fresh defaults and doesn't inherit the options of the previous section.
 
 ### Anchors and Offsets
-The anchor decides which screen edge the sectoin sits against:
+The anchor decides which screen edge the section sits against:
 |Top|Bottom|
 |-|-|
 |`topLeft`|`bottomLeft`|
@@ -36,9 +36,9 @@ The anchor decides which screen edge the sectoin sits against:
 
 For left and right anchors, a positive `offsetX` moves the section **inward** from that edge. For center anchors, positive `offsetX` moves it right and negative moves it left. A positive `offsetY` moves it inward from the top or bottom edge.
 
-A `bottomRight` section with `offsetX = 8, offsetY = 8` sits eight GUI units from the right and bottom. You don't have to subtract its width from the screen width yourself. Minecraft's GUI scale affects the apperent size of these units.
+A `bottomRight` section with `offsetX = 8, offsetY = 8` sits eight GUI units from the right and bottom. You don't have to subtract its width from the screen width yourself. Minecraft's GUI scale affects the apparent size of these units.
 :::tip
-Get actual gui scale with `lh.display.scale` instead of trying to get it from settings.
+Get the actual GUI scale with `lh.display.scale` instead of trying to get it from settings.
 :::
 
 Sections don't automatically avoid each other or Minecraft's own HUD. They are rendered completely unaware of each other.
@@ -53,7 +53,7 @@ lh.drawItem("minecraft:compass")
 lh.drawln("Home is this way. Probably.")
 lh.drawln("Another row")
 ```
-The icon and first text share a row. `drawln()` finishes that row. For icons, you should `{ newLine = true }` instead of calling the function with a `ln` suffix, in order to do the same thing.
+The icon and first text share a row. `drawln()` finishes that row. For icons, pass `{ newLine = true }` instead of calling the function with a `ln` suffix, in order to do the same thing.
 
 By default, rows are tall enough for their tallest element (`rowHeight = "auto"`). `lineSpacing` adds vertical space around rows, and `inlineSpacing` adds space between visible elements.
 
@@ -75,20 +75,20 @@ lh.on("tick", function()
     lh.drawln("Short row")
 end)
 ```
-Alignment doesn't reverse the draw order. To change that, use `inlineDirection = "rightToLeft` or `rowDirection = "bottomToTop"`. The default are `"leftToRight"` and `"topToBottom"`, even with a right or bottom anchor.
+Alignment doesn't reverse the draw order. To change that, use `inlineDirection = "rightToLeft"` or `rowDirection = "bottomToTop"`. The defaults are `"leftToRight"` and `"topToBottom"`, even with a right or bottom anchor.
 
-Each profile loads and each callback invocation begins with default settings. Put your lh.section() call inside the callback that draws the content. Setting it once at the top level won't style future callbacks.
+Each profile load and each callback invocation begins with default settings. Put your `lh.section()` call inside the callback that draws the content. Setting it once at the top level won't style future callbacks.
 
 ## Theming
-Let's say you want your texts be in color `#FF7DA2DE` and shadowless.
+Let's say you want your text to use the color `#FF7DA2DE` and shadowless.
 
 ```lua
 lh.section({
-    textColor = "#FF7DA2DE", -- "7DA2DE" and 0xFF7DA2DE is ok.
+    textColor = "#FF7DA2DE", -- "#7DA2DE" and 0xFF7DA2DE also work.
     shadow = false
 })
 ```
-Texts after this will inherit this traits even if you don't write the options to every single one of them like below.
+Following text draws in the same section inherit these settings. This avoids repeating the options on each call, as in the equivalent example below.
 ```lua
 lh.drawln("text", { textColor = "#FF7DA2DE", shadow = false })
 lh.drawln("second text", { textColor = "#FF7DA2DE", shadow = false })

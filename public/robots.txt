@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://luahud.ifair.dev/sitemap-index.xml

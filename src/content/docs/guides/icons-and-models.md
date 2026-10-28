@@ -8,16 +8,16 @@ sidebar:
 Text is useful, but sometimes a little picture does the job better. These draw calls join the current row just like `lh.draw()`.
 
 :::tip
-IDs such as `ItemId`, `EntityTypeId` are dynamically generated with modded and vanilla registries, so you can get personalized suggestions for your modpack if you setup your code editor right.
+IDs such as `ItemId`, `EntityTypeId` are dynamically generated with modded and vanilla registries, so you can get personalized suggestions for your modpack if you set up your code editor with a Lua language server.
 :::
 ## Icons
-`lh.drawItem()` draws and item's icon by ID:
+`lh.drawItem()` draws an item's icon by ID:
 ```lua
 lh.drawItem("minecraft:netherite_block")
 lh.drawln("I'm rich!")
 ```
 
-IDs use the `namespace:name` format. The namespace is usually `minecraft` for vanilla content and the mod's namespace for modded content. Item/Block must exist in your game. A translated display name like `"Netherite Block"` isn't an ID.
+IDs use the `namespace:name` format. The namespace is usually `minecraft` for vanilla content and the mod's namespace for modded content. The item or block must exist in your game. A translated display name like `"Netherite Block"` isn't an ID.
 
  Use `lh.drawStack()` when you want an actual stack, including its count, durability bar, and enchantment glint:
  ```lua
@@ -46,7 +46,7 @@ lh.drawStack({
 This only affects the drawing. And yeah you can draw 64 diamond swords.
 
 ## Keep empty slots in a row
-Empty stacks are normally skipped. Pass `drawAir = true` when you want an empty slot to reserve space, for example in an custom hotbar:
+Empty stacks are normally skipped. Pass `drawAir = true` when you want an empty slot to reserve space, for example in a custom hotbar:
 ```lua
 lh.on("tick", function()
     lh.section({
@@ -55,14 +55,14 @@ lh.on("tick", function()
         inlineSpacing = 2,
     })
 
-    for _, stack in ipairs(lh.slots.slots) do
+    for _, stack in ipairs(lh.slots.hotbar) do
         lh.drawStack(stack, { drawAir = true })
     end
 end)
 ```
 
 ## Textures
-`lh.drawTexture()` takes a resource identifier, not afilesystem path or URL:
+`lh.drawTexture()` takes a resource identifier, not a filesystem path or URL:
 ```lua
 lh.drawTexture("minecraft:textures/item/compass_00.png", {
     scale = 2,
@@ -98,4 +98,4 @@ The UUID identifies a particular entity, not an entity type. `"minecraft:zombie"
 
 `yaw` and `pitch` adjust the viewing angle in degrees. With `useEntityRotation = true`, those angles are offsets from the entity's current rotation.
 
-For the difference between `tick` and `render`, continue to [Events and Timers](todo).
+For the difference between `tick` and `render`, continue to [Events and Timers](/guides/events-and-timers/).

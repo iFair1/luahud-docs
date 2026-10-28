@@ -6,7 +6,7 @@ sidebar:
 ---
 
 :::tip
-Already know Lua? Skip to [Drawing Your First HUD](/basic-hud/drawing-your-first-hud/).
+Already know Lua? Skip to [Your First HUD](/guides/your-first-hud/).
 :::
 
 [Lua](https://www.lua.org/) is a small programming language that applications can embed. LuaHUD uses it to let you write your own HUD.
