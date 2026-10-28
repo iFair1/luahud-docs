@@ -1,0 +1,14 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import TypeFields from '../../../components/api/TypeFields.astro';
+import { generatedTypes, getType, withBase } from '../../../lib/api';
+export function getStaticPaths() {
+  return generatedTypes.map(type => ({ params: { id: type.id } }));
+}
+const type = getType(Astro.params.id!);
+---
+<StarlightPage frontmatter={{ title: type.name, description: `${type.name} LuaHUD ${type.kind} reference.`, editUrl: false }} headings={[{ depth: 2, slug: 'definition', text: 'Definition' }]}>
+  <p><a href={withBase('/api/types/')}>Browse all models and options</a></p>
+  <h2 id="definition">Definition</h2>
+  <TypeFields id={type.id} />
+</StarlightPage>

@@ -1,0 +1,87 @@
+---
+title: ChatText
+description: Minecraft text component input for local chat, including styles, translations, click and hover events.
+---
+
+import TypeFields from '../../../components/api/TypeFields.astro';
+
+A Minecraft text component table accepted by `lh.sendMessage()`. A plain string is also accepted and is treated as literal text. Messages appear only in local chat.
+
+All fields below are optional in the Lua schema, but the resulting table must describe valid Minecraft text content. Usually choose `text`, `translate`, or `keybind`. Nested components use this same schema.
+
+## Fields
+
+<TypeFields id="ChatText" />
+
+## Example
+
+```lua
+lh.sendMessage({
+    text = "LuaHUD documentation",
+    color = "aqua",
+    underlined = true,
+    click_event = {
+        action = "open_url",
+        url = "https://luahud.ifair.dev",
+    },
+    hover_event = {
+        action = "show_text",
+        value = { text = "Open the docs", color = "gray" },
+    },
+    extra = { { text = " (local message)", color = "white", underlined = false } },
+})
+```
+
+Use `click_event` and `hover_event` on every supported Minecraft version. LuaHUD adapts them for older versions. The legacy `clickEvent` and `hoverEvent` names are rejected. Unknown schema fields also produce an error.
+
+## Click events
+
+`ChatClickEvent` is one of these tables. `action` and the action-specific payload are required.
+
+<TypeFields id="ChatClickEvent" />
+
+### ChatOpenUrl
+
+<TypeFields id="ChatOpenUrl" />
+
+### ChatSuggestCommand
+
+<TypeFields id="ChatSuggestCommand" />
+
+### ChatChangePage
+
+<TypeFields id="ChatChangePage" />
+
+### ChatCopyToClipboard
+
+<TypeFields id="ChatCopyToClipboard" />
+
+## Hover events
+
+`ChatHoverEvent` is one of these tables:
+
+<TypeFields id="ChatHoverEvent" />
+
+### ChatShowText
+
+<TypeFields id="ChatShowText" />
+
+### ChatShowItem
+
+<TypeFields id="ChatShowItem" />
+
+### ChatShowEntity
+
+<TypeFields id="ChatShowEntity" />
+
+## Player profiles
+
+`player` accepts a string or a `ChatPlayerProfile` table. Profile table fields are all optional:
+
+<TypeFields id="ChatPlayerProfile" />
+
+### ChatProfileProperty
+
+<TypeFields id="ChatProfileProperty" />
+
+Object content requires Minecraft 1.21.9+; it is unavailable on older versions.

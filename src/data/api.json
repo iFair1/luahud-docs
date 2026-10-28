@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "root": {
     "name": "lh",
     "path": "lh",
@@ -30,6 +30,16 @@
             "type": {
               "kind": "primitive",
               "name": "integer"
+            }
+          },
+          {
+            "name": "isChatOn",
+            "path": "lh.display.isChatOn",
+            "description": "Whether the chat is on",
+            "kind": "property",
+            "type": {
+              "kind": "primitive",
+              "name": "boolean"
             }
           },
           {
@@ -378,6 +388,27 @@
         }
       },
       {
+        "name": "getTranslation",
+        "path": "lh.getTranslation",
+        "description": "Translate a key using the current client language. Returns the key if no translation exists.",
+        "kind": "function",
+        "parameters": [
+          {
+            "name": "key",
+            "description": "Translation key",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "string"
+            }
+          }
+        ],
+        "returnType": {
+          "kind": "primitive",
+          "name": "string"
+        }
+      },
+      {
         "name": "newline",
         "path": "lh.newline",
         "description": "End the current row, optionally repeating the line break.",
@@ -611,16 +642,6 @@
             "kind": "namespace",
             "children": [
               {
-                "name": "armor",
-                "path": "lh.player.armor.armor",
-                "description": "Armor attribute",
-                "kind": "property",
-                "type": {
-                  "kind": "primitive",
-                  "name": "number"
-                }
-              },
-              {
                 "name": "knockbackResistance",
                 "path": "lh.player.armor.knockbackResistance",
                 "description": "Explosion knockback resistance",
@@ -634,6 +655,16 @@
                 "name": "toughness",
                 "path": "lh.player.armor.toughness",
                 "description": "Armor toughness attribute",
+                "kind": "property",
+                "type": {
+                  "kind": "primitive",
+                  "name": "number"
+                }
+              },
+              {
+                "name": "value",
+                "path": "lh.player.armor.value",
+                "description": "Armor attribute",
                 "kind": "property",
                 "type": {
                   "kind": "primitive",
@@ -766,7 +797,7 @@
           {
             "name": "sprintHeld",
             "path": "lh.player.sprintHeld",
-            "description": "Whether the sprint key is held",
+            "description": "Whether the sprint key is held or toggled",
             "kind": "property",
             "type": {
               "kind": "primitive",
@@ -886,6 +917,26 @@
             "kind": "namespace",
             "children": [
               {
+                "name": "foliageColor",
+                "path": "lh.pos.biome.foliageColor",
+                "description": "Foliage color of the biome",
+                "kind": "property",
+                "type": {
+                  "kind": "primitive",
+                  "name": "integer"
+                }
+              },
+              {
+                "name": "grassColor",
+                "path": "lh.pos.biome.grassColor",
+                "description": "Grass color of the biome",
+                "kind": "property",
+                "type": {
+                  "kind": "primitive",
+                  "name": "integer"
+                }
+              },
+              {
                 "name": "id",
                 "path": "lh.pos.biome.id",
                 "description": "Namespaced biome ID",
@@ -904,6 +955,46 @@
                   "kind": "primitive",
                   "name": "string"
                 }
+              },
+              {
+                "name": "precipitation",
+                "path": "lh.pos.biome.precipitation",
+                "description": "Biome precipitation type",
+                "kind": "property",
+                "type": {
+                  "kind": "primitive",
+                  "name": "string"
+                }
+              },
+              {
+                "name": "skyColor",
+                "path": "lh.pos.biome.skyColor",
+                "description": "Sky color of the biome",
+                "kind": "property",
+                "type": {
+                  "kind": "primitive",
+                  "name": "integer"
+                }
+              },
+              {
+                "name": "temperature",
+                "path": "lh.pos.biome.temperature",
+                "description": "Biome temperature",
+                "kind": "property",
+                "type": {
+                  "kind": "primitive",
+                  "name": "number"
+                }
+              },
+              {
+                "name": "waterColor",
+                "path": "lh.pos.biome.waterColor",
+                "description": "Water color of the biome",
+                "kind": "property",
+                "type": {
+                  "kind": "primitive",
+                  "name": "integer"
+                }
               }
             ]
           },
@@ -914,8 +1005,38 @@
             "kind": "namespace",
             "children": [
               {
-                "name": "isSlimeChunk",
-                "path": "lh.pos.chunk.isSlimeChunk",
+                "name": "localX",
+                "path": "lh.pos.chunk.localX",
+                "description": "In chunk x coordinate",
+                "kind": "property",
+                "type": {
+                  "kind": "primitive",
+                  "name": "integer"
+                }
+              },
+              {
+                "name": "localY",
+                "path": "lh.pos.chunk.localY",
+                "description": "In chunk y coordinate",
+                "kind": "property",
+                "type": {
+                  "kind": "primitive",
+                  "name": "integer"
+                }
+              },
+              {
+                "name": "localZ",
+                "path": "lh.pos.chunk.localZ",
+                "description": "In chunk z coordinate",
+                "kind": "property",
+                "type": {
+                  "kind": "primitive",
+                  "name": "integer"
+                }
+              },
+              {
+                "name": "slimeChunk",
+                "path": "lh.pos.chunk.slimeChunk",
                 "description": "Whether the chunk is a slime chunk",
                 "kind": "property",
                 "type": {
@@ -1015,8 +1136,8 @@
             }
           },
           {
-            "name": "isMultiplayer",
-            "path": "lh.session.isMultiplayer",
+            "name": "multiplayer",
+            "path": "lh.session.multiplayer",
             "description": "Whether it's multiplayer",
             "kind": "property",
             "type": {
@@ -1297,5 +1418,2159 @@
         ]
       }
     ]
-  }
+  },
+  "types": [
+    {
+      "id": "BlockId",
+      "name": "BlockId",
+      "kind": "alias",
+      "description": "Namespaced block registry ID.",
+      "type": {
+        "kind": "primitive",
+        "name": "string"
+      }
+    },
+    {
+      "id": "ChatChangePage",
+      "name": "ChatChangePage",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "action",
+          "description": "Change a book page",
+          "optional": false,
+          "type": {
+            "kind": "literal",
+            "value": "change_page"
+          }
+        },
+        {
+          "name": "page",
+          "description": "One-based page number",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ChatClickEvent",
+      "name": "ChatClickEvent",
+      "kind": "alias",
+      "description": "",
+      "type": {
+        "kind": "union",
+        "alternatives": [
+          {
+            "kind": "reference",
+            "id": "ChatOpenUrl"
+          },
+          {
+            "kind": "reference",
+            "id": "ChatSuggestCommand"
+          },
+          {
+            "kind": "reference",
+            "id": "ChatChangePage"
+          },
+          {
+            "kind": "reference",
+            "id": "ChatCopyToClipboard"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ChatCopyToClipboard",
+      "name": "ChatCopyToClipboard",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "action",
+          "description": "Copy text to the clipboard",
+          "optional": false,
+          "type": {
+            "kind": "literal",
+            "value": "copy_to_clipboard"
+          }
+        },
+        {
+          "name": "value",
+          "description": "Text to copy",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ChatHoverEvent",
+      "name": "ChatHoverEvent",
+      "kind": "alias",
+      "description": "",
+      "type": {
+        "kind": "union",
+        "alternatives": [
+          {
+            "kind": "reference",
+            "id": "ChatShowText"
+          },
+          {
+            "kind": "reference",
+            "id": "ChatShowItem"
+          },
+          {
+            "kind": "reference",
+            "id": "ChatShowEntity"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ChatOpenUrl",
+      "name": "ChatOpenUrl",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "action",
+          "description": "Open a URL",
+          "optional": false,
+          "type": {
+            "kind": "literal",
+            "value": "open_url"
+          }
+        },
+        {
+          "name": "url",
+          "description": "HTTP or HTTPS URL",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ChatPlayerProfile",
+      "name": "ChatPlayerProfile",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "id",
+          "description": "Player UUID",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "name",
+          "description": "Player name",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "properties",
+          "description": "Player skin profile properties",
+          "optional": true,
+          "type": {
+            "kind": "list",
+            "element": {
+              "kind": "reference",
+              "id": "ChatProfileProperty"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ChatProfileProperty",
+      "name": "ChatProfileProperty",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "name",
+          "description": "Profile property name",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "signature",
+          "description": "Signed property signature",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "value",
+          "description": "Profile property value",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ChatShowEntity",
+      "name": "ChatShowEntity",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "action",
+          "description": "Display an entity tooltip",
+          "optional": false,
+          "type": {
+            "kind": "literal",
+            "value": "show_entity"
+          }
+        },
+        {
+          "name": "id",
+          "description": "Namespaced entity type ID",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "name",
+          "description": "Entity display name",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "primitive",
+                "name": "string"
+              },
+              {
+                "kind": "reference",
+                "id": "ChatText"
+              }
+            ]
+          }
+        },
+        {
+          "name": "uuid",
+          "description": "Entity UUID",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ChatShowItem",
+      "name": "ChatShowItem",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "action",
+          "description": "Display an item tooltip",
+          "optional": false,
+          "type": {
+            "kind": "literal",
+            "value": "show_item"
+          }
+        },
+        {
+          "name": "components",
+          "description": "Item data components keyed by namespaced ID",
+          "optional": true,
+          "type": {
+            "kind": "map",
+            "key": {
+              "kind": "primitive",
+              "name": "string"
+            },
+            "value": {
+              "kind": "primitive",
+              "name": "any"
+            }
+          }
+        },
+        {
+          "name": "count",
+          "description": "Item count; defaults to 1",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "id",
+          "description": "Namespaced item ID",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ChatShowText",
+      "name": "ChatShowText",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "action",
+          "description": "Display a text tooltip",
+          "optional": false,
+          "type": {
+            "kind": "literal",
+            "value": "show_text"
+          }
+        },
+        {
+          "name": "value",
+          "description": "Tooltip text component",
+          "optional": false,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "primitive",
+                "name": "string"
+              },
+              {
+                "kind": "reference",
+                "id": "ChatText"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ChatSuggestCommand",
+      "name": "ChatSuggestCommand",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "action",
+          "description": "Fill the chat input",
+          "optional": false,
+          "type": {
+            "kind": "literal",
+            "value": "suggest_command"
+          }
+        },
+        {
+          "name": "command",
+          "description": "Suggested chat input",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ChatText",
+      "name": "ChatText",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "atlas",
+          "description": "Sprite atlas ID; defaults to minecraft:blocks",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "bold",
+          "description": "Bold text",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "click_event",
+          "description": "Click action and its payload",
+          "optional": true,
+          "type": {
+            "kind": "reference",
+            "id": "ChatClickEvent"
+          }
+        },
+        {
+          "name": "color",
+          "description": "Named color or #RRGGBB",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "extra",
+          "description": "Appended text components, inheriting this component's style",
+          "optional": true,
+          "type": {
+            "kind": "list",
+            "element": {
+              "kind": "union",
+              "alternatives": [
+                {
+                  "kind": "primitive",
+                  "name": "string"
+                },
+                {
+                  "kind": "reference",
+                  "id": "ChatText"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "fallback",
+          "description": "Fallback translation format",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "font",
+          "description": "Namespaced font ID",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "hat",
+          "description": "Include the player head's hat layer; defaults to true",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "hover_event",
+          "description": "Hover action and its payload",
+          "optional": true,
+          "type": {
+            "kind": "reference",
+            "id": "ChatHoverEvent"
+          }
+        },
+        {
+          "name": "insertion",
+          "description": "Text inserted into chat on shift-click",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "italic",
+          "description": "Italic text",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "keybind",
+          "description": "Key binding translation key",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "obfuscated",
+          "description": "Randomized glyphs",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "object",
+          "description": "Object content type; requires Minecraft 1.21.9+",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "literal",
+                "value": "atlas"
+              },
+              {
+                "kind": "literal",
+                "value": "player"
+              }
+            ]
+          }
+        },
+        {
+          "name": "player",
+          "description": "Player profile for player head content",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "primitive",
+                "name": "string"
+              },
+              {
+                "kind": "reference",
+                "id": "ChatPlayerProfile"
+              }
+            ]
+          }
+        },
+        {
+          "name": "shadow_color",
+          "description": "ARGB integer or RGBA float array; requires Minecraft 1.21.2+",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "primitive",
+                "name": "integer"
+              },
+              {
+                "kind": "list",
+                "element": {
+                  "kind": "primitive",
+                  "name": "number"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "sprite",
+          "description": "Namespaced sprite ID for atlas content",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "strikethrough",
+          "description": "Strikethrough text",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "text",
+          "description": "Literal text",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "translate",
+          "description": "Translation key",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "type",
+          "description": "Explicit content type",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "literal",
+                "value": "text"
+              },
+              {
+                "kind": "literal",
+                "value": "translatable"
+              },
+              {
+                "kind": "literal",
+                "value": "keybind"
+              },
+              {
+                "kind": "literal",
+                "value": "object"
+              }
+            ]
+          }
+        },
+        {
+          "name": "underlined",
+          "description": "Underlined text",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "with",
+          "description": "Translation arguments",
+          "optional": true,
+          "type": {
+            "kind": "list",
+            "element": {
+              "kind": "union",
+              "alternatives": [
+                {
+                  "kind": "union",
+                  "alternatives": [
+                    {
+                      "kind": "primitive",
+                      "name": "string"
+                    },
+                    {
+                      "kind": "reference",
+                      "id": "ChatText"
+                    }
+                  ]
+                },
+                {
+                  "kind": "primitive",
+                  "name": "number"
+                },
+                {
+                  "kind": "primitive",
+                  "name": "boolean"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "Damage",
+      "kind": "model",
+      "name": "Damage",
+      "fields": [
+        {
+          "name": "amount",
+          "description": "Observed health loss including absorption in health points (two per heart), grouped with nearby damage notifications; 0 if no loss was observed. Absorption loss requires a damage notification; may combine multiple hits.",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "attacker",
+          "description": "Attacking entity; nil for environmental damage or an unavailable attacker",
+          "optional": true,
+          "type": {
+            "kind": "reference",
+            "id": "Entity"
+          }
+        },
+        {
+          "name": "type",
+          "description": "Namespaced damage type ID, such as minecraft:fall or minecraft:player_attack",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "victim",
+          "description": "Entity receiving the damage",
+          "optional": true,
+          "type": {
+            "kind": "reference",
+            "id": "Entity"
+          }
+        },
+        {
+          "name": "weapon",
+          "description": "Weapon stack observed at damage notification time; nil for an empty hand or unavailable weapon",
+          "optional": true,
+          "type": {
+            "kind": "reference",
+            "id": "ItemStack"
+          }
+        }
+      ]
+    },
+    {
+      "id": "Death",
+      "kind": "model",
+      "name": "Death",
+      "fields": [
+        {
+          "name": "attacker",
+          "description": "Attacker from the latest client-observed damage source; nil when unavailable",
+          "optional": true,
+          "type": {
+            "kind": "reference",
+            "id": "Entity"
+          }
+        },
+        {
+          "name": "damageType",
+          "description": "Latest client-observed damage type ID; minecraft:generic when unavailable. May differ from the server's fatal source.",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "dimension",
+          "description": "Namespaced dimension ID at death",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "message",
+          "description": "Plain-text death message; server-provided for death, generated from the observed source for kill",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "victim",
+          "description": "Entity that died",
+          "optional": true,
+          "type": {
+            "kind": "reference",
+            "id": "Entity"
+          }
+        },
+        {
+          "name": "weapon",
+          "description": "Weapon copied from the available damage source at death; nil for an empty hand or unavailable weapon",
+          "optional": true,
+          "type": {
+            "kind": "reference",
+            "id": "ItemStack"
+          }
+        },
+        {
+          "name": "x",
+          "description": "Victim X coordinate at death",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "y",
+          "description": "Victim Y coordinate at death",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "z",
+          "description": "Victim Z coordinate at death",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EnchantmentId",
+      "name": "EnchantmentId",
+      "kind": "alias",
+      "description": "Namespaced enchantment registry ID. Available IDs depend on the loaded world and its data packs.",
+      "type": {
+        "kind": "primitive",
+        "name": "string"
+      }
+    },
+    {
+      "id": "Entity",
+      "kind": "model",
+      "name": "Entity",
+      "fields": [
+        {
+          "name": "effects",
+          "description": "Active status effects keyed by namespaced ID",
+          "optional": false,
+          "type": {
+            "kind": "map",
+            "key": {
+              "kind": "reference",
+              "id": "StatusEffectId"
+            },
+            "value": {
+              "kind": "reference",
+              "id": "StatusEffect"
+            }
+          }
+        },
+        {
+          "name": "health",
+          "description": "Current health, or 0 for non-living entities",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "horse",
+          "description": "Horse-family properties, or nil for other entities",
+          "optional": true,
+          "type": {
+            "kind": "reference",
+            "id": "Horse"
+          }
+        },
+        {
+          "name": "id",
+          "description": "Namespaced entity type",
+          "optional": false,
+          "type": {
+            "kind": "reference",
+            "id": "EntityTypeId"
+          }
+        },
+        {
+          "name": "isBaby",
+          "description": "Whether the entity is a baby",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "isLiving",
+          "description": "Whether the entity is a living entity",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "maxHealth",
+          "description": "Maximum health, or 0 for non-living entities",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "name",
+          "description": "Localized display name",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "uuid",
+          "description": "World entity UUID",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "x",
+          "description": "X coordinate",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "y",
+          "description": "Y coordinate",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "z",
+          "description": "Z coordinate",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EntityInput",
+      "kind": "input",
+      "name": "EntityInput",
+      "model": {
+        "kind": "reference",
+        "id": "Entity"
+      },
+      "fields": [
+        {
+          "name": "uuid",
+          "description": "World entity UUID",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EntityOptions",
+      "name": "EntityOptions",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "backgroundColor",
+          "description": "ARGB integer or RGB/ARGB hex string",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "primitive",
+                "name": "string"
+              },
+              {
+                "kind": "primitive",
+                "name": "integer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "fullBright",
+          "description": "Use maximum lighting; defaults to true",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "newLine",
+          "description": "Advance to the next line after drawing; defaults to false",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "offsetX",
+          "description": "Local horizontal offset",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "offsetY",
+          "description": "Local vertical offset",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "pitch",
+          "description": "Vertical viewing angle offset in degrees",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "scale",
+          "description": "Scale relative to the section",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "useEntityRotation",
+          "description": "Use the entity's current rotation as the base for yaw and pitch offsets",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "yaw",
+          "description": "Horizontal viewing angle offset in degrees",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EntityTypeId",
+      "name": "EntityTypeId",
+      "kind": "alias",
+      "description": "Namespaced entity type registry ID.",
+      "type": {
+        "kind": "primitive",
+        "name": "string"
+      }
+    },
+    {
+      "id": "Error",
+      "kind": "model",
+      "name": "Error",
+      "fields": [
+        {
+          "name": "count",
+          "description": "Occurrence count at the time of this snapshot",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "group",
+          "description": "Profile name, or LuaHUD for system errors",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "id",
+          "description": "Stable ID while this error remains active",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "isNew",
+          "description": "Whether this snapshot represents the first occurrence of the active error",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "line",
+          "description": "Source line number, or -1 when unavailable",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "message",
+          "description": "Error message without the source location prefix",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "phase",
+          "description": "Originating event, load phase, timer, or system component",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "system",
+          "description": "Whether this is a LuaHUD system error",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        }
+      ]
+    },
+    {
+      "id": "Horse",
+      "kind": "model",
+      "name": "Horse",
+      "fields": [
+        {
+          "name": "hasChest",
+          "description": "Whether a chest is attached",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "isSaddled",
+          "description": "Whether a saddle is equipped",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "isTamed",
+          "description": "Whether the animal is tamed",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "jumpStrength",
+          "description": "Effective jump-strength attribute (not jump height)",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "movementSpeed",
+          "description": "Effective movement-speed attribute (not blocks per second)",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "rider",
+          "description": "First passenger, or nil when unoccupied",
+          "optional": true,
+          "type": {
+            "kind": "reference",
+            "id": "Entity"
+          }
+        }
+      ]
+    },
+    {
+      "id": "IconOptions",
+      "name": "IconOptions",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "backgroundColor",
+          "description": "ARGB integer or RGB/ARGB hex string",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "primitive",
+                "name": "string"
+              },
+              {
+                "kind": "primitive",
+                "name": "integer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "newLine",
+          "description": "Advance to the next line after drawing; defaults to false",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "offsetX",
+          "description": "Local horizontal offset",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "offsetY",
+          "description": "Local vertical offset",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "scale",
+          "description": "Scale relative to the section",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ItemId",
+      "name": "ItemId",
+      "kind": "alias",
+      "description": "Namespaced item registry ID.",
+      "type": {
+        "kind": "primitive",
+        "name": "string"
+      }
+    },
+    {
+      "id": "ItemStack",
+      "kind": "model",
+      "name": "ItemStack",
+      "fields": [
+        {
+          "name": "count",
+          "description": "Stack count; defaults to 1 for input tables",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "damage",
+          "description": "Current item damage",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "damageLeft",
+          "description": "Remaining durability",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "enchantments",
+          "description": "Enchantments keyed by namespaced ID",
+          "optional": true,
+          "type": {
+            "kind": "map",
+            "key": {
+              "kind": "reference",
+              "id": "EnchantmentId"
+            },
+            "value": {
+              "kind": "primitive",
+              "name": "integer"
+            }
+          }
+        },
+        {
+          "name": "id",
+          "description": "Namespaced item ID",
+          "optional": false,
+          "type": {
+            "kind": "reference",
+            "id": "ItemId"
+          }
+        },
+        {
+          "name": "maxDamage",
+          "description": "Maximum durability",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "name",
+          "description": "Localized item name",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ItemStackInput",
+      "kind": "input",
+      "name": "ItemStackInput",
+      "model": {
+        "kind": "reference",
+        "id": "ItemStack"
+      },
+      "fields": [
+        {
+          "name": "count",
+          "description": "Stack count; defaults to 1 for input tables",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "damage",
+          "description": "Current item damage",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "damageLeft",
+          "description": "Remaining durability",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "enchantments",
+          "description": "Enchantments keyed by namespaced ID",
+          "optional": true,
+          "type": {
+            "kind": "map",
+            "key": {
+              "kind": "reference",
+              "id": "EnchantmentId"
+            },
+            "value": {
+              "kind": "primitive",
+              "name": "integer"
+            }
+          }
+        },
+        {
+          "name": "id",
+          "description": "Namespaced item ID",
+          "optional": false,
+          "type": {
+            "kind": "reference",
+            "id": "ItemId"
+          }
+        }
+      ]
+    },
+    {
+      "id": "PlacedBlock",
+      "kind": "model",
+      "name": "PlacedBlock",
+      "fields": [
+        {
+          "name": "id",
+          "description": "Namespaced block ID",
+          "optional": false,
+          "type": {
+            "kind": "reference",
+            "id": "BlockId"
+          }
+        },
+        {
+          "name": "name",
+          "description": "Localized block name",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "x",
+          "description": "Block X coordinate",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "y",
+          "description": "Block Y coordinate",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "z",
+          "description": "Block Z coordinate",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        }
+      ]
+    },
+    {
+      "id": "PlayingRecord",
+      "kind": "model",
+      "name": "PlayingRecord",
+      "fields": [
+        {
+          "name": "elapsed",
+          "description": "Elapsed playback time in whole seconds",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "id",
+          "description": "Namespaced disc item ID (song ID when no matching item exists)",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "length",
+          "description": "Song length in seconds",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "name",
+          "description": "Localized song name",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "remaining",
+          "description": "Remaining playback time in seconds (rounded up for fractional song lengths)",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        }
+      ]
+    },
+    {
+      "id": "SectionOptions",
+      "name": "SectionOptions",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "anchor",
+          "description": "Screen anchor",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "literal",
+                "value": "topLeft"
+              },
+              {
+                "kind": "literal",
+                "value": "topCenter"
+              },
+              {
+                "kind": "literal",
+                "value": "topRight"
+              },
+              {
+                "kind": "literal",
+                "value": "bottomLeft"
+              },
+              {
+                "kind": "literal",
+                "value": "bottomCenter"
+              },
+              {
+                "kind": "literal",
+                "value": "bottomRight"
+              }
+            ]
+          }
+        },
+        {
+          "name": "backgroundColor",
+          "description": "ARGB integer or RGB/ARGB hex string",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "primitive",
+                "name": "string"
+              },
+              {
+                "kind": "primitive",
+                "name": "integer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "duration",
+          "description": "Positive lifetime in seconds; omitted sections last until this callback runs again",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "iconScale",
+          "description": "Default item, stack, entity, and texture scale relative to the section",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "id",
+          "description": "Shared section ID; replaces any existing section with this ID",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "inlineAlign",
+          "description": "Vertical alignment of elements within a row; defaults to center",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "literal",
+                "value": "top"
+              },
+              {
+                "kind": "literal",
+                "value": "center"
+              },
+              {
+                "kind": "literal",
+                "value": "bottom"
+              }
+            ]
+          }
+        },
+        {
+          "name": "inlineDirection",
+          "description": "Visual order of elements within a row; defaults to leftToRight",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "literal",
+                "value": "leftToRight"
+              },
+              {
+                "kind": "literal",
+                "value": "rightToLeft"
+              }
+            ]
+          }
+        },
+        {
+          "name": "inlineSpacing",
+          "description": "Unscaled background spacing between visible elements; defaults to 0",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "lineSpacing",
+          "description": "Unscaled background spacing around each row, favoring the top; defaults to 2",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "offsetX",
+          "description": "Horizontal inset for edge anchors or signed shift for center anchors",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "offsetY",
+          "description": "Vertical screen-edge inset",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "rowAlign",
+          "description": "Alignment of rows within the widest row; defaults from the anchor",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "literal",
+                "value": "left"
+              },
+              {
+                "kind": "literal",
+                "value": "center"
+              },
+              {
+                "kind": "literal",
+                "value": "right"
+              }
+            ]
+          }
+        },
+        {
+          "name": "rowDirection",
+          "description": "Visual order of rows within the section; defaults to topToBottom",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "literal",
+                "value": "topToBottom"
+              },
+              {
+                "kind": "literal",
+                "value": "bottomToTop"
+              }
+            ]
+          }
+        },
+        {
+          "name": "rowHeight",
+          "description": "Fixed unscaled row height, or auto to fit the tallest element; defaults to auto",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "primitive",
+                "name": "integer"
+              },
+              {
+                "kind": "literal",
+                "value": "auto"
+              }
+            ]
+          }
+        },
+        {
+          "name": "scale",
+          "description": "Scale applied to the entire section",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "shadow",
+          "description": "Draw text shadow",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "textColor",
+          "description": "Text color",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "primitive",
+                "name": "string"
+              },
+              {
+                "kind": "primitive",
+                "name": "integer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "visible",
+          "description": "Whether this section is drawn; defaults to true",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        }
+      ]
+    },
+    {
+      "id": "StackOptions",
+      "name": "StackOptions",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "backgroundColor",
+          "description": "ARGB integer or RGB/ARGB hex string",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "primitive",
+                "name": "string"
+              },
+              {
+                "kind": "primitive",
+                "name": "integer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "drawAir",
+          "description": "Reserve one item width for an empty stack",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "newLine",
+          "description": "Advance to the next line after drawing; defaults to false",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "offsetX",
+          "description": "Local horizontal offset",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "offsetY",
+          "description": "Local vertical offset",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "scale",
+          "description": "Scale relative to the section",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "showCount",
+          "description": "Show stack count",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "showDurabilityBar",
+          "description": "Show durability bar",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "showGlint",
+          "description": "Show enchantment glint",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        }
+      ]
+    },
+    {
+      "id": "StatusEffect",
+      "kind": "model",
+      "name": "StatusEffect",
+      "fields": [
+        {
+          "name": "durationInSeconds",
+          "description": "Remaining duration in seconds (-1 if infinite)",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "durationInTicks",
+          "description": "Remaining duration in ticks (-1 if infinite); takes precedence over seconds for input tables",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "id",
+          "description": "Namespaced status effect ID",
+          "optional": false,
+          "type": {
+            "kind": "reference",
+            "id": "StatusEffectId"
+          }
+        },
+        {
+          "name": "level",
+          "description": "Effect level; defaults to 1 for input tables",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "name",
+          "description": "Localized effect name",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "showParticles",
+          "description": "Whether effect particles are shown; defaults to true for input tables",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        }
+      ]
+    },
+    {
+      "id": "StatusEffectId",
+      "name": "StatusEffectId",
+      "kind": "alias",
+      "description": "Namespaced status effect registry ID.",
+      "type": {
+        "kind": "primitive",
+        "name": "string"
+      }
+    },
+    {
+      "id": "StatusEffectInput",
+      "kind": "input",
+      "name": "StatusEffectInput",
+      "model": {
+        "kind": "reference",
+        "id": "StatusEffect"
+      },
+      "fields": [
+        {
+          "name": "durationInSeconds",
+          "description": "Remaining duration in seconds (-1 if infinite)",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "durationInTicks",
+          "description": "Remaining duration in ticks (-1 if infinite); takes precedence over seconds for input tables",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "id",
+          "description": "Namespaced status effect ID",
+          "optional": false,
+          "type": {
+            "kind": "reference",
+            "id": "StatusEffectId"
+          }
+        },
+        {
+          "name": "level",
+          "description": "Effect level; defaults to 1 for input tables",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "showParticles",
+          "description": "Whether effect particles are shown; defaults to true for input tables",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        }
+      ]
+    },
+    {
+      "id": "TextOptions",
+      "name": "TextOptions",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "backgroundColor",
+          "description": "ARGB integer or RGB/ARGB hex string",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "primitive",
+                "name": "string"
+              },
+              {
+                "kind": "primitive",
+                "name": "integer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "offsetX",
+          "description": "Local horizontal offset",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "offsetY",
+          "description": "Local vertical offset",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "shadow",
+          "description": "Draw text shadow",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "textColor",
+          "description": "Text color",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "primitive",
+                "name": "string"
+              },
+              {
+                "kind": "primitive",
+                "name": "integer"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "attack",
+      "description": "Reports server-observed damage dealt by the local player, including projectiles. Uses the Damage model with victim and observed health/absorption loss, matched over two client ticks. Nearby hits on each victim are combined using the latest source; unavailable loss is 0.",
+      "payloadType": {
+        "kind": "reference",
+        "id": "Damage"
+      }
+    },
+    {
+      "name": "damage",
+      "description": "Reports local-player damage with observed health loss including absorption. Nearby updates are combined using the latest damage source; unmatched health loss uses minecraft:generic. Notification matching waits up to two client ticks.",
+      "payloadType": {
+        "kind": "reference",
+        "id": "Damage"
+      }
+    },
+    {
+      "name": "death",
+      "description": "Reports the server's local-player death notification with position, dimension, death message and available damage source. Also runs when the death screen is disabled (immediate respawn).",
+      "payloadType": {
+        "kind": "reference",
+        "id": "Death"
+      }
+    },
+    {
+      "name": "error",
+      "description": "Reports each recorded error occurrence on the next client lifecycle tick, after profiles load. Repeated errors keep their ID and increment count; isNew is true only for the first occurrence. Errors raised by error handlers are recorded without producing another error event.",
+      "payloadType": {
+        "kind": "reference",
+        "id": "Error"
+      }
+    },
+    {
+      "name": "item-pickup",
+      "description": "Reports a server-confirmed ground item pickup by the local player. The ItemStack contains the picked-up count and preserves the item's components.",
+      "payloadType": {
+        "kind": "reference",
+        "id": "ItemStack"
+      }
+    },
+    {
+      "name": "kill",
+      "description": "Reports a tracked living entity death whose latest client-observed damage source names the local player as attacker. Uses the Death model with victim; message is generated from the observed source. Limited to entities and damage sources visible to the client; this is not the server kill-credit statistic.",
+      "payloadType": {
+        "kind": "reference",
+        "id": "Death"
+      }
+    },
+    {
+      "name": "reload",
+      "description": "Runs once after active profiles load, including first world entry.",
+      "payloadType": {
+        "kind": "primitive",
+        "name": "nil"
+      }
+    },
+    {
+      "name": "render",
+      "description": "Runs immediately before each HUD frame is painted.",
+      "payloadType": {
+        "kind": "primitive",
+        "name": "nil"
+      }
+    },
+    {
+      "name": "tick",
+      "description": "Runs at the end of each client tick.",
+      "payloadType": {
+        "kind": "primitive",
+        "name": "nil"
+      }
+    }
+  ]
 }

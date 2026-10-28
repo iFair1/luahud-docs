@@ -3,17 +3,13 @@ title: PlacedBlock
 description: A block at a position in the client world, with its ID, name, and coordinates.
 ---
 
+import TypeFields from '../../../components/api/TypeFields.astro';
+
 A block at a world position. Returned by `lh.getBlockAt()`, `lh.pos.highestBlock`, and `lh.facing.targetBlock`. The target is `nil` when the crosshair is not pointing at a block; `getBlockAt()` can also return `nil` if coordinates cannot be resolved.
 
 ## Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | [BlockId](/models/registry-ids/) | Namespaced block ID. |
-| `name` | `string` | Localized block name. |
-| `x` | `integer` | Block X coordinate. |
-| `y` | `integer` | Block Y coordinate. |
-| `z` | `integer` | Block Z coordinate. |
+<TypeFields id="PlacedBlock" />
 
 ## Example
 

@@ -1,0 +1,28 @@
+---
+title: Entity
+description: Entity model fields, including position, health, status effects, UUID, and horse properties.
+---
+
+import TypeFields from '../../../components/api/TypeFields.astro';
+
+An entity loaded on the client. Available from `lh.facing.targetEntity` and event payloads such as [Damage](/models/damage/). Check optional entity values before reading their fields. `lh.player` also has a `uuid` and can be passed to `lh.drawEntity()`; its player-specific fields are listed in the [API](/api/#api-lh-player).
+
+## Fields
+
+<TypeFields id="Entity" />
+
+## Drawing an entity
+
+```lua
+lh.on("render", function()
+    local entity = lh.facing.targetEntity
+    if entity then
+        lh.drawEntity(entity, { scale = 3 })
+        lh.drawln(entity.name)
+    end
+end)
+```
+
+Drawing accepts this model or an [EntityInput](/models/entity-input/) table. The entity must still be loaded.
+
+Health and maximum health are truncated to whole numbers. Two health points equal one heart.

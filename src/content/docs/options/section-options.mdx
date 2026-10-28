@@ -1,0 +1,43 @@
+---
+title: SectionOptions
+description: Layout, lifetime, colors, and scale defaults for a LuaHUD drawing section.
+---
+
+import TypeFields from '../../../components/api/TypeFields.astro';
+
+Options for `lh.section(options)`. Every field is optional. Each call starts with fresh defaults; it does not inherit the previous section’s options. Calling `lh.section()` is equivalent to starting with an empty table.
+
+Colors accept `"#RRGGBB"`, `"#AARRGGBB"`, or an ARGB integer. Six-digit strings are opaque; integers include alpha. See [Colors and Scale](/guides/colors-and-scale/).
+
+## Fields
+
+<TypeFields id="SectionOptions" />
+
+## Defaults and behavior
+
+A new section starts at `anchor = "topLeft"`, `offsetX = 0`, `offsetY = 2`. Row alignment follows the anchor. Inline alignment is `"center"`; elements flow `"leftToRight"` and rows flow `"topToBottom"`.
+
+Text defaults to white (`"#FFFFFFFF"`) with a shadow. The background defaults to translucent black (`"#80000000"`). Both `scale` and `iconScale` default to `1` and must be finite and greater than zero.
+
+Row height defaults to `"auto"`; a fixed height must be positive. `lineSpacing` defaults to `2` and `inlineSpacing` to `0`; both must be non-negative. These layout sizes are unscaled.
+
+`id` is optional and must not be blank when supplied. IDs are shared across profiles. `duration` is optional and must be finite and positive; without it, output lasts until the owning callback runs again.
+
+`visible` defaults to `true`. With `visible = false`, the existing section with that ID is removed without starting a new section. Return from the callback after hiding output; later draw calls can create output again.
+
+## Example
+
+```lua
+lh.on("tick", function()
+    lh.section({
+        anchor = "topRight",
+        offsetX = 4,
+        offsetY = 4,
+        scale = 1.5,
+        backgroundColor = "#80000000",
+    })
+    lh.drawln(lh.player.name)
+end)
+```
+
+Element options override section defaults for that draw call only. See [Sections](/guides/sections/) for layout and [Drawing Lifetime](/guides/drawing-lifetime/) for IDs, hiding, and timed output.

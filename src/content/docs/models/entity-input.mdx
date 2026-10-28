@@ -3,13 +3,13 @@ title: EntityInput
 description: Input table for selecting an existing loaded entity by UUID.
 ---
 
+import TypeFields from '../../../components/api/TypeFields.astro';
+
 An ordinary Lua table accepted by `lh.drawEntity()` in place of an [Entity](/models/entity/) model. Only `uuid` is required. This selects an existing entity; it does not create one.
 
 ## Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `uuid` | `string` | Required. UUID of an entity currently loaded in the client world. |
+<TypeFields id="EntityInput" />
 
 ## Example
 

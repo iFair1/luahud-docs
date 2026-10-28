@@ -1,0 +1,22 @@
+---
+title: Error
+description: Error event snapshot fields, stable IDs, occurrence counts, and source details.
+---
+
+import TypeFields from '../../../components/api/TypeFields.astro';
+
+An immutable error snapshot passed to `lh.on("error", callback)`. Each recorded occurrence is delivered on the next client lifecycle tick after profiles load. Repeated active errors keep their ID and increase their count. Errors raised by error handlers are recorded without triggering another error event.
+
+## Fields
+
+<TypeFields id="Error" />
+
+## Example
+
+```lua
+lh.on("error", function(err)
+    if err.isNew then
+        lh.sendMessage(err.group .. ": " .. err.message)
+    end
+end)
+```

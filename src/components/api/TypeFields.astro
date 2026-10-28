@@ -1,0 +1,29 @@
+---
+import { getType } from '../../lib/api';
+import TypeLink from './TypeLink.astro';
+import './api.css';
+interface Props { id: string }
+const type = getType(Astro.props.id);
+---
+<div class="type-definition" data-type-id={type.id}>
+  {type.description && <p>{type.description}</p>}
+  {type.kind === 'alias' ? (
+    <p><code>{type.name}</code> = <TypeLink type={type.type} /></p>
+  ) : (
+    <>
+      {type.kind === 'input' && type.model && <p>Input table for <TypeLink type={type.model} />. An existing model is also accepted where this input is used.</p>}
+      <div class="reference-table" tabindex="0" role="region" aria-label={`${type.name} fields`}>
+        <table>
+          <thead><tr><th>Field</th><th>Type</th><th>{type.kind === 'model' ? 'Can be nil' : 'Required'}</th><th>Description</th></tr></thead>
+          <tbody>{type.fields.map(field => <tr>
+            <td><code>{field.name}</code></td>
+            <td><TypeLink type={field.type} /></td>
+            <td>{type.kind === 'model' ? (field.optional ? 'Yes' : 'No') : (field.optional ? 'No' : 'Yes')}</td>
+            <td>{field.description || '—'}</td>
+          </tr>)}</tbody>
+        </table>
+      </div>
+    </>
+  )}
+</div>
+

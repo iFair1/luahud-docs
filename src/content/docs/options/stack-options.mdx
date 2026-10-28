@@ -1,0 +1,36 @@
+---
+title: StackOptions
+description: Item stack rendering options for count, durability, glint, empty slots, and scale.
+---
+
+import TypeFields from '../../../components/api/TypeFields.astro';
+
+Options for `lh.drawStack(stack, options)`. Every field is optional. Includes the same layout fields as [IconOptions](/options/icon-options/). Color values use RGB/ARGB hex strings or ARGB integers.
+
+## Fields
+
+<TypeFields id="StackOptions" />
+
+## Defaults and behavior
+
+Background color inherits from the section, local offsets default to `0`, and `newLine` defaults to `false`. `scale` inherits the section’s `iconScale`, remains relative to the section’s overall scale, and must be finite and greater than zero.
+
+`showCount` and `showDurabilityBar` default to `true`, allowing Minecraft’s normal overlays. A count of `1` normally has no label; an undamaged item has no durability bar.
+
+`showGlint` uses the stack’s own behavior unless explicitly overridden. `drawAir` defaults to `false`; set it to `true` to reserve space for empty slots.
+
+## Example
+
+```lua
+lh.on("tick", function()
+    for _, stack in ipairs(lh.slots.hotbar) do
+        lh.drawStack(stack, {
+            drawAir = true,
+            showCount = false,
+            showDurabilityBar = false,
+        })
+    end
+end)
+```
+
+Drawing uses a copy of the stack. These options do not change inventory contents. See [ItemStackInput](/models/item-stack-input/) to construct a preview stack.

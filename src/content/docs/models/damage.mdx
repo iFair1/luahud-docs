@@ -1,0 +1,21 @@
+---
+title: Damage
+description: Local-player damage event payload, with observed health loss and available source information.
+---
+
+import TypeFields from '../../../components/api/TypeFields.astro';
+
+The payload passed to `lh.on("damage", callback)` for damage received by the local player, and `lh.on("attack", callback)` for server-observed damage dealt by the local player, including projectiles. `victim` identifies the damaged entity when available. Health loss includes absorption and is observed on the client. Nearby updates can be combined using the latest damage source; matching can wait up to two client ticks. For attacks, nearby hits on each victim are combined. This is not a precise per-hit server damage log.
+
+## Fields
+
+<TypeFields id="Damage" />
+
+## Example
+
+```lua
+lh.on("damage", function(damage)
+    lh.section({ id = "damage", duration = 3 })
+    lh.drawln(string.format("Lost %.1f HP (%s)", damage.amount, damage.type))
+end)
+```

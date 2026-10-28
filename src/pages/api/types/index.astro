@@ -1,0 +1,17 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { api, typePages, withBase } from '../../../lib/api';
+const groups = [
+  { id: 'models', title: 'Models', description: 'Game values exposed as table-like views. Optional model fields can be nil.', types: api.types.filter(type => type.kind === 'model') },
+  { id: 'inputs', title: 'Input tables and options', description: 'Tables you pass to the API. Only fields marked as required must be supplied.', types: api.types.filter(type => type.kind === 'input') },
+  { id: 'aliases', title: 'Named types', description: 'Registry identifiers and named combinations of other types.', types: api.types.filter(type => type.kind === 'alias') },
+];
+---
+<StarlightPage frontmatter={{ title: 'Models and options', description: 'All exported LuaHUD models, input tables, options, and named types.', editUrl: false }} headings={groups.map(group => ({ depth: 2, slug: group.id, text: group.title }))}>
+  <p>Follow a type to see its fields and usage. Model views describe game data; input tables describe values or rendering options passed to functions.</p>
+  {groups.map(group => <section>
+    <h2 id={group.id}>{group.title}</h2>
+    <p>{group.description}</p>
+    <ul>{group.types.map(type => <li><a href={withBase(typePages[type.id].href)}><code>{type.name}</code></a></li>)}</ul>
+  </section>)}
+</StarlightPage>

@@ -3,17 +3,19 @@ title: IconOptions
 description: Options for drawing an item icon or texture, including scale, background, and line breaks.
 ---
 
+import TypeFields from '../../../components/api/TypeFields.astro';
+
 Options for `lh.drawItem(idOrStack, options)` and `lh.drawTexture(path, options)`. Every field is optional. Colors use RGB/ARGB hex strings or ARGB integers. An option override applies only to this call.
 
 ## Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `backgroundColor` | `string` or `integer` | Default: section `backgroundColor`. Background for this element. |
-| `offsetX` | `integer` | Default: `0`. Local horizontal offset. |
-| `offsetY` | `integer` | Default: `0`. Local vertical offset. |
-| `scale` | `number` | Default: section `iconScale`. Relative to the section’s scale; overrides `iconScale` for this call. Must be finite and greater than zero. |
-| `newLine` | `boolean` | Default: `false`. Advance to the next line after drawing. |
+<TypeFields id="IconOptions" />
+
+## Defaults and behavior
+
+The background inherits the section’s `backgroundColor`. Local offsets default to `0`; `newLine` defaults to `false`.
+
+`scale` inherits the section’s `iconScale` and overrides it for this call. The section’s overall `scale` still applies. Scale must be finite and greater than zero.
 
 ## Example
 

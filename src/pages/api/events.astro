@@ -1,0 +1,18 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import TypeLink from '../../components/api/TypeLink.astro';
+import { api, withBase } from '../../lib/api';
+import '../../components/api/api.css';
+const headings = api.events.map(event => ({ depth: 2, slug: `event-${event.name}`, text: event.name }));
+---
+<StarlightPage frontmatter={{ title: 'Events', description: 'LuaHUD event callbacks, when they run, and their payload types.', editUrl: false }} headings={headings}>
+  <p>Register a listener with <code>lh.on("event-name", callback)</code>. Events with a payload pass it as the callback’s first argument. Register listeners once when your profile loads.</p>
+  <p>See <a href={withBase('/guides/events-and-timers/')}>Events and Timers</a> for callback lifetimes and scheduling.</p>
+  <div class="event-reference">
+    {api.events.map(event => <section>
+      <h2 id={`event-${event.name}`}>{event.name}</h2>
+      <p>{event.description}</p>
+      <p><strong>Payload:</strong> {event.payloadType.kind === 'primitive' && event.payloadType.name === 'nil' ? 'None (callback receives no payload).' : <TypeLink type={event.payloadType} />}</p>
+    </section>)}
+  </div>
+</StarlightPage>

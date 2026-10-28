@@ -1,0 +1,34 @@
+---
+title: EntityOptions
+description: Entity rendering scale, viewing angles, rotation, lighting, and layout options.
+---
+
+import TypeFields from '../../../components/api/TypeFields.astro';
+
+Options for `lh.drawEntity(uuidOrModel, options)`. Every field is optional. Includes the same layout fields as [IconOptions](/options/icon-options/). Colors use RGB/ARGB hex strings or ARGB integers.
+
+## Fields
+
+<TypeFields id="EntityOptions" />
+
+## Defaults and behavior
+
+Background color inherits from the section, local offsets default to `0`, and `newLine` defaults to `false`. `scale` inherits the section’s `iconScale`, remains relative to the section’s overall scale, and must be finite and greater than zero.
+
+`yaw` and `pitch` default to `0` degrees. `fullBright` defaults to `true`; `useEntityRotation` defaults to `false`. When entity rotation is enabled, yaw and pitch are offsets from the entity’s current rotation.
+
+## Example
+
+```lua
+lh.on("render", function()
+    lh.drawEntity(lh.player, {
+        scale = 4,
+        yaw = 25,
+        pitch = 10,
+        fullBright = true,
+        newLine = true,
+    })
+end)
+```
+
+The entity must be loaded on the client. See [EntityInput](/models/entity-input/) for accepted input tables.

@@ -36,50 +36,78 @@ const nodeSchema: z.ZodType<ApiNode> = z.lazy(() => z.discriminatedUnion('kind',
   z.object({ ...base, kind: z.literal('function'), parameters: z.array(parameterSchema), returnType: typeSchema }),
 ]));
 
-// Fail during the build if a replacement export has an invalid shape.
+const fieldSchema = z.object({
+  name: z.string().min(1), description: z.string(), optional: z.boolean(), type: typeSchema,
+});
+const typeBase = { id: z.string().min(1), name: z.string().min(1), description: z.string().optional() };
+const definitionSchema = z.discriminatedUnion('kind', [
+  z.object({ ...typeBase, kind: z.literal('model'), fields: z.array(fieldSchema) }),
+  z.object({ ...typeBase, kind: z.literal('input'), fields: z.array(fieldSchema),
+    model: z.object({ kind: z.literal('reference'), id: z.string().min(1) }).optional() }),
+  z.object({ ...typeBase, kind: z.literal('alias'), type: typeSchema }),
+]);
+export type TypeDefinition = z.infer<typeof definitionSchema>;
+
+// Validate the complete export before any reference pages are rendered.
 export const api = z.object({
-  schemaVersion: z.literal(2),
+  schemaVersion: z.literal(3),
   root: z.object({ ...base, kind: z.literal('namespace'), children: z.array(nodeSchema) }),
+  types: z.array(definitionSchema),
+  events: z.array(z.object({ name: z.string().min(1), description: z.string(), payloadType: typeSchema })),
 }).parse(rawApi);
 
-// Register reference routes here only after their documentation pages exist.
-// Unmapped types remain readable as plain text in the API explorer.
-export const typePages: Record<string, { label: string; href: string }> = {
-  PlacedBlock: { label: 'PlacedBlock', href: '/models/placed-block/' },
-  Entity: { label: 'Entity', href: '/models/entity/' },
-  EntityInput: { label: 'EntityInput', href: '/models/entity-input/' },
-  Horse: { label: 'Horse', href: '/models/horse/' },
-  ItemStack: { label: 'ItemStack', href: '/models/item-stack/' },
-  ItemStackInput: { label: 'ItemStackInput', href: '/models/item-stack-input/' },
-  StatusEffect: { label: 'StatusEffect', href: '/models/status-effect/' },
-  StatusEffectInput: { label: 'StatusEffectInput', href: '/models/status-effect/#statuseffectinput' },
-  PlayingRecord: { label: 'PlayingRecord', href: '/models/playing-record/' },
-  Damage: { label: 'Damage', href: '/models/damage/' },
-  Death: { label: 'Death', href: '/models/death/' },
-  Error: { label: 'Error', href: '/models/error/' },
-  ItemId: { label: 'ItemId', href: '/models/registry-ids/' },
-  BlockId: { label: 'BlockId', href: '/models/registry-ids/' },
-  EntityTypeId: { label: 'EntityTypeId', href: '/models/registry-ids/' },
-  StatusEffectId: { label: 'StatusEffectId', href: '/models/registry-ids/' },
-  EnchantmentId: { label: 'EnchantmentId', href: '/models/registry-ids/' },
-  ChatText: { label: 'ChatText', href: '/models/chat-text/' },
-  ChatClickEvent: { label: 'ChatClickEvent', href: '/models/chat-text/#click-events' },
-  ChatOpenUrl: { label: 'ChatOpenUrl', href: '/models/chat-text/#click-events' },
-  ChatSuggestCommand: { label: 'ChatSuggestCommand', href: '/models/chat-text/#click-events' },
-  ChatChangePage: { label: 'ChatChangePage', href: '/models/chat-text/#click-events' },
-  ChatCopyToClipboard: { label: 'ChatCopyToClipboard', href: '/models/chat-text/#click-events' },
-  ChatHoverEvent: { label: 'ChatHoverEvent', href: '/models/chat-text/#hover-events' },
-  ChatShowText: { label: 'ChatShowText', href: '/models/chat-text/#hover-events' },
-  ChatShowItem: { label: 'ChatShowItem', href: '/models/chat-text/#hover-events' },
-  ChatShowEntity: { label: 'ChatShowEntity', href: '/models/chat-text/#hover-events' },
-  ChatPlayerProfile: { label: 'ChatPlayerProfile', href: '/models/chat-text/#player-profiles' },
-  ChatProfileProperty: { label: 'ChatProfileProperty', href: '/models/chat-text/#player-profiles' },
-  SectionOptions: { label: 'SectionOptions', href: '/options/section-options/' },
-  TextOptions: { label: 'TextOptions', href: '/options/text-options/' },
-  IconOptions: { label: 'IconOptions', href: '/options/icon-options/' },
-  StackOptions: { label: 'StackOptions', href: '/options/stack-options/' },
-  EntityOptions: { label: 'EntityOptions', href: '/options/entity-options/' },
+export const typesById = new Map(api.types.map(type => [type.id, type]));
+
+// Editorial pages keep stable routes; other exported types get a generated page.
+const editorialTypePages: Record<string, string> = {
+  PlacedBlock: '/models/placed-block/',
+  Entity: '/models/entity/',
+  EntityInput: '/models/entity-input/',
+  Horse: '/models/horse/',
+  ItemStack: '/models/item-stack/',
+  ItemStackInput: '/models/item-stack-input/',
+  StatusEffect: '/models/status-effect/',
+  StatusEffectInput: '/models/status-effect/#statuseffectinput',
+  PlayingRecord: '/models/playing-record/',
+  Damage: '/models/damage/',
+  Death: '/models/death/',
+  Error: '/models/error/',
+  ItemId: '/models/registry-ids/#itemid',
+  BlockId: '/models/registry-ids/#blockid',
+  EntityTypeId: '/models/registry-ids/#entitytypeid',
+  StatusEffectId: '/models/registry-ids/#statuseffectid',
+  EnchantmentId: '/models/registry-ids/#enchantmentid',
+  ChatText: '/models/chat-text/',
+  ChatClickEvent: '/models/chat-text/#click-events',
+  ChatOpenUrl: '/models/chat-text/#chatopenurl',
+  ChatSuggestCommand: '/models/chat-text/#chatsuggestcommand',
+  ChatChangePage: '/models/chat-text/#chatchangepage',
+  ChatCopyToClipboard: '/models/chat-text/#chatcopytoclipboard',
+  ChatHoverEvent: '/models/chat-text/#hover-events',
+  ChatShowText: '/models/chat-text/#chatshowtext',
+  ChatShowItem: '/models/chat-text/#chatshowitem',
+  ChatShowEntity: '/models/chat-text/#chatshowentity',
+  ChatPlayerProfile: '/models/chat-text/#player-profiles',
+  ChatProfileProperty: '/models/chat-text/#chatprofileproperty',
+  SectionOptions: '/options/section-options/',
+  TextOptions: '/options/text-options/',
+  IconOptions: '/options/icon-options/',
+  StackOptions: '/options/stack-options/',
+  EntityOptions: '/options/entity-options/',
 };
+
+export const typePages: Record<string, { label: string; href: string }> = Object.fromEntries(
+  api.types.map(type => [type.id, {
+    label: type.name, href: editorialTypePages[type.id] ?? `/api/types/${encodeURIComponent(type.id)}/`,
+  }]),
+);
+export const generatedTypes = api.types.filter(type => !editorialTypePages[type.id]);
+
+export function getType(id: string): TypeDefinition {
+  const type = typesById.get(id);
+  if (!type) throw new Error(`Unknown documentation type: ${id}`);
+  return type;
+}
 
 export const anchorId = (path: string) => `api-${path.replaceAll('.', '-')}`;
 export const withBase = (href: string) => `${import.meta.env.BASE_URL.replace(/\/$/, '')}${href}`;
@@ -119,6 +147,30 @@ function validateTree(node: ApiNode, parent?: string) {
   if (paths.has(node.path)) throw new Error(`Duplicate API path: ${node.path}`);
   if (parent && node.path !== `${parent}.${node.name}`) throw new Error(`Invalid API path: ${node.path}`);
   paths.add(node.path);
+  if (node.kind === 'function') unique(node.parameters.map(parameter => parameter.name), `parameter in ${node.path}`);
   if (node.kind === 'namespace') node.children.forEach(child => validateTree(child, node.path));
 }
 validateTree(api.root);
+
+function unique(values: string[], context: string) {
+  if (new Set(values).size !== values.length) throw new Error(`Duplicate ${context}`);
+}
+unique(api.types.map(type => type.id), 'type ID');
+unique(api.events.map(event => event.name), 'event name');
+for (const type of api.types) {
+  if (type.kind !== 'alias') unique(type.fields.map(field => field.name), `field in ${type.id}`);
+  if (type.kind === 'input' && type.model && getType(type.model.id).kind !== 'model') {
+    throw new Error(`Input ${type.id} must reference a model`);
+  }
+}
+function validateReferences(value: unknown): void {
+  if (Array.isArray(value)) value.forEach(validateReferences);
+  else if (value && typeof value === 'object') {
+    const node = value as Record<string, unknown>;
+    if (node.kind === 'reference' && !typesById.has(node.id as string)) {
+      throw new Error(`Unresolved API type: ${node.id}`);
+    }
+    Object.values(node).forEach(validateReferences);
+  }
+}
+validateReferences(api);

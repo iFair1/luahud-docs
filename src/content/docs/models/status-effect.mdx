@@ -1,0 +1,33 @@
+---
+title: StatusEffect
+description: Status effect identity, level, duration, and particle visibility.
+---
+
+import TypeFields from '../../../components/api/TypeFields.astro';
+
+An active status effect, found in `lh.player.effects` or [Entity.effects](/models/entity/). The map key is the namespaced effect ID. Missing effects have no entry.
+
+## Fields
+
+<TypeFields id="StatusEffect" />
+
+## Example
+
+```lua
+lh.on("tick", function()
+    local effect = lh.player.effects["minecraft:speed"]
+    if effect then
+        local duration = effect.durationInSeconds
+        lh.drawln(effect.name .. " " .. effect.level .. ": " ..
+            (duration == -1 and "infinite" or duration .. "s"))
+    end
+end)
+```
+
+## StatusEffectInput
+
+<TypeFields id="StatusEffectInput" />
+
+Where an API accepts this input, `id` is required. `level` defaults to `1` and must be at least `1`. `showParticles` defaults to `true`.
+
+Duration defaults to `0` and must be `-1` (infinite) or non-negative. Explicit ticks take precedence over seconds; seconds are multiplied by 20. `name` is output-only. This input type does not itself apply effects to the player.
