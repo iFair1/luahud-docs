@@ -24,9 +24,9 @@ export default defineConfig({
           ]
         },
         {
-          label: "Basic HUD",
+          label: "Guides",
           items: [
-            { autogenerate: { directory: 'basic-hud' } }
+            { autogenerate: { directory: 'guides' } }
           ]
 				},
         {
