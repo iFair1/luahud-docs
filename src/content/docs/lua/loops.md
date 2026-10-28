@@ -1,6 +1,6 @@
 ---
 title: Loops
-description: Repeat code with for, while, and repeat loops.
+description: Use Lua for, while, and repeat loops in LuaHUD profiles. Iterate through lists and tables with ipairs and pairs, stop with break, and avoid endless loops.
 sidebar:
   order: 40
 ---

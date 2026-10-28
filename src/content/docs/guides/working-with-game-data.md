@@ -1,5 +1,6 @@
 ---
 title: Working with Game Data
+description: Read live Minecraft data in LuaHUD, including player health, biomes, and inventory. Work with optional values, models, lists, and status effect maps.
 sidebar:
   order: 30
 ---

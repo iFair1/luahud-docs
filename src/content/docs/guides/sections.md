@@ -1,6 +1,6 @@
 ---
 title: Sections and Layout
-description: Sections
+description: Arrange your LuaHUD layout with sections, screen anchors, offsets, and rows. Control text and icon alignment, spacing, and drawing direction.
 sidebar:
   order: 10
 ---

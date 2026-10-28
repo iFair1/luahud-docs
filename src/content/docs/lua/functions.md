@@ -1,6 +1,6 @@
 ---
 title: Functions
-description: Reuse code, return values, and pass callbacks to LuaHUD.
+description: Write reusable Lua functions for LuaHUD profiles. Work with parameters, return values, optional arguments, and callbacks that keep state between ticks.
 sidebar:
   order: 50
 ---

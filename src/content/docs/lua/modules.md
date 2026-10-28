@@ -1,6 +1,6 @@
 ---
 title: Modules
-description: Share helper functions between Lua files with require.
+description: Share Lua helpers between LuaHUD profiles with modules and require. Organize files, return function tables, and understand module paths and caching.
 sidebar:
   order: 80
 ---

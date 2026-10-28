@@ -1,5 +1,6 @@
 ---
 title: Drawing Lifetime
+description: Control how long LuaHUD drawings stay visible. Learn callback output replacement, temporary section durations, and named IDs for updating notifications.
 sidebar:
   order: 60
 ---

@@ -1,6 +1,6 @@
 ---
 title: Variables
-description: Store values, understand their types, and keep variables local.
+description: Learn Lua variables, value types, and local scope with LuaHUD examples. Store and update values, check types, and understand missing values with nil.
 sidebar:
   order: 10
 ---

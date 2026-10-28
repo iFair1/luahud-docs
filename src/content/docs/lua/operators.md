@@ -1,6 +1,6 @@
 ---
 title: Operators
-description: Calculate, compare, and combine values in Lua.
+description: Use Lua operators to calculate values, join HUD text, and compare game data. Learn arithmetic, concatenation, and logical expressions with LuaHUD examples.
 sidebar:
   order: 20
 ---

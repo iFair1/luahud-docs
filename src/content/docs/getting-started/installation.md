@@ -1,6 +1,6 @@
 ---
 title: Installation
-description: Installation details for LuaHUD
+description: Set up LuaHUD for Minecraft with Fabric Loader and Fabric API. Find your game directory and install the required mods on Windows and Linux.
 sidebar:
   order: 2
 ---

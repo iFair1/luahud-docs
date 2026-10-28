@@ -1,5 +1,6 @@
 ---
 title: Items, Texture, and Entities
+description: Add item icons, inventory stacks, resource pack textures, and loaded entities to your LuaHUD. Customize stack details, scale, and entity viewing angles.
 sidebar:
   order: 40
 ---

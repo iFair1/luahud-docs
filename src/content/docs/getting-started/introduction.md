@@ -1,6 +1,6 @@
 ---
 title: Introduction
-description: Learn what LuaHUD can do and how Lua profiles turn Minecraft data into a custom HUD.
+description: Discover how LuaHUD uses Lua profiles to customize your Minecraft HUD with live game data, item icons, flexible layouts, and conditional displays.
 sidebar:
   order: 1
 ---

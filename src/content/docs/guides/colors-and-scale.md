@@ -1,5 +1,6 @@
 ---
 title: Colors and Scale
+description: Style your LuaHUD with text colors, transparent backgrounds, shadows, and scaling. Learn hex and ARGB formats, section defaults, and element overrides.
 sidebar:
   order: 20
 ---

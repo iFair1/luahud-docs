@@ -1,5 +1,6 @@
 ---
 title: Your First HUD
+description: Create your first Minecraft HUD with LuaHUD. Draw text, display live FPS and coordinates, and add a low-health warning using Lua callbacks.
 sidebar:
   order: 1
 ---

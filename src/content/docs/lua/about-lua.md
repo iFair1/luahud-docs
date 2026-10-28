@@ -1,6 +1,6 @@
 ---
 title: About Lua
-description: Learn the Lua basics you need to write a HUD.
+description: Learn Lua for LuaHUD with beginner lessons and Minecraft HUD examples. Start with variables, then explore functions, tables, modules, and common errors.
 sidebar:
   order: 1
 ---

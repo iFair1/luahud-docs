@@ -1,6 +1,6 @@
 ---
 title: Accessing Files
-description: Where the configuration files are, and recommended
+description: Find your LuaHUD profile folder, open the in-game mod menu, and manage Lua files with automatic reloading and generated API definitions for your editor.
 sidebar:
   order: 3
 ---

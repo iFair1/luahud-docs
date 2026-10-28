@@ -1,6 +1,6 @@
 ---
 title: Strings and Math
-description: Format HUD text, convert values, and round numbers.
+description: Format LuaHUD text and numbers with Lua string and math functions. Convert values, set decimal precision, search text, round numbers, and clamp ranges.
 sidebar:
   order: 70
 ---

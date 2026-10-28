@@ -1,5 +1,6 @@
 ---
 title: Events and Timers
+description: Update your LuaHUD with tick, render, and reload callbacks or timed intervals. Choose when code runs and keep local state between HUD updates.
 sidebar:
   order: 50
 ---

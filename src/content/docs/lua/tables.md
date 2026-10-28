@@ -1,6 +1,6 @@
 ---
 title: Tables
-description: Use lists, named fields, and nested data in Lua.
+description: Organize LuaHUD data with Lua tables. Build lists and named fields, access nested values, manage list entries, and understand shared table references.
 sidebar:
   order: 60
 ---

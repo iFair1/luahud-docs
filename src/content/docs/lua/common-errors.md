@@ -1,6 +1,6 @@
 ---
 title: Common Errors
-description: Recognize common Lua mistakes and fix them.
+description: Fix common Lua errors in LuaHUD profiles, from missing brackets and nil values to wrong types and endless loops. Use error messages to find the cause.
 sidebar:
   order: 90
 ---

@@ -1,6 +1,6 @@
 ---
 title: Conditionals
-description: Run code only when a condition is met.
+description: Show HUD information when it matters with Lua if, elseif, and else. Learn truthy values, combined conditions, and conditional value selection in LuaHUD.
 sidebar:
   order: 30
 ---
