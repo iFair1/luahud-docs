@@ -44,7 +44,42 @@ export const api = z.object({
 
 // Register reference routes here only after their documentation pages exist.
 // Unmapped types remain readable as plain text in the API explorer.
-export const typePages: Record<string, { label: string; href: string }> = {};
+export const typePages: Record<string, { label: string; href: string }> = {
+  PlacedBlock: { label: 'PlacedBlock', href: '/models/placed-block/' },
+  Entity: { label: 'Entity', href: '/models/entity/' },
+  EntityInput: { label: 'EntityInput', href: '/models/entity-input/' },
+  Horse: { label: 'Horse', href: '/models/horse/' },
+  ItemStack: { label: 'ItemStack', href: '/models/item-stack/' },
+  ItemStackInput: { label: 'ItemStackInput', href: '/models/item-stack-input/' },
+  StatusEffect: { label: 'StatusEffect', href: '/models/status-effect/' },
+  StatusEffectInput: { label: 'StatusEffectInput', href: '/models/status-effect/#statuseffectinput' },
+  PlayingRecord: { label: 'PlayingRecord', href: '/models/playing-record/' },
+  Damage: { label: 'Damage', href: '/models/damage/' },
+  Death: { label: 'Death', href: '/models/death/' },
+  Error: { label: 'Error', href: '/models/error/' },
+  ItemId: { label: 'ItemId', href: '/models/registry-ids/' },
+  BlockId: { label: 'BlockId', href: '/models/registry-ids/' },
+  EntityTypeId: { label: 'EntityTypeId', href: '/models/registry-ids/' },
+  StatusEffectId: { label: 'StatusEffectId', href: '/models/registry-ids/' },
+  EnchantmentId: { label: 'EnchantmentId', href: '/models/registry-ids/' },
+  ChatText: { label: 'ChatText', href: '/models/chat-text/' },
+  ChatClickEvent: { label: 'ChatClickEvent', href: '/models/chat-text/#click-events' },
+  ChatOpenUrl: { label: 'ChatOpenUrl', href: '/models/chat-text/#click-events' },
+  ChatSuggestCommand: { label: 'ChatSuggestCommand', href: '/models/chat-text/#click-events' },
+  ChatChangePage: { label: 'ChatChangePage', href: '/models/chat-text/#click-events' },
+  ChatCopyToClipboard: { label: 'ChatCopyToClipboard', href: '/models/chat-text/#click-events' },
+  ChatHoverEvent: { label: 'ChatHoverEvent', href: '/models/chat-text/#hover-events' },
+  ChatShowText: { label: 'ChatShowText', href: '/models/chat-text/#hover-events' },
+  ChatShowItem: { label: 'ChatShowItem', href: '/models/chat-text/#hover-events' },
+  ChatShowEntity: { label: 'ChatShowEntity', href: '/models/chat-text/#hover-events' },
+  ChatPlayerProfile: { label: 'ChatPlayerProfile', href: '/models/chat-text/#player-profiles' },
+  ChatProfileProperty: { label: 'ChatProfileProperty', href: '/models/chat-text/#player-profiles' },
+  SectionOptions: { label: 'SectionOptions', href: '/options/section-options/' },
+  TextOptions: { label: 'TextOptions', href: '/options/text-options/' },
+  IconOptions: { label: 'IconOptions', href: '/options/icon-options/' },
+  StackOptions: { label: 'StackOptions', href: '/options/stack-options/' },
+  EntityOptions: { label: 'EntityOptions', href: '/options/entity-options/' },
+};
 
 export const anchorId = (path: string) => `api-${path.replaceAll('.', '-')}`;
 export const withBase = (href: string) => `${import.meta.env.BASE_URL.replace(/\/$/, '')}${href}`;

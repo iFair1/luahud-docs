@@ -34,6 +34,8 @@ export default defineConfig({
           label: 'Reference',
           items: [
             { label: 'API', link: '/api/' },
+            { label: 'Models', items: [{ autogenerate: { directory: 'models' } }], collapsed: true },
+            { label: 'Options', items: [{ autogenerate: { directory: 'options' } }], collapsed: true },
           ],
         }
 			],

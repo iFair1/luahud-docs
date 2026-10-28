@@ -1,6 +1,6 @@
 # API reference data
 
-`src/data/api.json` is sample data. Replace it with the Java export to populate `/api/`.
+`src/data/api.json` contains the Java API export used to populate `/api/`.
 The site validates its shape and unique paths at build time. The Java exporter is independent of this website.
 
 - `schemaVersion`: `2`.
@@ -28,6 +28,12 @@ Reference IDs have **no provider prefix**: use `Block`, `PlayingRecord`, or `Tex
 Register their manual documentation routes in `typePages` in `src/lib/api.ts`.
 An unmapped reference is rendered as plain text, never a broken link.
 Model and option pages live in `src/content/docs/models/` and `src/content/docs/options/`.
+Their fields, input rules, descriptions, and defaults are maintained manually from
+the mod's model registrations and `RenderModule`; the current export does not
+include those definitions. Replacing `api.json` does not update these pages.
+When model or option contracts change, update the corresponding pages and their
+`typePages` entries together. Registry ID aliases are documented on a shared page;
+chat component helper types link to sections of the `ChatText` page.
 
 Parameter `optional` means an argument may be omitted. A type with `kind: 'optional'`
 means the value may be `nil`; these are separate concepts. Represent an optional

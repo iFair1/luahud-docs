@@ -1,0 +1,22 @@
+---
+title: EntityInput
+description: Input table for selecting an existing loaded entity by UUID.
+---
+
+An ordinary Lua table accepted by `lh.drawEntity()` in place of an [Entity](/models/entity/) model. Only `uuid` is required. This selects an existing entity; it does not create one.
+
+## Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `uuid` | `string` | Required. UUID of an entity currently loaded in the client world. |
+
+## Example
+
+```lua
+lh.on("render", function()
+    lh.drawEntity({ uuid = lh.player.uuid }, { scale = 3 })
+end)
+```
+
+A UUID string can also be passed directly. An invalid UUID, an unloaded entity, or a missing world produces an error. An entity type ID such as `minecraft:zombie` cannot be used as a UUID.
