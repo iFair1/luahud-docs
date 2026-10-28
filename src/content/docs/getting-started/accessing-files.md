@@ -19,5 +19,5 @@ Saving a `.lua` file automatically reloads your profiles. Use the mod screen to 
 :::
 
 :::tip
-Open the entire profile directory in your code editor instead of a single file. With a Lua language server enabled, the generated API definitions provide code completion for LuaHUD and IDs from your installed mods.
+Open the `config/luahud` directory in your code editor instead of a single file. With a Lua language server enabled, the generated API definitions provide code completion for LuaHUD and IDs from your installed mods.
 :::
