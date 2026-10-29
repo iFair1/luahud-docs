@@ -93,3 +93,7 @@ Following text draws in the same section inherit these settings. This avoids rep
 lh.drawln("text", { textColor = "#FF7DA2DE", shadow = false })
 lh.drawln("second text", { textColor = "#FF7DA2DE", shadow = false })
 ```
+
+## Canvas drawing
+
+For fixed-size panels with explicit coordinates, see [Drawing with Canvases](/canvas/getting-started/). Standalone canvases use section lifetime and ID replacement rules; [inline canvases](/canvas/inline-canvases/) belong to their parent section.

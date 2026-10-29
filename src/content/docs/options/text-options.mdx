@@ -22,4 +22,4 @@ lh.draw("Warning: ", { textColor = "#FF5555", shadow = true })
 lh.drawln("Low health")
 ```
 
-Use `lh.drawln()` for a line break. Text options have no `newLine` or `scale` field; set text scale on [SectionOptions](/options/section-options/). Unknown option fields produce an error.
+Use `lh.drawln()` for a line break. Text options have no `newLine` field. In a section, set text scale on [SectionOptions](/options/section-options/). Inside a [canvas](/canvas/getting-started/), use `lh.draw()` with `x`, `y`, `scale`, and optional rotation; line breaks are not supported. Unknown option fields produce an error.

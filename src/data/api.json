@@ -7,6 +7,27 @@
     "kind": "namespace",
     "children": [
       {
+        "name": "canvas",
+        "path": "lh.canvas",
+        "description": "Select a fixed-size 2D canvas. A new canvas closes the previous one; nesting is not supported.",
+        "kind": "function",
+        "parameters": [
+          {
+            "name": "options",
+            "description": "Canvas placement and dimensions",
+            "optional": false,
+            "type": {
+              "kind": "reference",
+              "id": "CanvasOptions"
+            }
+          }
+        ],
+        "returnType": {
+          "kind": "primitive",
+          "name": "nil"
+        }
+      },
+      {
         "name": "display",
         "path": "lh.display",
         "description": "",
@@ -15,7 +36,7 @@
           {
             "name": "height",
             "path": "lh.display.height",
-            "description": "Window height",
+            "description": "GUI scaled height",
             "kind": "property",
             "type": {
               "kind": "primitive",
@@ -65,6 +86,26 @@
           {
             "name": "width",
             "path": "lh.display.width",
+            "description": "GUI scaled width",
+            "kind": "property",
+            "type": {
+              "kind": "primitive",
+              "name": "integer"
+            }
+          },
+          {
+            "name": "windowHeight",
+            "path": "lh.display.windowHeight",
+            "description": "Window height",
+            "kind": "property",
+            "type": {
+              "kind": "primitive",
+              "name": "integer"
+            }
+          },
+          {
+            "name": "windowWidth",
+            "path": "lh.display.windowWidth",
             "description": "Window width",
             "kind": "property",
             "type": {
@@ -96,6 +137,120 @@
             "type": {
               "kind": "reference",
               "id": "TextOptions"
+            }
+          }
+        ],
+        "returnType": {
+          "kind": "primitive",
+          "name": "nil"
+        }
+      },
+      {
+        "name": "drawArc",
+        "path": "lh.drawArc",
+        "description": "Draw in the selected canvas using local GUI coordinates.",
+        "kind": "function",
+        "parameters": [
+          {
+            "name": "cx",
+            "description": "Local cx",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "number"
+            }
+          },
+          {
+            "name": "cy",
+            "description": "Local cy",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "number"
+            }
+          },
+          {
+            "name": "radius",
+            "description": "Local radius",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "number"
+            }
+          },
+          {
+            "name": "startAngle",
+            "description": "Local startAngle",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "number"
+            }
+          },
+          {
+            "name": "sweepAngle",
+            "description": "Local sweepAngle",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "number"
+            }
+          },
+          {
+            "name": "options",
+            "description": "Shape options",
+            "optional": true,
+            "type": {
+              "kind": "reference",
+              "id": "StrokeOptions"
+            }
+          }
+        ],
+        "returnType": {
+          "kind": "primitive",
+          "name": "nil"
+        }
+      },
+      {
+        "name": "drawCircle",
+        "path": "lh.drawCircle",
+        "description": "Draw in the selected canvas using local GUI coordinates.",
+        "kind": "function",
+        "parameters": [
+          {
+            "name": "cx",
+            "description": "Local cx",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "number"
+            }
+          },
+          {
+            "name": "cy",
+            "description": "Local cy",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "number"
+            }
+          },
+          {
+            "name": "radius",
+            "description": "Local radius",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "number"
+            }
+          },
+          {
+            "name": "options",
+            "description": "Shape options",
+            "optional": true,
+            "type": {
+              "kind": "reference",
+              "id": "StrokeOptions"
             }
           }
         ],
@@ -153,6 +308,63 @@
         }
       },
       {
+        "name": "drawGradient",
+        "path": "lh.drawGradient",
+        "description": "Draw in the selected canvas using local GUI coordinates.",
+        "kind": "function",
+        "parameters": [
+          {
+            "name": "x",
+            "description": "Local x",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "number"
+            }
+          },
+          {
+            "name": "y",
+            "description": "Local y",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "number"
+            }
+          },
+          {
+            "name": "width",
+            "description": "Local width",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "number"
+            }
+          },
+          {
+            "name": "height",
+            "description": "Local height",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "number"
+            }
+          },
+          {
+            "name": "options",
+            "description": "Shape options",
+            "optional": false,
+            "type": {
+              "kind": "reference",
+              "id": "GradientOptions"
+            }
+          }
+        ],
+        "returnType": {
+          "kind": "primitive",
+          "name": "nil"
+        }
+      },
+      {
         "name": "drawItem",
         "path": "lh.drawItem",
         "description": "Draw an item by namespaced ID or ItemStack model.",
@@ -192,6 +404,120 @@
             "type": {
               "kind": "reference",
               "id": "IconOptions"
+            }
+          }
+        ],
+        "returnType": {
+          "kind": "primitive",
+          "name": "nil"
+        }
+      },
+      {
+        "name": "drawLine",
+        "path": "lh.drawLine",
+        "description": "Draw in the selected canvas using local GUI coordinates.",
+        "kind": "function",
+        "parameters": [
+          {
+            "name": "x1",
+            "description": "Local x1",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "number"
+            }
+          },
+          {
+            "name": "y1",
+            "description": "Local y1",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "number"
+            }
+          },
+          {
+            "name": "x2",
+            "description": "Local x2",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "number"
+            }
+          },
+          {
+            "name": "y2",
+            "description": "Local y2",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "number"
+            }
+          },
+          {
+            "name": "options",
+            "description": "Shape options",
+            "optional": true,
+            "type": {
+              "kind": "reference",
+              "id": "StrokeOptions"
+            }
+          }
+        ],
+        "returnType": {
+          "kind": "primitive",
+          "name": "nil"
+        }
+      },
+      {
+        "name": "drawRect",
+        "path": "lh.drawRect",
+        "description": "Draw in the selected canvas using local GUI coordinates.",
+        "kind": "function",
+        "parameters": [
+          {
+            "name": "x",
+            "description": "Local x",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "number"
+            }
+          },
+          {
+            "name": "y",
+            "description": "Local y",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "number"
+            }
+          },
+          {
+            "name": "width",
+            "description": "Local width",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "number"
+            }
+          },
+          {
+            "name": "height",
+            "description": "Local height",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "number"
+            }
+          },
+          {
+            "name": "options",
+            "description": "Shape options",
+            "optional": true,
+            "type": {
+              "kind": "reference",
+              "id": "RectOptions"
             }
           }
         ],
@@ -260,7 +586,7 @@
             "optional": true,
             "type": {
               "kind": "reference",
-              "id": "IconOptions"
+              "id": "TextureOptions"
             }
           }
         ],
@@ -294,6 +620,17 @@
             }
           }
         ],
+        "returnType": {
+          "kind": "primitive",
+          "name": "nil"
+        }
+      },
+      {
+        "name": "endCanvas",
+        "path": "lh.endCanvas",
+        "description": "Close the canvas and resume the previous section.",
+        "kind": "function",
+        "parameters": [],
         "returnType": {
           "kind": "primitive",
           "name": "nil"
@@ -406,6 +743,36 @@
         "returnType": {
           "kind": "primitive",
           "name": "string"
+        }
+      },
+      {
+        "name": "measureText",
+        "path": "lh.measureText",
+        "description": "Measure text without drawing. Returns width and height in local GUI units, excluding shadow.",
+        "kind": "function",
+        "parameters": [
+          {
+            "name": "text",
+            "description": "Value converted to text",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "any"
+            }
+          },
+          {
+            "name": "options",
+            "description": "Measurement options",
+            "optional": true,
+            "type": {
+              "kind": "reference",
+              "id": "MeasureTextOptions"
+            }
+          }
+        ],
+        "returnType": {
+          "kind": "reference",
+          "id": "TextDimensions"
         }
       },
       {
@@ -601,6 +968,16 @@
             "name": "fps",
             "path": "lh.perf.fps",
             "description": "Current rendered frames per second",
+            "kind": "property",
+            "type": {
+              "kind": "primitive",
+              "name": "integer"
+            }
+          },
+          {
+            "name": "maxFps",
+            "path": "lh.perf.maxFps",
+            "description": "Fps limit; -1 if infinite",
             "kind": "property",
             "type": {
               "kind": "primitive",
@@ -1429,6 +1806,164 @@
         "kind": "primitive",
         "name": "string"
       }
+    },
+    {
+      "id": "CanvasOptions",
+      "name": "CanvasOptions",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "anchor",
+          "description": "Screen anchor",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "literal",
+                "value": "topLeft"
+              },
+              {
+                "kind": "literal",
+                "value": "topCenter"
+              },
+              {
+                "kind": "literal",
+                "value": "topRight"
+              },
+              {
+                "kind": "literal",
+                "value": "bottomLeft"
+              },
+              {
+                "kind": "literal",
+                "value": "bottomCenter"
+              },
+              {
+                "kind": "literal",
+                "value": "bottomRight"
+              }
+            ]
+          }
+        },
+        {
+          "name": "clip",
+          "description": "Clip to the canvas bounds; defaults to true",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "duration",
+          "description": "Positive lifetime in seconds; omitted sections last until this callback runs again",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "height",
+          "description": "Positive local height",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "id",
+          "description": "Shared section ID; replaces any existing section with this ID",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "inline",
+          "description": "Insert into the current section; defaults to false",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "offsetX",
+          "description": "Horizontal inset for edge anchors or signed shift for center anchors",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "offsetY",
+          "description": "Vertical screen-edge inset",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "scale",
+          "description": "Scale applied to the entire section",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "shadow",
+          "description": "Draw text shadow",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "textColor",
+          "description": "Text color",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "primitive",
+                "name": "string"
+              },
+              {
+                "kind": "primitive",
+                "name": "integer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "visible",
+          "description": "Whether this section is drawn; defaults to true",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "width",
+          "description": "Positive local width",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        }
+      ]
     },
     {
       "id": "ChatChangePage",
@@ -2437,8 +2972,35 @@
           }
         },
         {
+          "name": "originX",
+          "description": "Canvas-only rotation pivot X relative to the element",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "originY",
+          "description": "Canvas-only rotation pivot Y relative to the element",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
           "name": "pitch",
           "description": "Vertical viewing angle offset in degrees",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "rotation",
+          "description": "Canvas-only clockwise 2D rotation in degrees",
           "optional": true,
           "type": {
             "kind": "primitive",
@@ -2461,6 +3023,24 @@
           "type": {
             "kind": "primitive",
             "name": "boolean"
+          }
+        },
+        {
+          "name": "x",
+          "description": "Canvas-local X; defaults to 0",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "y",
+          "description": "Canvas-local Y; defaults to 0",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
           }
         },
         {
@@ -2559,6 +3139,67 @@
           "type": {
             "kind": "primitive",
             "name": "boolean"
+          }
+        }
+      ]
+    },
+    {
+      "id": "GradientOptions",
+      "name": "GradientOptions",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "direction",
+          "description": "Gradient direction; defaults to vertical",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "literal",
+                "value": "horizontal"
+              },
+              {
+                "kind": "literal",
+                "value": "vertical"
+              }
+            ]
+          }
+        },
+        {
+          "name": "fromColor",
+          "description": "Top or left color",
+          "optional": false,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "primitive",
+                "name": "string"
+              },
+              {
+                "kind": "primitive",
+                "name": "integer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "toColor",
+          "description": "Bottom or right color",
+          "optional": false,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "primitive",
+                "name": "string"
+              },
+              {
+                "kind": "primitive",
+                "name": "integer"
+              }
+            ]
           }
         }
       ]
@@ -2675,8 +3316,53 @@
           }
         },
         {
+          "name": "originX",
+          "description": "Canvas-only rotation pivot X relative to the element",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "originY",
+          "description": "Canvas-only rotation pivot Y relative to the element",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "rotation",
+          "description": "Canvas-only clockwise 2D rotation in degrees",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
           "name": "scale",
           "description": "Scale relative to the section",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "x",
+          "description": "Canvas-local X; defaults to 0",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "y",
+          "description": "Canvas-local Y; defaults to 0",
           "optional": true,
           "type": {
             "kind": "primitive",
@@ -2836,6 +3522,65 @@
       ]
     },
     {
+      "id": "MeasureTextOptions",
+      "name": "MeasureTextOptions",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "scale",
+          "description": "Text scale; defaults to 1",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        }
+      ]
+    },
+    {
+      "id": "NineSlice",
+      "name": "NineSlice",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "bottom",
+          "description": "Bottom source border in pixels",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "left",
+          "description": "Left source border in pixels",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "right",
+          "description": "Right source border in pixels",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "top",
+          "description": "Top source border in pixels",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        }
+      ]
+    },
+    {
       "id": "PlacedBlock",
       "kind": "model",
       "name": "PlacedBlock",
@@ -2935,6 +3680,67 @@
           "type": {
             "kind": "primitive",
             "name": "integer"
+          }
+        }
+      ]
+    },
+    {
+      "id": "RectOptions",
+      "name": "RectOptions",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "borderColor",
+          "description": "Border color; defaults to white",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "primitive",
+                "name": "string"
+              },
+              {
+                "kind": "primitive",
+                "name": "integer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "borderWidth",
+          "description": "Inset border width; defaults to zero",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "color",
+          "description": "Fill color; defaults to white",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "primitive",
+                "name": "string"
+              },
+              {
+                "kind": "primitive",
+                "name": "integer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "radius",
+          "description": "Corner radius; defaults to zero",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
           }
         }
       ]
@@ -3264,6 +4070,33 @@
           }
         },
         {
+          "name": "originX",
+          "description": "Canvas-only rotation pivot X relative to the element",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "originY",
+          "description": "Canvas-only rotation pivot Y relative to the element",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "rotation",
+          "description": "Canvas-only clockwise 2D rotation in degrees",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
           "name": "scale",
           "description": "Scale relative to the section",
           "optional": true,
@@ -3297,6 +4130,24 @@
           "type": {
             "kind": "primitive",
             "name": "boolean"
+          }
+        },
+        {
+          "name": "x",
+          "description": "Canvas-local X; defaults to 0",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "y",
+          "description": "Canvas-local Y; defaults to 0",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
           }
         }
       ]
@@ -3429,6 +4280,65 @@
       ]
     },
     {
+      "id": "StrokeOptions",
+      "name": "StrokeOptions",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "color",
+          "description": "Color; defaults to white",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "primitive",
+                "name": "string"
+              },
+              {
+                "kind": "primitive",
+                "name": "integer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "thickness",
+          "description": "Stroke width; circle defaults to filled, line and arc to 1",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        }
+      ]
+    },
+    {
+      "id": "TextDimensions",
+      "kind": "model",
+      "name": "TextDimensions",
+      "fields": [
+        {
+          "name": "height",
+          "description": "Text height in local GUI units",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "width",
+          "description": "Text width in local GUI units",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        }
+      ]
+    },
+    {
       "id": "TextOptions",
       "name": "TextOptions",
       "kind": "input",
@@ -3470,6 +4380,42 @@
           }
         },
         {
+          "name": "originX",
+          "description": "Canvas-only rotation pivot X relative to the element",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "originY",
+          "description": "Canvas-only rotation pivot Y relative to the element",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "rotation",
+          "description": "Canvas-only clockwise 2D rotation in degrees",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "scale",
+          "description": "Canvas-only text scale; defaults to 1",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
           "name": "shadow",
           "description": "Draw text shadow",
           "optional": true,
@@ -3494,6 +4440,209 @@
                 "name": "integer"
               }
             ]
+          }
+        },
+        {
+          "name": "x",
+          "description": "Canvas-local X; defaults to 0",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "y",
+          "description": "Canvas-local Y; defaults to 0",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        }
+      ]
+    },
+    {
+      "id": "TextureOptions",
+      "name": "TextureOptions",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "backgroundColor",
+          "description": "ARGB integer or RGB/ARGB hex string",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "primitive",
+                "name": "string"
+              },
+              {
+                "kind": "primitive",
+                "name": "integer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "height",
+          "description": "Canvas target height; defaults to source region height",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "newLine",
+          "description": "Advance to the next line after drawing; defaults to false",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "nineSlice",
+          "description": "Canvas-only nine-slice borders; incompatible with region",
+          "optional": true,
+          "type": {
+            "kind": "reference",
+            "id": "NineSlice"
+          }
+        },
+        {
+          "name": "offsetX",
+          "description": "Local horizontal offset",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "offsetY",
+          "description": "Local vertical offset",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "originX",
+          "description": "Canvas-only rotation pivot X relative to the element",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "originY",
+          "description": "Canvas-only rotation pivot Y relative to the element",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "region",
+          "description": "Canvas-only source rectangle",
+          "optional": true,
+          "type": {
+            "kind": "reference",
+            "id": "TextureRegion"
+          }
+        },
+        {
+          "name": "rotation",
+          "description": "Canvas-only clockwise 2D rotation in degrees",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "scale",
+          "description": "Scale relative to the section",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "width",
+          "description": "Canvas target width; defaults to source region width",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "x",
+          "description": "Canvas-local X; defaults to 0",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "y",
+          "description": "Canvas-local Y; defaults to 0",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        }
+      ]
+    },
+    {
+      "id": "TextureRegion",
+      "name": "TextureRegion",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "height",
+          "description": "Source height in pixels",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "width",
+          "description": "Source width in pixels",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "x",
+          "description": "Source X in pixels",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "y",
+          "description": "Source Y in pixels",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
           }
         }
       ]

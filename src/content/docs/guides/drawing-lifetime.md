@@ -62,3 +62,7 @@ end)
 Call `notify()` again and it replaces the text and restarts the three-second lifetime. An ID doesn't create a position or prevent overlap with sections that have other IDs.
 
 All output is cleared on runtime reload or when leaving the world. A `duration` section doesn't survive those transitions.
+
+## Canvas drawing
+
+For fixed-size panels with explicit coordinates, see [Drawing with Canvases](/canvas/getting-started/). Standalone canvases use section lifetime and ID replacement rules; [inline canvases](/canvas/inline-canvases/) belong to their parent section.

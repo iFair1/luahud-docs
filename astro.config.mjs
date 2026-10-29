@@ -31,6 +31,10 @@ export default defineConfig({
           ]
 				},
         {
+          label: 'Canvas',
+          items: [{ autogenerate: { directory: 'canvas' } }],
+        },
+        {
           label: 'Reference',
           items: [
             { label: 'API', link: '/api/' },

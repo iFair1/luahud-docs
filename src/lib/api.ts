@@ -92,6 +92,8 @@ const editorialTypePages: Record<string, string> = {
   SectionOptions: '/options/section-options/',
   TextOptions: '/options/text-options/',
   IconOptions: '/options/icon-options/',
+  CanvasOptions: '/options/canvas-options/',
+  TextureOptions: '/options/texture-options/',
   StackOptions: '/options/stack-options/',
   EntityOptions: '/options/entity-options/',
 };
