@@ -16,7 +16,47 @@ hero:
       icon: right-arrow
       variant: minimal
 ---
-{/* Put examples here */}
+
+import { CardGrid, Card } from '@astrojs/starlight/components';
+
+<CardGrid>
+  <Card title="Advanced Layouting" icon="bars">
+    LuaHUD provides a flexible layout system that allows you to create complex HUDs with
+    multiple sections, panels and elements.
+
+    [Create your first HUD](/guides/your-first-hud/)
+  </Card>
+  <Card title="Use Lua" icon="moon">
+    Instead of a custom DSL that has an unreadable syntax with a bad documentation,
+    Lua is a well-known language with a simple syntax with great functionality.
+
+    [Learn Lua](lua/about-lua)
+  </Card>
+  <Card title="Not only plain text" icon="pencil">
+    Mix item icons, entity models and textures with your text. Arrange them in
+    flexible sections, or draw custom panels, meters, and charts on a canvas.
+
+    [Start drawing](/canvas/getting-started/)
+  </Card>
+  <Card title="Dynamic HUD" icon="clock">
+    Show information only when you want. Respond to game events, refresh counters
+    on a timer, or update every frame for smooth animations.
+
+    [Work with events and timers](/guides/events-and-timers/)
+  </Card>
+  <Card title="Hot Reload" icon="rocket">
+    Save your Lua script and LuaHUD automatically reloads your profiles. Run
+    multiple profiles together and manage them from the in-game menu.
+
+    [Set up your profiles](/getting-started/accessing-files/)
+  </Card>
+  <Card title="Less guessing, more creating" icon="laptop">
+    Get API completion in editors with a Lua language server. Generated definitions
+    include item, block, and entity IDs from your installed mods, plus addon APIs.
+
+    [Get to know LuaHUD](/getting-started/introduction/#why-lua)
+  </Card>
+</CardGrid>
 
 Made by [iFair](https://ifair.dev)!
 
