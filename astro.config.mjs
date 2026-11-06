@@ -8,6 +8,7 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'LuaHUD',
+			favicon: '/favicon.png',
 			customCss: ['/src/assets/css/custom.css'],
       social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/iFair1/luahud' }],
 			sidebar: [
