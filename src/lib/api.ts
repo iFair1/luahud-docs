@@ -60,6 +60,9 @@ export const typesById = new Map(api.types.map(type => [type.id, type]));
 
 // Editorial pages keep stable routes; other exported types get a generated page.
 const editorialTypePages: Record<string, string> = {
+  Color: '/models/color/',
+  ColorInput: '/models/color-input/',
+  Profile: '/models/profile/',
   PlacedBlock: '/models/placed-block/',
   Entity: '/models/entity/',
   EntityInput: '/models/entity-input/',

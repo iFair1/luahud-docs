@@ -5,7 +5,7 @@ sidebar:
   order: 20
 ---
 
-Select a [canvas](/canvas/getting-started/) before calling any shape function. All positions and sizes below use its local GUI units. Colors accept `"#RRGGBB"`, `"#AARRGGBB"`, or ARGB integers.
+Select a [canvas](/canvas/getting-started/) before calling any shape function. All positions and sizes below use its local GUI units. Colors accept `"#RRGGBB"`, `"#AARRGGBB"`, ARGB integers, [Color](/models/color/) values, or [ColorInput](/models/color-input/) tables. All shape options support `opacity` from `0` to `1`, defaulting to `1`; it multiplies with canvas opacity and color alpha.
 
 ## Shape functions
 

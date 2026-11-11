@@ -84,7 +84,7 @@ lh.on("tick", function()
     end
 end)
 ```
-Models expose fields through metatables. Treat them as API views: `pairs(model)` won't necessarily enumerate the fields you see in completion, and assigning to a field doesn't change the game. Copy specific values into an ordinary table if you need a snapshot.
+Most models expose fields through metatables. Treat them as API views: `pairs(model)` won't necessarily enumerate the fields you see in completion, and assigning to a field doesn't change the game. Copy specific values into an ordinary table if you need a snapshot.
 
 Some drawing functions also accept model input tables. For example, you can draw a made-up stack with `{ id = "minecraft:diamond", count = 16 }`. This describes what to render. It doesn't put diamonds in your inventory.
 
@@ -105,6 +105,7 @@ lh.on("tick", function()
     local effects = lh.player.effects
     if effects["minecraft:fire_resistance"] then
         lh.drawln("Fire resistance is active.")
+        lh.drawln("Level: " .. effects["minecraft:fire_resistance"])
     end
 end)
 ```

@@ -1,0 +1,23 @@
+---
+title: ColorInput
+description: Supply RGB and optional alpha channels directly to LuaHUD drawing options.
+---
+
+import TypeFields from '../../../components/api/TypeFields.astro';
+
+A plain table describing a drawing color. Supply `r`, `g`, and `b` as integers from `0` to `255`; optional `a` defaults to `255`. An existing [Color](/models/color/) value is also accepted.
+
+## Fields
+
+<TypeFields id="ColorInput" />
+
+## Example
+
+```lua
+lh.on("tick", function()
+    lh.drawln("Green", { textColor = { r = 85, g = 255, b = 85 } })
+    lh.drawln("Faded red", { textColor = { r = 255, g = 85, b = 85, a = 128 } })
+end)
+```
+
+Use `lh.color.rgb()` when you also need the computed `asInt` and `asString` properties. These conversions belong to the `Color` model, not plain input tables.

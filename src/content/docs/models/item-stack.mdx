@@ -18,7 +18,7 @@ lh.on("tick", function()
     local stack = lh.slots.mainHand
     if stack.count == 0 then return end
     lh.drawStack(stack)
-    lh.drawln(stack.name)
+    lh.drawln(stack.name .. " x" .. stack.count .. " / " .. stack.maxCount)
     if stack.damageLeft ~= nil then
         lh.drawln(stack.damageLeft .. " / " .. stack.maxDamage)
     end

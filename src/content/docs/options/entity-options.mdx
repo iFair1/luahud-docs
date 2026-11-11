@@ -5,7 +5,7 @@ description: Entity rendering scale, viewing angles, rotation, lighting, and lay
 
 import TypeFields from '../../../components/api/TypeFields.astro';
 
-Options for `lh.drawEntity(uuidOrModel, options)`. Every field is optional. Includes the same layout fields as [IconOptions](/options/icon-options/). Colors use RGB/ARGB hex strings or ARGB integers.
+Options for `lh.drawEntity(uuidOrModel, options)`. Every field is optional. Includes the same layout fields as [IconOptions](/options/icon-options/). Colors use RGB/ARGB hex strings, ARGB integers, or [Color](/models/color/) values and [ColorInput](/models/color-input/) tables.
 
 ## Fields
 
@@ -32,3 +32,5 @@ end)
 ```
 
 The entity must be loaded on the client. See [EntityInput](/models/entity-input/) for accepted input tables.
+
+`opacity` defaults to `1` and must be a finite number from `0` to `1`. It multiplies with the containing section or canvas opacity and color alpha, and applies only to this draw call. See [Opacity](/guides/colors-and-scale/#opacity).

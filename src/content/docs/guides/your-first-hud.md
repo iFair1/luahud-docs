@@ -11,7 +11,7 @@ sidebar:
 
 After [installing LuaHUD](/getting-started/installation/), enter a world and open the mod screen with **H**. Create a profile, then use **Open Folder** to find its `.lua` file in the [profile directory](/getting-started/accessing-files/). Open it in a text editor and make sure the profile is enabled.
 
-Save each example in that file. LuaHUD reloads profiles when you save, so you can see the result in-game without restarting Minecraft.
+Save each example in that file. LuaHUD reloads that profile when you save, so you can see the result in-game without restarting Minecraft.
 
 LuaHUD can draw text, items, textures, and entities on your HUD. Start with text below, then explore [Items, Texture, and Entities](/guides/icons-and-models/).
 

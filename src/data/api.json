@@ -28,6 +28,113 @@
         }
       },
       {
+        "name": "color",
+        "path": "lh.color",
+        "description": "",
+        "kind": "namespace",
+        "children": [
+          {
+            "name": "from",
+            "path": "lh.color.from",
+            "description": "Create a Color from an ARGB integer or a 6-digit RGB / 8-digit ARGB hex string.",
+            "kind": "function",
+            "parameters": [
+              {
+                "name": "value",
+                "description": "ARGB integer or RGB/ARGB hex string, optionally prefixed with #",
+                "optional": false,
+                "type": {
+                  "kind": "union",
+                  "alternatives": [
+                    {
+                      "kind": "primitive",
+                      "name": "integer"
+                    },
+                    {
+                      "kind": "primitive",
+                      "name": "string"
+                    }
+                  ]
+                }
+              }
+            ],
+            "returnType": {
+              "kind": "reference",
+              "id": "Color"
+            }
+          },
+          {
+            "name": "fromRgb",
+            "path": "lh.color.fromRgb",
+            "description": "Create an opaque Color from a packed RGB integer; upper bits are ignored.",
+            "kind": "function",
+            "parameters": [
+              {
+                "name": "value",
+                "description": "Packed RGB integer (0xRRGGBB)",
+                "optional": false,
+                "type": {
+                  "kind": "primitive",
+                  "name": "integer"
+                }
+              }
+            ],
+            "returnType": {
+              "kind": "reference",
+              "id": "Color"
+            }
+          },
+          {
+            "name": "rgb",
+            "path": "lh.color.rgb",
+            "description": "Create a mutable Color from byte channels; omitted alpha is 255.",
+            "kind": "function",
+            "parameters": [
+              {
+                "name": "r",
+                "description": "Red channel (0 to 255)",
+                "optional": false,
+                "type": {
+                  "kind": "primitive",
+                  "name": "integer"
+                }
+              },
+              {
+                "name": "g",
+                "description": "Green channel (0 to 255)",
+                "optional": false,
+                "type": {
+                  "kind": "primitive",
+                  "name": "integer"
+                }
+              },
+              {
+                "name": "b",
+                "description": "Blue channel (0 to 255)",
+                "optional": false,
+                "type": {
+                  "kind": "primitive",
+                  "name": "integer"
+                }
+              },
+              {
+                "name": "a",
+                "description": "Alpha channel (0 to 255); defaults to 255",
+                "optional": true,
+                "type": {
+                  "kind": "primitive",
+                  "name": "integer"
+                }
+              }
+            ],
+            "returnType": {
+              "kind": "reference",
+              "id": "Color"
+            }
+          }
+        ]
+      },
+      {
         "name": "display",
         "path": "lh.display",
         "description": "",
@@ -67,6 +174,16 @@
             "name": "isF3On",
             "path": "lh.display.isF3On",
             "description": "Whether the debug menu is on",
+            "kind": "property",
+            "type": {
+              "kind": "primitive",
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "isHudHidden",
+            "path": "lh.display.isHudHidden",
+            "description": "Whether the hud is hidden",
             "kind": "property",
             "type": {
               "kind": "primitive",
@@ -725,6 +842,44 @@
         }
       },
       {
+        "name": "getOption",
+        "path": "lh.getOption",
+        "description": "Read the current Minecraft client setting using its options.txt name. Unknown names raise an error. Numbers use the game's stored units (for example mouse sensitivity is 0–1); enum values are lowercase names with underscores. This does not change settings.",
+        "kind": "function",
+        "parameters": [
+          {
+            "name": "name",
+            "description": "Client option name; available names depend on the Minecraft version",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "string"
+            }
+          }
+        ],
+        "returnType": {
+          "kind": "union",
+          "alternatives": [
+            {
+              "kind": "primitive",
+              "name": "boolean"
+            },
+            {
+              "kind": "primitive",
+              "name": "integer"
+            },
+            {
+              "kind": "primitive",
+              "name": "number"
+            },
+            {
+              "kind": "primitive",
+              "name": "string"
+            }
+          ]
+        }
+      },
+      {
         "name": "getTranslation",
         "path": "lh.getTranslation",
         "description": "Translate a key using the current client language. Returns the key if no translation exists.",
@@ -977,7 +1132,7 @@
           {
             "name": "maxFps",
             "path": "lh.perf.maxFps",
-            "description": "Fps limit; -1 if infinite",
+            "description": "Fps limit; 260 if infinite",
             "kind": "property",
             "type": {
               "kind": "primitive",
@@ -1299,8 +1454,8 @@
                 "description": "Foliage color of the biome",
                 "kind": "property",
                 "type": {
-                  "kind": "primitive",
-                  "name": "integer"
+                  "kind": "reference",
+                  "id": "Color"
                 }
               },
               {
@@ -1309,8 +1464,8 @@
                 "description": "Grass color of the biome",
                 "kind": "property",
                 "type": {
-                  "kind": "primitive",
-                  "name": "integer"
+                  "kind": "reference",
+                  "id": "Color"
                 }
               },
               {
@@ -1349,8 +1504,8 @@
                 "description": "Sky color of the biome",
                 "kind": "property",
                 "type": {
-                  "kind": "primitive",
-                  "name": "integer"
+                  "kind": "reference",
+                  "id": "Color"
                 }
               },
               {
@@ -1369,8 +1524,8 @@
                 "description": "Water color of the biome",
                 "kind": "property",
                 "type": {
-                  "kind": "primitive",
-                  "name": "integer"
+                  "kind": "reference",
+                  "id": "Color"
                 }
               }
             ]
@@ -1910,6 +2065,15 @@
           }
         },
         {
+          "name": "opacity",
+          "description": "Opacity from 0 to 1; multiplies section opacity and color alpha; defaults to 1",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
           "name": "scale",
           "description": "Scale applied to the entire section",
           "optional": true,
@@ -1941,6 +2105,10 @@
               {
                 "kind": "primitive",
                 "name": "integer"
+              },
+              {
+                "kind": "reference",
+                "id": "Color"
               }
             ]
           }
@@ -2621,6 +2789,114 @@
       ]
     },
     {
+      "id": "Color",
+      "kind": "model",
+      "name": "Color",
+      "fields": [
+        {
+          "name": "a",
+          "description": "Alpha channel (0 to 255); defaults to 255 for input tables",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "asInt",
+          "description": "Current channels packed as a signed ARGB integer (0xAARRGGBB)",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "asString",
+          "description": "Current channels as #AARRGGBB",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "b",
+          "description": "Blue channel (0 to 255)",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "g",
+          "description": "Green channel (0 to 255)",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "r",
+          "description": "Red channel (0 to 255)",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ColorInput",
+      "kind": "input",
+      "name": "ColorInput",
+      "model": {
+        "kind": "reference",
+        "id": "Color"
+      },
+      "fields": [
+        {
+          "name": "a",
+          "description": "Alpha channel (0 to 255); defaults to 255 for input tables",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "b",
+          "description": "Blue channel (0 to 255)",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "g",
+          "description": "Green channel (0 to 255)",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "r",
+          "description": "Red channel (0 to 255)",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        }
+      ]
+    },
+    {
       "id": "Damage",
       "kind": "model",
       "name": "Damage",
@@ -2919,7 +3195,7 @@
       "fields": [
         {
           "name": "backgroundColor",
-          "description": "ARGB integer or RGB/ARGB hex string",
+          "description": "ARGB integer, RGB/ARGB hex string, or Color table",
           "optional": true,
           "type": {
             "kind": "union",
@@ -2931,6 +3207,10 @@
               {
                 "kind": "primitive",
                 "name": "integer"
+              },
+              {
+                "kind": "reference",
+                "id": "Color"
               }
             ]
           }
@@ -2969,6 +3249,15 @@
           "type": {
             "kind": "primitive",
             "name": "integer"
+          }
+        },
+        {
+          "name": "opacity",
+          "description": "Opacity from 0 to 1; multiplies section opacity and color alpha; defaults to 1",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
           }
         },
         {
@@ -3180,8 +3469,21 @@
               {
                 "kind": "primitive",
                 "name": "integer"
+              },
+              {
+                "kind": "reference",
+                "id": "Color"
               }
             ]
+          }
+        },
+        {
+          "name": "opacity",
+          "description": "Opacity from 0 to 1; multiplies canvas opacity; defaults to 1",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
           }
         },
         {
@@ -3198,6 +3500,10 @@
               {
                 "kind": "primitive",
                 "name": "integer"
+              },
+              {
+                "kind": "reference",
+                "id": "Color"
               }
             ]
           }
@@ -3272,7 +3578,7 @@
       "fields": [
         {
           "name": "backgroundColor",
-          "description": "ARGB integer or RGB/ARGB hex string",
+          "description": "ARGB integer, RGB/ARGB hex string, or Color table",
           "optional": true,
           "type": {
             "kind": "union",
@@ -3284,6 +3590,10 @@
               {
                 "kind": "primitive",
                 "name": "integer"
+              },
+              {
+                "kind": "reference",
+                "id": "Color"
               }
             ]
           }
@@ -3313,6 +3623,15 @@
           "type": {
             "kind": "primitive",
             "name": "integer"
+          }
+        },
+        {
+          "name": "opacity",
+          "description": "Opacity from 0 to 1; multiplies section opacity and color alpha; defaults to 1",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
           }
         },
         {
@@ -3436,6 +3755,15 @@
           "type": {
             "kind": "reference",
             "id": "ItemId"
+          }
+        },
+        {
+          "name": "maxCount",
+          "description": "Maximum stack count",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
           }
         },
         {
@@ -3685,6 +4013,49 @@
       ]
     },
     {
+      "id": "Profile",
+      "kind": "model",
+      "name": "Profile",
+      "fields": [
+        {
+          "name": "active",
+          "description": "Whether the profile is active",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "hidden",
+          "description": "Whether the profile is hidden",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "keybind",
+          "description": "Profile key binding",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "name",
+          "description": "Profile name",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    {
       "id": "RectOptions",
       "name": "RectOptions",
       "kind": "input",
@@ -3703,6 +4074,10 @@
               {
                 "kind": "primitive",
                 "name": "integer"
+              },
+              {
+                "kind": "reference",
+                "id": "Color"
               }
             ]
           }
@@ -3730,8 +4105,21 @@
               {
                 "kind": "primitive",
                 "name": "integer"
+              },
+              {
+                "kind": "reference",
+                "id": "Color"
               }
             ]
+          }
+        },
+        {
+          "name": "opacity",
+          "description": "Opacity from 0 to 1; multiplies canvas opacity; defaults to 1",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
           }
         },
         {
@@ -3786,7 +4174,7 @@
         },
         {
           "name": "backgroundColor",
-          "description": "ARGB integer or RGB/ARGB hex string",
+          "description": "ARGB integer, RGB/ARGB hex string, or Color table",
           "optional": true,
           "type": {
             "kind": "union",
@@ -3798,6 +4186,10 @@
               {
                 "kind": "primitive",
                 "name": "integer"
+              },
+              {
+                "kind": "reference",
+                "id": "Color"
               }
             ]
           }
@@ -3906,6 +4298,15 @@
           }
         },
         {
+          "name": "opacity",
+          "description": "Opacity from 0 to 1; multiplies section opacity and color alpha; defaults to 1",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
           "name": "rowAlign",
           "description": "Alignment of rows within the widest row; defaults from the anchor",
           "optional": true,
@@ -3995,6 +4396,10 @@
               {
                 "kind": "primitive",
                 "name": "integer"
+              },
+              {
+                "kind": "reference",
+                "id": "Color"
               }
             ]
           }
@@ -4017,7 +4422,7 @@
       "fields": [
         {
           "name": "backgroundColor",
-          "description": "ARGB integer or RGB/ARGB hex string",
+          "description": "ARGB integer, RGB/ARGB hex string, or Color table",
           "optional": true,
           "type": {
             "kind": "union",
@@ -4029,6 +4434,10 @@
               {
                 "kind": "primitive",
                 "name": "integer"
+              },
+              {
+                "kind": "reference",
+                "id": "Color"
               }
             ]
           }
@@ -4067,6 +4476,15 @@
           "type": {
             "kind": "primitive",
             "name": "integer"
+          }
+        },
+        {
+          "name": "opacity",
+          "description": "Opacity from 0 to 1; multiplies section opacity and color alpha; defaults to 1",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
           }
         },
         {
@@ -4298,8 +4716,21 @@
               {
                 "kind": "primitive",
                 "name": "integer"
+              },
+              {
+                "kind": "reference",
+                "id": "Color"
               }
             ]
+          }
+        },
+        {
+          "name": "opacity",
+          "description": "Opacity from 0 to 1; multiplies canvas opacity; defaults to 1",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
           }
         },
         {
@@ -4345,7 +4776,7 @@
       "fields": [
         {
           "name": "backgroundColor",
-          "description": "ARGB integer or RGB/ARGB hex string",
+          "description": "ARGB integer, RGB/ARGB hex string, or Color table",
           "optional": true,
           "type": {
             "kind": "union",
@@ -4357,6 +4788,10 @@
               {
                 "kind": "primitive",
                 "name": "integer"
+              },
+              {
+                "kind": "reference",
+                "id": "Color"
               }
             ]
           }
@@ -4377,6 +4812,15 @@
           "type": {
             "kind": "primitive",
             "name": "integer"
+          }
+        },
+        {
+          "name": "opacity",
+          "description": "Opacity from 0 to 1; multiplies section opacity and color alpha; defaults to 1",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
           }
         },
         {
@@ -4438,6 +4882,10 @@
               {
                 "kind": "primitive",
                 "name": "integer"
+              },
+              {
+                "kind": "reference",
+                "id": "Color"
               }
             ]
           }
@@ -4469,7 +4917,7 @@
       "fields": [
         {
           "name": "backgroundColor",
-          "description": "ARGB integer or RGB/ARGB hex string",
+          "description": "ARGB integer, RGB/ARGB hex string, or Color table",
           "optional": true,
           "type": {
             "kind": "union",
@@ -4481,6 +4929,10 @@
               {
                 "kind": "primitive",
                 "name": "integer"
+              },
+              {
+                "kind": "reference",
+                "id": "Color"
               }
             ]
           }
@@ -4528,6 +4980,15 @@
           "type": {
             "kind": "primitive",
             "name": "integer"
+          }
+        },
+        {
+          "name": "opacity",
+          "description": "Opacity from 0 to 1; multiplies section opacity and color alpha; defaults to 1",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
           }
         },
         {
@@ -4699,10 +5160,13 @@
     },
     {
       "name": "reload",
-      "description": "Runs once after active profiles load, including first world entry.",
+      "description": "Reports the profiles loaded by this reload, including first world entry.",
       "payloadType": {
-        "kind": "primitive",
-        "name": "nil"
+        "kind": "list",
+        "element": {
+          "kind": "reference",
+          "id": "Profile"
+        }
       }
     },
     {

@@ -21,7 +21,7 @@ When you stop sprinting, the next call removes the old line even though it draws
 
 Each registered callback has its own output. A tick callback doesn't clear a different callback's section, even if both are in the same profile. Each also starts from the default layout, so assign positions if they might overlap.
 
-Top-level drawings follow the same idea, but that code only runs on load. Their values won't refresh just because the game does. Drawings made in `reload` also remain until a runtime reload clears them.
+Top-level drawings follow the same idea, but that code only runs on load. Their values won't refresh just because the game does. Ordinary drawings made in a `reload` listener remain until that listener runs again, including when another profile reloads. Reloading or disabling the owning profile removes its output.
 
 ## Temporary output uses duration
 Pass a positive duration in **seconds** to keep a section until its lifetime expires:

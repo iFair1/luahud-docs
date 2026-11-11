@@ -1,0 +1,26 @@
+---
+title: Profile
+description: Inspect the profiles loaded by a LuaHUD reload event.
+---
+
+import TypeFields from '../../../components/api/TypeFields.astro';
+
+A profile snapshot passed in the list received by `lh.on("reload", callback)`. It describes the profiles loaded by that reload. It does not provide methods to enable, hide, or reload profiles.
+
+## Fields
+
+<TypeFields id="Profile" />
+
+## Example
+
+```lua
+lh.on("reload", function(profiles)
+    for _, profile in ipairs(profiles) do
+        lh.sendMessage("Loaded: " .. profile.name)
+    end
+end)
+```
+
+On first world entry or a full runtime reload, the list contains the active profiles loaded together. When a script or active state changes, only affected profiles reload; other profiles retain their local state, listeners, timers, and drawings. The payload lists profiles that loaded, so a reload that only disables or removes profiles can pass an empty list. Existing reload listeners in unaffected profiles also receive the event.
+
+See [Events and Timers](/guides/events-and-timers/) for callback and state lifetimes.

@@ -1,0 +1,46 @@
+---
+title: Color
+description: Create mutable HUD colors with RGB and alpha channels, ARGB integers, and hex strings.
+---
+
+import TypeFields from '../../../components/api/TypeFields.astro';
+
+A mutable color snapshot accepted by drawing color options. Create one with `lh.color.rgb(r, g, b, a?)`, `lh.color.from(value)`, or `lh.color.fromRgb(value)`. Biome fields `lh.pos.biome.waterColor`, `skyColor`, `foliageColor`, and `grassColor` also return colors.
+
+## Fields
+
+<TypeFields id="Color" />
+
+## Creating and editing colors
+
+```lua
+local accent = lh.color.rgb(85, 255, 85) -- Alpha defaults to 255
+local translucent = lh.color.from("#8055FF55")
+local opaque = lh.color.fromRgb(0x55FF55)
+
+accent.r = 255
+accent.a = 128
+
+lh.on("tick", function()
+    lh.drawln("Accent", { textColor = accent })
+    lh.drawln(accent.asString)
+end)
+```
+
+`r`, `g`, `b`, and `a` are editable integer channels from `0` to `255`. `asInt` and `asString` are computed from the current channels; read them as properties, without parentheses. Reuse a color to share a palette. Draw again after editing it to update existing output.
+
+`lh.color.from()` accepts an ARGB integer or a six-digit RGB / eight-digit ARGB hex string, optionally prefixed with `#`. Alpha comes first in eight-digit strings. Numeric values include alpha: `lh.color.from(0x55FF55)` is transparent. Use `lh.color.fromRgb(0x55FF55)` for opaque RGB; it ignores the upper bits.
+
+## Biome colors
+
+```lua
+lh.on("tick", function()
+    local water = lh.pos.biome.waterColor
+    water.a = 128
+    lh.drawln("Water color", { textColor = water })
+end)
+```
+
+Changing this snapshot does not change the biome. Read the biome field again when you need its current color. Since v0.3.0, biome color fields return `Color` instead of an integer; use `.asInt` for a packed ARGB integer, including opaque alpha.
+
+Drawing options also accept a plain [ColorInput](/models/color-input/) table. See [Colors and Scale](/guides/colors-and-scale/) for opacity and styling.

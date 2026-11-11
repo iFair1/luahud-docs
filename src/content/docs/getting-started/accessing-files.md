@@ -15,7 +15,7 @@ To open the mod screen:
 Profiles are `.lua` files in `<minecraft directory>/config/luahud/`. Click **Open Folder** on the mod screen to open this directory in your file manager.
 
 :::tip
-Saving a `.lua` file automatically reloads your profiles. Use the mod screen to create, rename, and delete profiles so their keybinds, visibility, enabled state, and order stay associated with the correct profile.
+Saving a `.lua` file automatically reloads that profile. Use the mod screen to create, rename, and delete profiles so their keybinds, visibility, enabled state, and order stay associated with the correct profile.
 :::
 
 :::tip
