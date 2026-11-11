@@ -3,31 +3,17 @@ title: Registry IDs
 description: Namespaced item, block, entity type, status effect, and enchantment identifiers.
 ---
 
-import TypeFields from '../../../components/api/TypeFields.astro';
-
 Registry IDs are strings in `namespace:path` form. Vanilla IDs usually use the `minecraft` namespace; installed mods can add their own. The Lua language-server suggestions are generated from registries, so the available values depend on your game and modpack.
 
 ## Fields
 
-### ItemId
-
-<TypeFields id="ItemId" />
-
-### BlockId
-
-<TypeFields id="BlockId" />
-
-### EntityTypeId
-
-<TypeFields id="EntityTypeId" />
-
-### StatusEffectId
-
-<TypeFields id="StatusEffectId" />
-
-### EnchantmentId
-
-<TypeFields id="EnchantmentId" />
+| Name | Type | Description |
+| --- | --- | --- |
+| <span id="itemid">`ItemId`</span> | `string` | Namespaced item registry ID. |
+| <span id="blockid">`BlockId`</span> | `string` | Namespaced block registry ID. |
+| <span id="entitytypeid">`EntityTypeId`</span> | `string` | Namespaced entity type registry ID. |
+| <span id="statuseffectid">`StatusEffectId`</span> | `string` | Namespaced status effect registry ID. |
+| <span id="enchantmentid">`EnchantmentId`</span> | `string` | Namespaced enchantment registry ID. Available IDs depend on the loaded world and its data packs. |
 
 ## Example
 
