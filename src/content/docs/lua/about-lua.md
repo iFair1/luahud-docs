@@ -25,7 +25,7 @@ This guide starts from zero. Read the pages in order:
 
 ## Trying the examples
 
-Put the examples in a `.lua` profile in your [profile directory](/getting-started/accessing-files/). `lh` is the global LuaHUD API. We use `lh.drawln(value)` to draw a value and start a new line.
+Put the examples in a profile in your [profile directory](/getting-started/accessing-files/). `lh` is the global LuaHUD API. I'll use `lh.drawln(value)` to draw a value and start a new line.
 
 Examples often use made-up values, such as `local fps = 120`, so you can try them without looking up the game API first. These values do not update themselves from Minecraft.
 
@@ -35,7 +35,5 @@ Text after `--` is a comment. Lua ignores it:
 -- This is a comment.
 lh.drawln("Hello, World!") -- This is also a comment.
 ```
-
-Lua is case-sensitive: `name` and `Name` are different variables. You do not need semicolons at the end of lines.
 
 These lessons use Lua 5.2 syntax. For advanced topics, such as metatables and coroutines, see the official [Lua 5.2 manual](https://www.lua.org/manual/5.2/).

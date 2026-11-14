@@ -8,19 +8,13 @@ sidebar:
 `lh` is the global API for **L**ua**H**UD.
 
 ## Create a profile
+Create a new profile and open the `minecraft/config/luahud` directory in your code editor. After this, profiles should reload after you edit them.
 
-After [installing LuaHUD](/getting-started/installation/), enter a world and open the mod screen with **H**. Create a profile, then use **Open Folder** to find its `.lua` file in the [profile directory](/getting-started/accessing-files/). Open it in a text editor and make sure the profile is enabled.
-
-Save each example in that file. LuaHUD reloads that profile when you save, so you can see the result in-game without restarting Minecraft.
-
-LuaHUD can draw text, items, textures, and entities on your HUD. Start with text below, then explore [Items, Texture, and Entities](/guides/icons-and-models/).
-
-Let's draw `"Hello, World!"`:
+Let's draw the classic, `"Hello, World!"`:
 ```lua
-lh.draw("Hello, World!")
+lh.draw("Hello, World")
 ```
 ![Result in Minecraft](../../../assets/hello-world.png)
-
 
 ## Rows
 Let's add another row:

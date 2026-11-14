@@ -5,6 +5,8 @@ sidebar:
   order: 3
 ---
 
+*I typed `luahud/...` instead of `<minecraft directory>/config/luahud/...` below to avoid repetition.*
+
 To open the mod screen:
 
 - Press **H** in-game (the default keybind), or
@@ -12,12 +14,22 @@ To open the mod screen:
 
 ![LuaHUD Menu. References on top left, buttons on top right, list of profiles in the middle, and "Open Folder" and "Done" buttons on the bottom](../../../assets/menu.png)
 
-Profiles are `.lua` files in `<minecraft directory>/config/luahud/`. Click **Open Folder** on the mod screen to open this directory in your file manager.
-
 :::tip
-Saving a `.lua` file automatically reloads that profile. Use the mod screen to create, rename, and delete profiles so their keybinds, visibility, enabled state, and order stay associated with the correct profile.
+Use the mod screen for file operations, otherwise profile settings may reset.
 :::
 
-:::tip
-Open the `config/luahud` directory in your code editor instead of a single file. With a Lua language server enabled, the generated API definitions provide code completion for LuaHUD and IDs from your installed mods.
+Every profile is a `.lua` file under `luahud/profiles/` directory. You can click **Open Folder** on the mod screen to open this directory in your file manager.
+
+Profiles are compiled once, and listen to specific callbacks that they subscribed to until they are disabled.
+
+When you save a profile, it reloads automatically, so you don't need to manually reload every time you make a change.
+
+---
+
+:::caution
+You should open directly the `luahud` directory in your code editor instead of `luahud/profiles` or a singular file. Otherwise you **WONT** be able to see API definitions.
 :::
+
+API definitions are under `luahud/api/`, and the system profiles are under `luahud/system`.
+
+Now continue to [About Lua](/lua/about-lua) to learn what actually is lua

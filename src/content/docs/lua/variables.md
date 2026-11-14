@@ -28,8 +28,6 @@ fps = fps + 10
 lh.drawln(fps) -- Output: 130
 ```
 
-The right side is calculated before the value is assigned. Lua does not have `+=` or `++`.
-
 Names can contain letters, digits, and underscores, but cannot start with a digit or be a keyword such as `end`. Names like `playerName` or `player_name` are fine.
 
 ## Types
@@ -45,7 +43,7 @@ Values have types. Here are the six you will usually work with:
 | `function` | Code you can call | `lh.drawln` |
 | `table` | A group of values | `{ "FPS", "Position" }` |
 
-Lua also has `userdata` and `thread` types. You do not need them for these lessons.
+Lua also has `userdata` and `thread` types. But they are not needed.
 
 Use `type(value)` to check a type:
 
@@ -70,8 +68,6 @@ lh.drawln(type(name)) -- Output: nil
 name = "iFair"
 name = nil -- Remove the value again.
 ```
-
-`nil`, `0`, and the string `"nil"` are different values.
 
 ## Local and global variables
 

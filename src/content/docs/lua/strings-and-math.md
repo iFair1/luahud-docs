@@ -48,6 +48,7 @@ lh.drawln(string.format("FPS: %d | X: %.1f", fps, x))
 | `%d` | Integer |
 | `%.1f` | Number with one decimal place |
 | `%.2f` | Number with two decimal places |
+| `%03d` | Integer padded with zeros to at least three digits (for example, `7` becomes `007`) |
 | `%%` | A literal percent sign |
 
 Pass an integer to `%d`. Use a decimal format like `%.1f` for fractional values. Formatting changes the displayed text, not the original number.

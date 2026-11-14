@@ -5,35 +5,30 @@ sidebar:
   order: 1
 ---
 
-LuaHUD is a customizable Minecraft HUD mod for Fabric, powered by the [Lua programming language](https://www.lua.org/). It lets you choose which information appears on your screen, how it looks, and when it is shown.
+LuaHUD is an extremely customizable Minecraft HUD mod for Fabric, powered by the [Lua programming language](https://www.lua.org). It lets you choose when, how, and which information appears on your screen.
 
-You build your HUD using Lua scripts called **profiles**. A profile can be as simple as an FPS counter or combine several sections with player information, item icons, and conditional warnings.
+You build HUDs using Lua scripts called **profiles**. They are basically independent scripts that can run independently.
 
 ## What can you do?
 
-LuaHUD provides an API for reading Minecraft data and drawing it on your HUD. For example, you can:
+LuaHUD provides a rich API for reading Minecraft data, drawing things on your HUD and doing some actions (not the main purpose). For example you can:
 
-- Draw text, items/blocks, item stacks, textures, and loaded entities.
-- Show temporary or persistent HUD elements in response to events.
+- Draw ready elements like text, items, blocks, entities, textures with an advanced layout engine or draw freely with canvases
+- Show temporary or persistent HUD elements in response to in-game events.
 - Show performance, player, position, weather, time, and a lot more information.
-
-You can also:
-
-- Organize HUD elements into independent sections.
-- Choose different anchors, offsets, scales, colors, spacing, and way more for every section or element.
-- Use multiple profiles at once
+- Give every element (or section/canvas) its own offset, background, scale, color, opacity and more. 
 
 ## Why Lua?
 
-Using a programming language gives you control over both the content and the behavior of your HUD:
+Using a programming language gives you way more control over your configurations:
 
 - **Variables and math** let you calculate values and format them for display.
 - **Conditions** let you show information only when it matters, such as changing a counter's color when FPS drops.
 - **Functions and loops** help you reuse logic and draw lists without repeating code.
 - **Modules** let you share helper functions between profiles using `require()`.
 
-LuaHUD also provides API definitions for code completion in editors that support the Lua language server. This helps you discover available properties and functions while writing a profile.
+LuaHUD also generates API definitions for code completin in editors that support the Lua language server. This helps you discover available properties and functions while writing a profile.
 
-These definitions are generated when the game starts. Your editor can suggest item, block, and entity IDs **including modded ones**, discover APIs provided by addons, and flag mistakes.
+These definitions are generated when the game starts. Your editor can suggest item, block, entity (and more) IDs **including modded ones**, discover APIs provided by addons, and warn you about your mistakes.
 
-You don't need to know all of Lua to get started. A small script that reads values and draws text is enough for your first HUD. Continue to [Installation](/getting-started/installation/), then follow [Your First HUD](/guides/your-first-hud/).
+Continue to [Installation](/getting-started/installation/) for installation details.

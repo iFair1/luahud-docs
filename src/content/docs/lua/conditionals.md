@@ -25,17 +25,17 @@ Use `else` for an alternative, and `elseif` to check more conditions:
 local fps = 120
 
 if fps < 60 then
-    lh.drawln("How long do you bake your pc for?")
+    lh.drawln("How long do you bake your pc for?") -- skipped
 elseif fps < 200 then
-    lh.drawln("Your computer is very strong!")
+    lh.drawln("Your computer is very strong!") -- ran
 else
-    lh.drawln("NASA wants your computer.")
+    lh.drawln("NASA wants your computer.") -- didn't check
 end
 ```
 
 Lua checks from top to bottom and runs only the first matching branch. Here, the second branch covers FPS from 60 up to, but not including, 200. `else` covers 200 and above.
 
-`elseif` is one word. You only need one `end` for the whole chain.
+You only need one `end` for the whole chain.
 
 ## What if the condition is not a boolean?
 
