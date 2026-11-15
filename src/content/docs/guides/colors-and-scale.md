@@ -22,7 +22,7 @@ lh.on("tick", function()
     lh.drawln("Player: " .. lh.player.name)
     lh.draw("Health: ")
     lh.drawln(lh.player.health, {
-        textColor = lh.player.health <= 6 and "#FF5555" or "#55FF55",
+        textColor = lh.player.health <= 6 and "#FF5555" or nil, -- nil (no explicit textColor), so it inherits the section's
     })
 end)
 ```
@@ -30,6 +30,8 @@ The health value has its own text color. The next element still uses the section
 
 ## Colors
 You can use a hex string, an ARGB integer, a [Color](/models/color/) value, or a [ColorInput](/models/color-input/) table. Strings are convenient for fixed colors; mutable colors let you adjust individual channels.
+
+For texts, you can also use `§a`, `§1` etc. It overrides the `textColor` until you do `§f`. See [Formatting Codes](https://minecraft.wiki/w/Formatting_codes) for more.
 
 | Value | Meaning |
 |-|-|
@@ -44,9 +46,9 @@ With eight digits, **alpha comes first**: `00` is transparent and `FF` is opaque
 You won't see anything if you use `0x55FF55`. Because `0x55FF55` is equal to `0x0055FF55`, which is fully transparent.
 :::
 
-You can also use `backgroundColor = 0`, because it is the same thing as `0x00000000` anyways.
+This is why `backgroundColor = 0` works as `0x00000000`.
 
-## Mutable colors
+## Color Tables
 
 Create a color once and change its channels before drawing:
 
@@ -60,7 +62,7 @@ lh.on("tick", function()
 end)
 ```
 
-Channels are integers from `0` to `255`; alpha defaults to `255`. Use `lh.color.from("#8055FF55")` for a hex color or `lh.color.fromRgb(0x55FF55)` for an opaque RGB integer. `color.asInt` and `color.asString` reflect the current channels. See [Color](/models/color/) for conversions and snapshot behavior.
+Channels are integers from `0` to `255`. Optional alpha defaults to `255`. See [Color](/models/color/) for more details.
 
 ## Opacity
 
@@ -74,7 +76,7 @@ lh.on("tick", function()
 end)
 ```
 
-Opacity affects the rendered element, including icons, entities, textures, and backgrounds. It does not remove an element from the layout. Use `visible` on a section or standalone canvas to hide its output.
+Opacity affects rendered elements. But it doesn't remove them from the layout. Use `visible` on a section/canvas to hide its output.
 
 ## Scale
 The section's `scale` scales the entire section, including text and its layout. `iconScale` sets the default relative scale for its items, item stacks, textures, and entities.
@@ -89,8 +91,6 @@ lh.drawItem("minecraft:emerald_block", { scale = 1 })
 lh.drawln("Different icon sizes.")
 ```
 Here the diamond block uses the section's `iconScale` of 2. The emerald's own `scale = 1` overrides that default. Both are still affected by the section scale of 1.5.
-
-Per-call text `scale` requires a [canvas](/canvas/getting-started/). In ordinary sections, set text scale on the section.
 
 ## Local offsets
 `offsetX` and `offsetY` on an individual draw call shift that element within the layout. They are useful for small visual adjustments. Section offsets position the whole block relative to its anchor. Use those when moving your HUD around.

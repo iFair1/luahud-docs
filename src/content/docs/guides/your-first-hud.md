@@ -27,13 +27,13 @@ lh.draw("Hello, " .. lh.player.name)
 Or you can do
 ```lua
 lh.draw("Hello, World!")
-lh.newline() -- One line break; pass a count for multiple line breaks.
+lh.newline() -- Manual line break. Pass a count for multiple line breaks.
 lh.draw("Hello, " .. lh.player.name)
 ```
 
 
 ## Make it update
-Code at the top level runs **once when the profile loads**. This is fine for a greeting, but if you read FPS there, the displayed number will stay at its initial value.
+Code at the top, runs **once when the profile loads**. This is good for static huds, but if you need updates, values will stay at their initial value.
 
 Replace the file with:
 ```lua
@@ -44,15 +44,16 @@ lh.on("tick", function()
         lh.player.x, lh.player.y, lh.player.z))
 end)
 ```
-`lh.on()` registers a callback. `"tick"` runs at the end of each client tick, so now the script reads fresh values regularly.
 
-The drawing from this callback is replaced each time it runs. You don't have to erase the previous text yourself, and the rows won't keep piling up.
+`"tick"` is an [Event](/guides/events-and-timers) that is fired at each client tick. `lh.on()` registers a callback that runs every single time the selected event is fired. Now the script reads and draws values every tick.
+
+The drawing from this callback is replaced each time it runs. You don't have to erase the previous text yourself, and the rows won't keep piling up. See more at [Sections and Layout](/guides/sections)
 
 ## Show something only when it matters
-Here's a health warning. Replace the previous example with this, or add the condition inside its callback:
+Here's a basic health warning:
 ```lua
-lh.on("tick", function()
-    local health = lh.player.health
+lh.on("tick", function() -- Run the callback every tick
+    local health = lh.player.health -- get health (health points, not hearts)
 
     if health <= 6 then
         lh.drawln("Health is getting low: " .. health, {
@@ -61,10 +62,6 @@ lh.on("tick", function()
     end
 end)
 ```
-Health uses Minecraft health points: the usual full health is 20, or 10 hearts. The second argument is an optional table of drawing options.
-
 When health rises above 6, the callback runs without drawing anything. Its previous output is still cleared, so warning disappears.
 
-:::tip
-Try examples one at a time while learning. Two separate callbacks both start at default topLeft position, so their output can overlap. Use [Sections and Layout](/guides/sections/) to give each part a place.
-:::
+Two separate callbacks both start at default topLeft position, so their output can overlap. Continue to [Sections and Layout](/guides/sections) to give everything a place.
