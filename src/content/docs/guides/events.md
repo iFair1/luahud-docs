@@ -1,5 +1,5 @@
 ---
-title: Events and Timers
+title: Events
 description: React to Minecraft events, read callback payloads, and update your LuaHUD on a tick or frame interval.
 sidebar:
   order: 50

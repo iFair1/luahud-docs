@@ -45,7 +45,7 @@ lh.on("tick", function()
 end)
 ```
 
-`"tick"` is an [Event](/guides/events-and-timers) that is fired at each client tick. `lh.on()` registers a callback that runs every single time the selected event is fired. Now the script reads and draws values every tick.
+`"tick"` is an [Event](/guides/events) that is fired at each client tick. `lh.on()` registers a callback that runs every single time the selected event is fired. Now the script reads and draws values every tick.
 
 The drawing from this callback is replaced each time it runs. You don't have to erase the previous text yourself, and the rows won't keep piling up. See more at [Sections and Layout](/guides/sections)
 
