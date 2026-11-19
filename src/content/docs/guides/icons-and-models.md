@@ -5,7 +5,7 @@ sidebar:
   order: 40
 ---
 
-Text is useful, but sometimes a little picture does the job better. These draw calls join the current row just like `lh.draw()`.
+Text is useful, but icons are cooler. These new draw calls join the current row just like `lh.draw()`.
 
 :::tip
 IDs such as `ItemId`, `EntityTypeId` are dynamically generated with modded and vanilla registries, so you can get personalized suggestions for your modpack if you set up your code editor with a Lua language server.
@@ -35,6 +35,8 @@ IDs use the `namespace:name` format. The namespace is usually `minecraft` for va
  end)
  ```
  `drawItem(stack)` is also accepted, but draws only the item icon. `drawStack(stack)` keeps the stack's details. You can hide specific details with options such as `showCount = false` or `showDurabilityBar = false`. You can also override the glint with `showGlint = true`. The default for this varies depending on the item and its enchantments.
+
+ `drawItem()` is better if you want to draw static items or blocks (yes, blocks are items too).
 
  To preview a stack without taking it from your inventory:
 ```lua
@@ -70,9 +72,9 @@ lh.drawTexture("minecraft:textures/item/compass_00.png", {
 })
 ```
 
-Resources can come from Minecraft, installed mods, or resource packs. For your own image, put it in a resource pack as `assets/myhud/textures/logo.png`, enable the pack, then use `"myhud:textures/logo.png"`. Putting a png beside your Lua profile doesn't make it a Minecraft resource.
+Resources can come from Minecraft, installed mods, or resource packs. When you pass `luahud:icon.png` it translates into `assets/luahud/icon.png`. For your own image, put it in a resourcepack as `assets/namespace/textures/logo.png`, enable the pack, then use `namespace:textures/logo.png`. Putting a png beside your Lua profiles doesn't make it a Minecraft resource.
 
-Textures use the icon layout and scale system. A texture of an item is also just that image. Use `drawItem()` for the game's rendered item model.
+Textures use the icon layout and scale system. A texture of an item is also just that image (unless it's something like shield). Use `drawItem()` for the game's rendered item model.
 
 
 ## Entities
