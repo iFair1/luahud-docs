@@ -56,8 +56,8 @@ end)
 
 ## Transform text, icons, and textures
 
-Inside a canvas, `lh.draw`, `lh.drawItem`, `lh.drawStack`, `lh.drawEntity`, and `lh.drawTexture` accept `x`, `y`, `scale`, `rotation`, `originX`, and `originY`. Rotation is clockwise in degrees around an element-local pivot, defaulting to `(0, 0)`. `offsetX` and `offsetY` add to the position. Options apply only to that draw call; they do not transform later shape calls.
+Inside a canvas, draw options accept `x`, `y`, `scale`, `rotation`, `originX` and `originY`. Rotation is clockwise in degrees around an element-local pivot, defaulting to `(0, 0)`. `offsetX` and `offsetY` add to the position.
 
 For example, a normal item icon is 12 by 12 units. `{ x = 40, y = 20, rotation = 45, originX = 6, originY = 6 }` rotates it around its center. Canvas `scale` then scales the whole result.
 
-Outside a canvas, position and rotation fields are errors. Per-call text `scale` also requires a canvas; scale an ordinary section through its section options instead.
+Outside a canvas, position and rotation fields are errors.

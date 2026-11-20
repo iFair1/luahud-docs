@@ -63,7 +63,13 @@ const editorialTypePages: Record<string, string> = {
   Color: '/models/color/',
   ColorInput: '/models/color-input/',
   Profile: '/models/profile/',
-  PlacedBlock: '/models/placed-block/',
+  Block: '/models/placed-block/',
+  BlockInput: '/models/placed-block/#blockinput',
+  Fluid: '/models/fluid/',
+  Keybind: '/models/keybind/',
+  KeybindId: '/models/keybind/#keybindid',
+  KeyId: '/models/keybind/#keyid',
+  VanillaHudElement: '/guides/vanilla-hud/#element-ids',
   Entity: '/models/entity/',
   EntityInput: '/models/entity-input/',
   Horse: '/models/horse/',
@@ -77,6 +83,7 @@ const editorialTypePages: Record<string, string> = {
   Error: '/models/error/',
   ItemId: '/models/registry-ids/#itemid',
   BlockId: '/models/registry-ids/#blockid',
+  FluidId: '/models/registry-ids/#fluidid',
   EntityTypeId: '/models/registry-ids/#entitytypeid',
   StatusEffectId: '/models/registry-ids/#statuseffectid',
   EnchantmentId: '/models/registry-ids/#enchantmentid',
@@ -99,6 +106,7 @@ const editorialTypePages: Record<string, string> = {
   TextureOptions: '/options/texture-options/',
   StackOptions: '/options/stack-options/',
   EntityOptions: '/options/entity-options/',
+  BlockOptions: '/options/block-options/',
 };
 
 export const typePages: Record<string, { label: string; href: string }> = Object.fromEntries(

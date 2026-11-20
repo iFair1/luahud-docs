@@ -30,6 +30,6 @@ When you save a profile, it reloads automatically, so you don't need to manually
 You should open directly the `luahud` directory in your code editor instead of `luahud/profiles` or a singular file. Otherwise you **WONT** be able to see API definitions.
 :::
 
-API definitions are under `luahud/api/`, and the system profiles are under `luahud/system`.
+API definitions are under `luahud/api/`, and system scripts are under `luahud/system/`.
 
 Now continue to [About Lua](/lua/about-lua) to learn what actually is lua

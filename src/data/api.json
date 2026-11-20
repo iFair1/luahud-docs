@@ -201,6 +201,36 @@
             }
           },
           {
+            "name": "setHidden",
+            "path": "lh.display.setHidden",
+            "description": "Control whether this profile hides a vanilla HUD element. The element stays hidden while any active profile hides it. Vanilla HUD spacing is preserved.",
+            "kind": "function",
+            "parameters": [
+              {
+                "name": "element",
+                "description": "Element to hide or restore. The experience bar and level number are separate elements",
+                "optional": false,
+                "type": {
+                  "kind": "reference",
+                  "id": "VanillaHudElement"
+                }
+              },
+              {
+                "name": "hidden",
+                "description": "Whether this profile wants the element hidden",
+                "optional": false,
+                "type": {
+                  "kind": "primitive",
+                  "name": "boolean"
+                }
+              }
+            ],
+            "returnType": {
+              "kind": "primitive",
+              "name": "nil"
+            }
+          },
+          {
             "name": "width",
             "path": "lh.display.width",
             "description": "GUI scaled width",
@@ -320,6 +350,54 @@
             "type": {
               "kind": "reference",
               "id": "StrokeOptions"
+            }
+          }
+        ],
+        "returnType": {
+          "kind": "primitive",
+          "name": "nil"
+        }
+      },
+      {
+        "name": "drawBlock",
+        "path": "lh.drawBlock",
+        "description": "Draw a full-bright block model by namespaced ID or Block model, preserving its block state.",
+        "kind": "function",
+        "parameters": [
+          {
+            "name": "block",
+            "description": "Namespaced block ID or Block model",
+            "optional": false,
+            "type": {
+              "kind": "union",
+              "alternatives": [
+                {
+                  "kind": "reference",
+                  "id": "BlockId"
+                },
+                {
+                  "kind": "union",
+                  "alternatives": [
+                    {
+                      "kind": "reference",
+                      "id": "Block"
+                    },
+                    {
+                      "kind": "reference",
+                      "id": "BlockInput"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "name": "options",
+            "description": "Rendering options",
+            "optional": true,
+            "type": {
+              "kind": "reference",
+              "id": "BlockOptions"
             }
           }
         ],
@@ -770,6 +848,105 @@
             }
           },
           {
+            "name": "getTargetBlock",
+            "path": "lh.facing.getTargetBlock",
+            "description": "Block under the crosshair within maxDistance, or nil if the target is not a block.",
+            "kind": "function",
+            "parameters": [
+              {
+                "name": "maxDistance",
+                "description": "Maximum distance in blocks; must be finite and non-negative. Omitted or nil uses the current crosshair target unless xray is enabled.",
+                "optional": true,
+                "type": {
+                  "kind": "primitive",
+                  "name": "number"
+                }
+              },
+              {
+                "name": "xray",
+                "description": "Ignore other target types obstructing the ray; defaults to false. With xray enabled and maxDistance omitted or nil, uses the player's interaction range.",
+                "optional": true,
+                "type": {
+                  "kind": "primitive",
+                  "name": "boolean"
+                }
+              }
+            ],
+            "returnType": {
+              "kind": "optional",
+              "element": {
+                "kind": "reference",
+                "id": "Block"
+              }
+            }
+          },
+          {
+            "name": "getTargetEntity",
+            "path": "lh.facing.getTargetEntity",
+            "description": "Entity under the crosshair within maxDistance, or nil if the target is not an entity. Blocks obstruct the ray unless xray is enabled.",
+            "kind": "function",
+            "parameters": [
+              {
+                "name": "maxDistance",
+                "description": "Maximum distance in blocks; must be finite and non-negative. Omitted or nil uses the current crosshair target unless xray is enabled.",
+                "optional": true,
+                "type": {
+                  "kind": "primitive",
+                  "name": "number"
+                }
+              },
+              {
+                "name": "xray",
+                "description": "Ignore other target types obstructing the ray; defaults to false. With xray enabled and maxDistance omitted or nil, uses the player's interaction range.",
+                "optional": true,
+                "type": {
+                  "kind": "primitive",
+                  "name": "boolean"
+                }
+              }
+            ],
+            "returnType": {
+              "kind": "optional",
+              "element": {
+                "kind": "reference",
+                "id": "Entity"
+              }
+            }
+          },
+          {
+            "name": "getTargetFluid",
+            "path": "lh.facing.getTargetFluid",
+            "description": "Fluid in the targeted block, including waterlogged blocks, or nil. With maxDistance, raycasts source and flowing fluids; blocks and entities obstruct the ray unless xray is enabled.",
+            "kind": "function",
+            "parameters": [
+              {
+                "name": "maxDistance",
+                "description": "Maximum distance in blocks; must be finite and non-negative. Omitted or nil uses the current crosshair target unless xray is enabled; the normal crosshair ignores fluids.",
+                "optional": true,
+                "type": {
+                  "kind": "primitive",
+                  "name": "number"
+                }
+              },
+              {
+                "name": "xray",
+                "description": "Ignore other target types obstructing the ray; defaults to false. With xray enabled and maxDistance omitted or nil, uses the player's interaction range.",
+                "optional": true,
+                "type": {
+                  "kind": "primitive",
+                  "name": "boolean"
+                }
+              }
+            ],
+            "returnType": {
+              "kind": "optional",
+              "element": {
+                "kind": "reference",
+                "id": "Fluid"
+              }
+            }
+          },
+          {
             "name": "pitch",
             "path": "lh.facing.pitch",
             "description": "Pitch in degrees",
@@ -777,32 +954,6 @@
             "type": {
               "kind": "primitive",
               "name": "number"
-            }
-          },
-          {
-            "name": "targetBlock",
-            "path": "lh.facing.targetBlock",
-            "description": "Block under the crosshair",
-            "kind": "property",
-            "type": {
-              "kind": "optional",
-              "element": {
-                "kind": "reference",
-                "id": "PlacedBlock"
-              }
-            }
-          },
-          {
-            "name": "targetEntity",
-            "path": "lh.facing.targetEntity",
-            "description": "Entity under the crosshair",
-            "kind": "property",
-            "type": {
-              "kind": "optional",
-              "element": {
-                "kind": "reference",
-                "id": "Entity"
-              }
             }
           },
           {
@@ -837,7 +988,7 @@
           "kind": "optional",
           "element": {
             "kind": "reference",
-            "id": "PlacedBlock"
+            "id": "Block"
           }
         }
       },
@@ -899,6 +1050,83 @@
           "kind": "primitive",
           "name": "string"
         }
+      },
+      {
+        "name": "keys",
+        "path": "lh.keys",
+        "description": "",
+        "kind": "namespace",
+        "children": [
+          {
+            "name": "getKeyName",
+            "path": "lh.keys.getKeyName",
+            "description": "Get the Controls label for an input, using the current keyboard layout where available. Returns nil for an invalid input ID.",
+            "kind": "function",
+            "parameters": [
+              {
+                "name": "key",
+                "description": "Input ID as used by key-press and key-release, such as key.keyboard.k or key.mouse.left",
+                "optional": false,
+                "type": {
+                  "kind": "reference",
+                  "id": "KeyId"
+                }
+              }
+            ],
+            "returnType": {
+              "kind": "optional",
+              "element": {
+                "kind": "primitive",
+                "name": "string"
+              }
+            }
+          },
+          {
+            "name": "getKeybind",
+            "path": "lh.keys.getKeybind",
+            "description": "Read a registered Minecraft keybind by action ID. Returns nil if the ID is not registered.",
+            "kind": "function",
+            "parameters": [
+              {
+                "name": "id",
+                "description": "Keybind ID, such as key.inventory",
+                "optional": false,
+                "type": {
+                  "kind": "reference",
+                  "id": "KeybindId"
+                }
+              }
+            ],
+            "returnType": {
+              "kind": "optional",
+              "element": {
+                "kind": "reference",
+                "id": "Keybind"
+              }
+            }
+          },
+          {
+            "name": "isDown",
+            "path": "lh.keys.isDown",
+            "description": "Check whether a keyboard key or mouse button is held in the focused Minecraft window.",
+            "kind": "function",
+            "parameters": [
+              {
+                "name": "key",
+                "description": "Input ID as used by key-press and key-release, such as key.keyboard.k or key.mouse.left",
+                "optional": false,
+                "type": {
+                  "kind": "reference",
+                  "id": "KeyId"
+                }
+              }
+            ],
+            "returnType": {
+              "kind": "primitive",
+              "name": "boolean"
+            }
+          }
+        ]
       },
       {
         "name": "measureText",
@@ -1176,7 +1404,7 @@
               {
                 "name": "knockbackResistance",
                 "path": "lh.player.armor.knockbackResistance",
-                "description": "Explosion knockback resistance",
+                "description": "Knockback resistance",
                 "kind": "property",
                 "type": {
                   "kind": "primitive",
@@ -1206,6 +1434,16 @@
             ]
           },
           {
+            "name": "canSleep",
+            "path": "lh.player.canSleep",
+            "description": "Whether it is night or thundering. Not 100% accurate.",
+            "kind": "property",
+            "type": {
+              "kind": "primitive",
+              "name": "boolean"
+            }
+          },
+          {
             "name": "effects",
             "path": "lh.player.effects",
             "description": "Active status effects keyed by namespaced ID",
@@ -1220,6 +1458,16 @@
                 "kind": "reference",
                 "id": "StatusEffect"
               }
+            }
+          },
+          {
+            "name": "flying",
+            "path": "lh.player.flying",
+            "description": "Whether the character is flying",
+            "kind": "property",
+            "type": {
+              "kind": "primitive",
+              "name": "boolean"
             }
           },
           {
@@ -1327,6 +1575,36 @@
             }
           },
           {
+            "name": "onGround",
+            "path": "lh.player.onGround",
+            "description": "Whether the character is on the ground",
+            "kind": "property",
+            "type": {
+              "kind": "primitive",
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "sneakHeld",
+            "path": "lh.player.sneakHeld",
+            "description": "Whether the sneak key is held or toggled",
+            "kind": "property",
+            "type": {
+              "kind": "primitive",
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "sneaking",
+            "path": "lh.player.sneaking",
+            "description": "Whether the character is sneaking",
+            "kind": "property",
+            "type": {
+              "kind": "primitive",
+              "name": "boolean"
+            }
+          },
+          {
             "name": "sprintHeld",
             "path": "lh.player.sprintHeld",
             "description": "Whether the sprint key is held or toggled",
@@ -1340,6 +1618,16 @@
             "name": "sprinting",
             "path": "lh.player.sprinting",
             "description": "Whether the character is sprinting",
+            "kind": "property",
+            "type": {
+              "kind": "primitive",
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "swimming",
+            "path": "lh.player.swimming",
+            "description": "Whether the character is swimming",
             "kind": "property",
             "type": {
               "kind": "primitive",
@@ -1531,6 +1819,36 @@
             ]
           },
           {
+            "name": "blockX",
+            "path": "lh.pos.blockX",
+            "description": "X Block Coordinate",
+            "kind": "property",
+            "type": {
+              "kind": "primitive",
+              "name": "integer"
+            }
+          },
+          {
+            "name": "blockY",
+            "path": "lh.pos.blockY",
+            "description": "Y Block Coordinate",
+            "kind": "property",
+            "type": {
+              "kind": "primitive",
+              "name": "integer"
+            }
+          },
+          {
+            "name": "blockZ",
+            "path": "lh.pos.blockZ",
+            "description": "Z Block Coordinate",
+            "kind": "property",
+            "type": {
+              "kind": "primitive",
+              "name": "integer"
+            }
+          },
+          {
             "name": "chunk",
             "path": "lh.pos.chunk",
             "description": "",
@@ -1595,10 +1913,119 @@
             "kind": "property",
             "type": {
               "kind": "reference",
-              "id": "PlacedBlock"
+              "id": "Block"
+            }
+          },
+          {
+            "name": "velocity",
+            "path": "lh.pos.velocity",
+            "description": "",
+            "kind": "namespace",
+            "children": [
+              {
+                "name": "horizontal",
+                "path": "lh.pos.velocity.horizontal",
+                "description": "Horizontal speed in blocks per second",
+                "kind": "property",
+                "type": {
+                  "kind": "primitive",
+                  "name": "number"
+                }
+              },
+              {
+                "name": "total",
+                "path": "lh.pos.velocity.total",
+                "description": "Total speed in blocks per second",
+                "kind": "property",
+                "type": {
+                  "kind": "primitive",
+                  "name": "number"
+                }
+              },
+              {
+                "name": "x",
+                "path": "lh.pos.velocity.x",
+                "description": "X velocity in blocks per second",
+                "kind": "property",
+                "type": {
+                  "kind": "primitive",
+                  "name": "number"
+                }
+              },
+              {
+                "name": "y",
+                "path": "lh.pos.velocity.y",
+                "description": "Y velocity in blocks per second",
+                "kind": "property",
+                "type": {
+                  "kind": "primitive",
+                  "name": "number"
+                }
+              },
+              {
+                "name": "z",
+                "path": "lh.pos.velocity.z",
+                "description": "Z velocity in blocks per second",
+                "kind": "property",
+                "type": {
+                  "kind": "primitive",
+                  "name": "number"
+                }
+              }
+            ]
+          },
+          {
+            "name": "x",
+            "path": "lh.pos.x",
+            "description": "X coordinate",
+            "kind": "property",
+            "type": {
+              "kind": "primitive",
+              "name": "number"
+            }
+          },
+          {
+            "name": "y",
+            "path": "lh.pos.y",
+            "description": "Y coordinate",
+            "kind": "property",
+            "type": {
+              "kind": "primitive",
+              "name": "number"
+            }
+          },
+          {
+            "name": "z",
+            "path": "lh.pos.z",
+            "description": "Z coordinate",
+            "kind": "property",
+            "type": {
+              "kind": "primitive",
+              "name": "number"
             }
           }
         ]
+      },
+      {
+        "name": "runCommand",
+        "path": "lh.runCommand",
+        "description": "Run vanilla commands",
+        "kind": "function",
+        "parameters": [
+          {
+            "name": "command",
+            "description": "Command starting with or without '/'.",
+            "optional": false,
+            "type": {
+              "kind": "primitive",
+              "name": "string"
+            }
+          }
+        ],
+        "returnType": {
+          "kind": "primitive",
+          "name": "nil"
+        }
       },
       {
         "name": "section",
@@ -1953,6 +2380,128 @@
   },
   "types": [
     {
+      "id": "Block",
+      "kind": "model",
+      "name": "Block",
+      "fields": [
+        {
+          "name": "blastResistance",
+          "description": "Resistance to explosions",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "breakProgress",
+          "description": "Local player's break progress from 0 to 1; 0 when not breaking this block",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "hardness",
+          "description": "Mining hardness; -1 for unbreakable blocks",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "id",
+          "description": "Namespaced block ID",
+          "optional": false,
+          "type": {
+            "kind": "reference",
+            "id": "BlockId"
+          }
+        },
+        {
+          "name": "isReplaceable",
+          "description": "Whether this state can be replaced when placing a block",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "isSolid",
+          "description": "Whether this state is solid according to Minecraft's block-state classification",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "luminance",
+          "description": "Emitted block light from 0 to 15",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "name",
+          "description": "Localized block name",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "properties",
+          "description": "Block state properties as serialized strings, such as facing='east' or waterlogged='true'",
+          "optional": false,
+          "type": {
+            "kind": "map",
+            "key": {
+              "kind": "primitive",
+              "name": "string"
+            },
+            "value": {
+              "kind": "primitive",
+              "name": "string"
+            }
+          }
+        },
+        {
+          "name": "x",
+          "description": "Block X coordinate",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "y",
+          "description": "Block Y coordinate",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "z",
+          "description": "Block Z coordinate",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        }
+      ]
+    },
+    {
       "id": "BlockId",
       "name": "BlockId",
       "kind": "alias",
@@ -1961,6 +2510,197 @@
         "kind": "primitive",
         "name": "string"
       }
+    },
+    {
+      "id": "BlockInput",
+      "kind": "input",
+      "name": "BlockInput",
+      "model": {
+        "kind": "reference",
+        "id": "Block"
+      },
+      "fields": [
+        {
+          "name": "id",
+          "description": "Namespaced block ID",
+          "optional": false,
+          "type": {
+            "kind": "reference",
+            "id": "BlockId"
+          }
+        },
+        {
+          "name": "properties",
+          "description": "Block state properties as serialized strings, such as facing='east' or waterlogged='true'",
+          "optional": true,
+          "type": {
+            "kind": "map",
+            "key": {
+              "kind": "primitive",
+              "name": "string"
+            },
+            "value": {
+              "kind": "primitive",
+              "name": "string"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "BlockOptions",
+      "name": "BlockOptions",
+      "kind": "input",
+      "fields": [
+        {
+          "name": "backgroundColor",
+          "description": "ARGB integer, RGB/ARGB hex string, or Color table",
+          "optional": true,
+          "type": {
+            "kind": "union",
+            "alternatives": [
+              {
+                "kind": "primitive",
+                "name": "string"
+              },
+              {
+                "kind": "primitive",
+                "name": "integer"
+              },
+              {
+                "kind": "reference",
+                "id": "Color"
+              }
+            ]
+          }
+        },
+        {
+          "name": "newLine",
+          "description": "Advance to the next line after drawing; defaults to false",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "offsetX",
+          "description": "Local horizontal offset",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "offsetY",
+          "description": "Local vertical offset",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "opacity",
+          "description": "Opacity from 0 to 1; multiplies section opacity and color alpha; defaults to 1",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "originX",
+          "description": "Canvas-only rotation pivot X relative to the element",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "originY",
+          "description": "Canvas-only rotation pivot Y relative to the element",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "pitch",
+          "description": "Vertical viewing angle in degrees; defaults to -30",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "roll",
+          "description": "Clockwise rotation around the viewing axis in degrees; defaults to 0",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "rotation",
+          "description": "Canvas-only clockwise 2D rotation in degrees",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "scale",
+          "description": "Scale relative to the section; overrides the section default",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "showBreakOverlay",
+          "description": "Show the local player's breaking cracks on a placed Block; defaults to false",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "x",
+          "description": "Canvas-local X; defaults to 0",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "y",
+          "description": "Canvas-local Y; defaults to 0",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "yaw",
+          "description": "Horizontal viewing angle in degrees; defaults to 45",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        }
+      ]
     },
     {
       "id": "CanvasOptions",
@@ -3298,7 +4038,7 @@
         },
         {
           "name": "scale",
-          "description": "Scale relative to the section",
+          "description": "Scale relative to the section; overrides the section default",
           "optional": true,
           "type": {
             "kind": "primitive",
@@ -3431,6 +4171,122 @@
           }
         }
       ]
+    },
+    {
+      "id": "Fluid",
+      "kind": "model",
+      "name": "Fluid",
+      "fields": [
+        {
+          "name": "height",
+          "description": "Fluid surface height within this block in metres (0 to 1); includes fluid above this block",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        },
+        {
+          "name": "id",
+          "description": "Namespaced fluid ID; flowing variants have their own IDs",
+          "optional": false,
+          "type": {
+            "kind": "reference",
+            "id": "FluidId"
+          }
+        },
+        {
+          "name": "isFalling",
+          "description": "Whether the fluid is falling downward",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "isLava",
+          "description": "Whether the fluid belongs to the lava tag",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "isSource",
+          "description": "Whether this is a source fluid state",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "isWater",
+          "description": "Whether the fluid belongs to the water tag",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "level",
+          "description": "Fluid amount; vanilla water and lava use 1 to 8, with 8 for source blocks",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "name",
+          "description": "Localized name of the fluid's block",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "x",
+          "description": "Block X coordinate",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "y",
+          "description": "Block Y coordinate",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
+          "name": "z",
+          "description": "Block Z coordinate",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        }
+      ]
+    },
+    {
+      "id": "FluidId",
+      "name": "FluidId",
+      "kind": "alias",
+      "description": "Namespaced fluid registry ID.",
+      "type": {
+        "kind": "primitive",
+        "name": "string"
+      }
     },
     {
       "id": "GradientOptions",
@@ -3663,7 +4519,7 @@
         },
         {
           "name": "scale",
-          "description": "Scale relative to the section",
+          "description": "Scale relative to the section; overrides the section default",
           "optional": true,
           "type": {
             "kind": "primitive",
@@ -3850,6 +4706,105 @@
       ]
     },
     {
+      "id": "KeyId",
+      "name": "KeyId",
+      "kind": "alias",
+      "description": "Minecraft input ID, such as key.keyboard.k or key.mouse.left",
+      "type": {
+        "kind": "primitive",
+        "name": "string"
+      }
+    },
+    {
+      "id": "Keybind",
+      "kind": "model",
+      "name": "Keybind",
+      "fields": [
+        {
+          "name": "categoryId",
+          "description": "Minecraft category ID or legacy category translation key",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "categoryName",
+          "description": "Localized category name",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "defaultKey",
+          "description": "Default input ID, or key.keyboard.unknown when unbound",
+          "optional": false,
+          "type": {
+            "kind": "reference",
+            "id": "KeyId"
+          }
+        },
+        {
+          "name": "id",
+          "description": "Registered keybind ID",
+          "optional": false,
+          "type": {
+            "kind": "reference",
+            "id": "KeybindId"
+          }
+        },
+        {
+          "name": "isDefault",
+          "description": "Whether the current assignment equals the default",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "key",
+          "description": "Assigned input ID, or key.keyboard.unknown when unbound",
+          "optional": false,
+          "type": {
+            "kind": "reference",
+            "id": "KeyId"
+          }
+        },
+        {
+          "name": "keyName",
+          "description": "Assigned input label as shown in Controls",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "name",
+          "description": "Localized action name",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    {
+      "id": "KeybindId",
+      "name": "KeybindId",
+      "kind": "alias",
+      "description": "Registered Minecraft keybind ID.",
+      "type": {
+        "kind": "primitive",
+        "name": "string"
+      }
+    },
+    {
       "id": "MeasureTextOptions",
       "name": "MeasureTextOptions",
       "kind": "input",
@@ -3900,58 +4855,6 @@
         {
           "name": "top",
           "description": "Top source border in pixels",
-          "optional": false,
-          "type": {
-            "kind": "primitive",
-            "name": "integer"
-          }
-        }
-      ]
-    },
-    {
-      "id": "PlacedBlock",
-      "kind": "model",
-      "name": "PlacedBlock",
-      "fields": [
-        {
-          "name": "id",
-          "description": "Namespaced block ID",
-          "optional": false,
-          "type": {
-            "kind": "reference",
-            "id": "BlockId"
-          }
-        },
-        {
-          "name": "name",
-          "description": "Localized block name",
-          "optional": false,
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          }
-        },
-        {
-          "name": "x",
-          "description": "Block X coordinate",
-          "optional": false,
-          "type": {
-            "kind": "primitive",
-            "name": "integer"
-          }
-        },
-        {
-          "name": "y",
-          "description": "Block Y coordinate",
-          "optional": false,
-          "type": {
-            "kind": "primitive",
-            "name": "integer"
-          }
-        },
-        {
-          "name": "z",
-          "description": "Block Z coordinate",
           "optional": false,
           "type": {
             "kind": "primitive",
@@ -4205,7 +5108,7 @@
         },
         {
           "name": "iconScale",
-          "description": "Default item, stack, entity, and texture scale relative to the section",
+          "description": "Default item, stack, block, entity, and texture scale relative to the section",
           "optional": true,
           "type": {
             "kind": "primitive",
@@ -4264,15 +5167,6 @@
         {
           "name": "inlineSpacing",
           "description": "Unscaled background spacing between visible elements; defaults to 0",
-          "optional": true,
-          "type": {
-            "kind": "primitive",
-            "name": "integer"
-          }
-        },
-        {
-          "name": "lineSpacing",
-          "description": "Unscaled background spacing around each row, favoring the top; defaults to 2",
           "optional": true,
           "type": {
             "kind": "primitive",
@@ -4365,6 +5259,15 @@
           }
         },
         {
+          "name": "rowSpacing",
+          "description": "Unscaled background spacing around each row, favoring the top; defaults to 2",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        },
+        {
           "name": "scale",
           "description": "Scale applied to the entire section",
           "optional": true,
@@ -4402,6 +5305,15 @@
                 "id": "Color"
               }
             ]
+          }
+        },
+        {
+          "name": "textScale",
+          "description": "Default text scale relative to the section; defaults to 1",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "number"
           }
         },
         {
@@ -4516,7 +5428,7 @@
         },
         {
           "name": "scale",
-          "description": "Scale relative to the section",
+          "description": "Scale relative to the section; overrides the section default",
           "optional": true,
           "type": {
             "kind": "primitive",
@@ -4603,6 +5515,15 @@
           }
         },
         {
+          "name": "isAmbient",
+          "description": "Whether the source is a beacon or a conduit",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
           "name": "level",
           "description": "Effect level; defaults to 1 for input tables",
           "optional": false,
@@ -4675,6 +5596,15 @@
           "type": {
             "kind": "reference",
             "id": "StatusEffectId"
+          }
+        },
+        {
+          "name": "isAmbient",
+          "description": "Whether the source is a beacon or a conduit",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
           }
         },
         {
@@ -4852,7 +5782,7 @@
         },
         {
           "name": "scale",
-          "description": "Canvas-only text scale; defaults to 1",
+          "description": "Scale relative to the section; overrides the section default",
           "optional": true,
           "type": {
             "kind": "primitive",
@@ -5029,7 +5959,7 @@
         },
         {
           "name": "scale",
-          "description": "Scale relative to the section",
+          "description": "Scale relative to the section; overrides the section default",
           "optional": true,
           "type": {
             "kind": "primitive",
@@ -5107,12 +6037,22 @@
           }
         }
       ]
+    },
+    {
+      "id": "VanillaHudElement",
+      "name": "VanillaHudElement",
+      "kind": "alias",
+      "description": "Vanilla HUD element that can be hidden individually.",
+      "type": {
+        "kind": "primitive",
+        "name": "string"
+      }
     }
   ],
   "events": [
     {
       "name": "attack",
-      "description": "Reports server-observed damage dealt by the local player, including projectiles. Uses the Damage model with victim and observed health/absorption loss, matched over two client ticks. Nearby hits on each victim are combined using the latest source; unavailable loss is 0.",
+      "description": "Runs when the local player deals damage, including with projectiles.",
       "payloadType": {
         "kind": "reference",
         "id": "Damage"
@@ -5120,7 +6060,7 @@
     },
     {
       "name": "damage",
-      "description": "Reports local-player damage with observed health loss including absorption. Nearby updates are combined using the latest damage source; unmatched health loss uses minecraft:generic. Notification matching waits up to two client ticks.",
+      "description": "Runs when the local player takes damage.",
       "payloadType": {
         "kind": "reference",
         "id": "Damage"
@@ -5128,7 +6068,7 @@
     },
     {
       "name": "death",
-      "description": "Reports the server's local-player death notification with position, dimension, death message and available damage source. Also runs when the death screen is disabled (immediate respawn).",
+      "description": "Runs when the local player dies.",
       "payloadType": {
         "kind": "reference",
         "id": "Death"
@@ -5136,23 +6076,47 @@
     },
     {
       "name": "error",
-      "description": "Reports each recorded error occurrence on the next client lifecycle tick, after profiles load. Repeated errors keep their ID and increment count; isNew is true only for the first occurrence. Errors raised by error handlers are recorded without producing another error event.",
+      "description": "Runs when an error is recorded.",
       "payloadType": {
         "kind": "reference",
         "id": "Error"
       }
     },
     {
-      "name": "item-pickup",
-      "description": "Reports a server-confirmed ground item pickup by the local player. The ItemStack contains the picked-up count and preserves the item's components.",
+      "name": "item-drop",
+      "description": "Runs when the local player drops an item.",
       "payloadType": {
         "kind": "reference",
         "id": "ItemStack"
       }
     },
     {
+      "name": "item-pickup",
+      "description": "Runs when the local player picks up an item.",
+      "payloadType": {
+        "kind": "reference",
+        "id": "ItemStack"
+      }
+    },
+    {
+      "name": "key-press",
+      "description": "Runs when a key is pressed.",
+      "payloadType": {
+        "kind": "reference",
+        "id": "KeyId"
+      }
+    },
+    {
+      "name": "key-release",
+      "description": "Runs when a key is released.",
+      "payloadType": {
+        "kind": "reference",
+        "id": "KeyId"
+      }
+    },
+    {
       "name": "kill",
-      "description": "Reports a tracked living entity death whose latest client-observed damage source names the local player as attacker. Uses the Death model with victim; message is generated from the observed source. Limited to entities and damage sources visible to the client; this is not the server kill-credit statistic.",
+      "description": "Runs when the client detects a living entity killed by the local player.",
       "payloadType": {
         "kind": "reference",
         "id": "Death"
@@ -5160,7 +6124,7 @@
     },
     {
       "name": "reload",
-      "description": "Reports the profiles loaded by this reload, including first world entry.",
+      "description": "Runs when a profile or profiles are loaded or reloaded.",
       "payloadType": {
         "kind": "list",
         "element": {
@@ -5171,7 +6135,7 @@
     },
     {
       "name": "render",
-      "description": "Runs immediately before each HUD frame is painted.",
+      "description": "Runs before each HUD frame is drawn.",
       "payloadType": {
         "kind": "primitive",
         "name": "nil"

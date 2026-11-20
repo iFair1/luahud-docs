@@ -56,7 +56,7 @@ lh.drawln("Another row")
 ```
 The icon and the first text share a row. `lh.drawln()` finishes that row. For icons, you should pass `{ newLine = true }` instead of trying to do `lh.drawSomethingln()`.
 
-By default, rows are tall enough for their tallest element (`rowHeight = "auto"`). `lineSpacing` adds vertical space around rows, and `inlineSpacing` adds space between visible elements.
+By default, rows are tall enough for their tallest element (`rowHeight = "auto"`). `rowSpacing` adds vertical space around rows, and `inlineSpacing` adds space between visible elements.
 
 A fixed `rowHeight` is only good, if you want to manage the rows manually.
 

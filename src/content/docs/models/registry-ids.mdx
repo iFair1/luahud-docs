@@ -1,6 +1,6 @@
 ---
 title: Registry IDs
-description: Namespaced item, block, entity type, status effect, and enchantment identifiers.
+description: Namespaced item, block, fluid, entity type, status effect, and enchantment identifiers.
 ---
 
 Registry IDs are strings in `namespace:path` form. Vanilla IDs usually use the `minecraft` namespace; installed mods can add their own. The Lua language-server suggestions are generated from registries, so the available values depend on your game and modpack.
@@ -11,6 +11,7 @@ Registry IDs are strings in `namespace:path` form. Vanilla IDs usually use the `
 | --- | --- | --- |
 | <span id="itemid">`ItemId`</span> | `string` | Namespaced item registry ID. |
 | <span id="blockid">`BlockId`</span> | `string` | Namespaced block registry ID. |
+| <span id="fluidid">`FluidId`</span> | `string` | Namespaced fluid registry ID. Flowing variants have their own IDs. |
 | <span id="entitytypeid">`EntityTypeId`</span> | `string` | Namespaced entity type registry ID. |
 | <span id="statuseffectid">`StatusEffectId`</span> | `string` | Namespaced status effect registry ID. |
 | <span id="enchantmentid">`EnchantmentId`</span> | `string` | Namespaced enchantment registry ID. Available IDs depend on the loaded world and its data packs. |

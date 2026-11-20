@@ -1,6 +1,6 @@
 ---
-title: Items, Texture, and Entities
-description: Add item icons, inventory stacks, resource pack textures, and loaded entities to your LuaHUD. Customize stack details, scale, and entity viewing angles.
+title: Items, Blocks, Textures, and Entities
+description: Add item icons, inventory stacks, 3D blocks, resource pack textures, and loaded entities to your LuaHUD. Customize stack details, scale, and entity viewing angles.
 sidebar:
   order: 40
 ---
@@ -63,6 +63,22 @@ lh.on("tick", function()
 end)
 ```
 
+## 3D blocks
+
+`lh.drawBlock()` draws a block at full brightness. Pass a block ID for its default state, a [Block](/models/placed-block/) from the world to keep its state, or a [BlockInput](/models/placed-block/#blockinput) table to specify state properties.
+
+```lua
+lh.on("tick", function()
+    local block = lh.facing.getTargetBlock()
+    if block then
+        lh.drawBlock(block, { scale = 2, showBreakOverlay = true })
+        lh.drawln(block.name)
+    end
+end)
+```
+
+The breaking overlay follows your mining progress on the selected block. Use [BlockOptions](/options/block-options/) to adjust the viewing angles or place the model on a canvas.
+
 ## Textures
 `lh.drawTexture()` takes a resource identifier, not a filesystem path or URL:
 ```lua
@@ -100,4 +116,4 @@ The UUID identifies a particular entity, not an entity type. `"minecraft:zombie"
 
 `yaw` and `pitch` adjust the viewing angle in degrees. With `useEntityRotation = true`, those angles are offsets from the entity's current rotation.
 
-For the difference between `tick` and `render`, continue to [Events and Timers](/guides/events-and-timers/).
+For the difference between `tick` and `render`, continue to [Events](/guides/events/).

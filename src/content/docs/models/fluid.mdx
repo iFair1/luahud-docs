@@ -1,0 +1,26 @@
+---
+title: Fluid
+description: A targeted fluid's registry ID, position, level, surface height, and state.
+---
+
+import TypeFields from '../../../components/api/TypeFields.astro';
+
+`lh.facing.getTargetFluid()` returns the fluid in the current crosshair target block, including waterlogged blocks, or `nil`. The normal crosshair ignores fluids themselves. Pass a distance to raycast against source and flowing fluids.
+
+## Fields
+
+<TypeFields id="Fluid" />
+
+## Example
+
+```lua
+lh.on("tick", function()
+    local fluid = lh.facing.getTargetFluid(8)
+    if fluid then
+        local state = fluid.isSource and "source" or "flowing"
+        lh.drawln(fluid.id .. " (" .. state .. ")")
+    end
+end)
+```
+
+Use `isWater` or `isLava` to check the corresponding Minecraft fluid tag across source and flowing variants. For range and obstruction rules, see [Read the crosshair target](/guides/working-with-game-data/#read-the-crosshair-target).

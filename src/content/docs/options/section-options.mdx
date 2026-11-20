@@ -17,9 +17,9 @@ Colors accept `"#RRGGBB"`, `"#AARRGGBB"`, an ARGB integer, or a [Color](/models/
 
 A new section starts at `anchor = "topLeft"`, `offsetX = 0`, `offsetY = 2`. Row alignment follows the anchor. Inline alignment is `"center"`; elements flow `"leftToRight"` and rows flow `"topToBottom"`.
 
-Text defaults to white (`"#FFFFFFFF"`) with a shadow. The background defaults to translucent black (`"#80000000"`). Both `scale` and `iconScale` default to `1` and must be finite and greater than zero.
+Text defaults to white (`"#FFFFFFFF"`) with a shadow. The background defaults to translucent black (`"#80000000"`). `scale`, `textScale`, and `iconScale` default to `1` and must be finite and greater than zero. `textScale` sets the relative scale for text, and `iconScale` sets the relative scale for items, stacks, blocks, entities, and textures.
 
-Row height defaults to `"auto"`; a fixed height must be positive. `lineSpacing` defaults to `2` and `inlineSpacing` to `0`; both must be non-negative. These layout sizes are unscaled.
+Row height defaults to `"auto"`; a fixed height must be positive. `rowSpacing` defaults to `2` and `inlineSpacing` to `0`; both must be non-negative. These layout sizes are unscaled.
 
 `id` is optional and must not be blank when supplied. IDs are shared across profiles. `duration` is optional and must be finite and positive; without it, output lasts until the owning callback runs again.
 

@@ -1,0 +1,20 @@
+---
+title: BlockOptions
+description: Scale, viewing angles, breaking overlay, and placement for 3D block drawings.
+---
+
+import TypeFields from '../../../components/api/TypeFields.astro';
+
+Options for `lh.drawBlock(block, options)`. Pass a block ID, a [Block](/models/placed-block/), or a [BlockInput](/models/placed-block/#blockinput) table. All options are optional.
+
+## Fields
+
+<TypeFields id="BlockOptions" />
+
+## Defaults and behavior
+
+Blocks draw at full brightness. In a section, `scale` inherits `iconScale`, and `backgroundColor` inherits the section’s background. Local offsets default to zero. `newLine = true` ends the current row after drawing.
+
+The default viewing angles are `yaw = 45`, `pitch = -30`, and `roll = 0`, in degrees. In a canvas, `x` and `y` place the model, and `rotation` turns the resulting drawing in the canvas plane. See [canvas transforms](/canvas/shapes-and-text/#transform-text-icons-and-textures).
+
+Set `showBreakOverlay = true` when drawing a placed Block to show cracks as the local player mines that block. Redraw from a tick or render callback to keep the overlay current.

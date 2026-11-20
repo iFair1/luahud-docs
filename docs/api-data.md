@@ -1,7 +1,9 @@
 # API reference data
 
 `src/data/api.json` is the Java export used by the reference pages. Replace this
-file with a new export and rebuild. The exporter is independent of this website.
+file with a new export and rebuild. In the LuaHUD mod repository, run
+`./gradlew generateApiDocs` and copy the versioned output (for example,
+`build/generated/api/v0.4.0.json`) to this site's `src/data/api.json`.
 
 ## Schema version 3
 
@@ -34,7 +36,7 @@ type TypeRef =
   | { kind: 'literal'; value: string | number | boolean };
 ```
 
-Reference IDs have no provider prefix, for example `PlacedBlock`, `PlayingRecord`,
+Reference IDs have no provider prefix, for example `Block`, `PlayingRecord`,
 or `TextOptions`. Self references and references between types are supported.
 The build validates the schema, unique member paths, type IDs, field names,
 parameter names, event names, and that every type reference resolves. An input's

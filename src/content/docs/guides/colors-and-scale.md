@@ -79,7 +79,7 @@ end)
 Opacity affects rendered elements. But it doesn't remove them from the layout. Use `visible` on a section/canvas to hide its output.
 
 ## Scale
-The section's `scale` scales the entire section, including text and its layout. `iconScale` sets the default relative scale for its items, item stacks, textures, and entities.
+The section's `scale` scales the entire section, including texts and icons. There are also `textScale` and `iconScale` options which only scales texts or icons.
 ```lua
 lh.section({
     scale = 1.5,

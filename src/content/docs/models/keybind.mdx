@@ -1,0 +1,38 @@
+---
+title: Keybind
+description: A registered Minecraft action and its current and default keyboard or mouse assignments.
+---
+
+import TypeFields from '../../../components/api/TypeFields.astro';
+
+`lh.keys.getKeybind(id)` returns the registered action and its current binding, or `nil` for an unknown action. Use `keyName` to display the localized input label shown in Minecraft’s Controls screen.
+
+## Fields
+
+<TypeFields id="Keybind" />
+
+## Example
+
+Look up the binding when the event fires to follow changes made in the Controls screen.
+
+```lua
+lh.on("key-press", function(key)
+    local inventory = lh.keys.getKeybind("key.inventory")
+    if inventory and inventory.key == key then
+        lh.section({ id = "inventory-key", duration = 2 })
+        lh.drawln(inventory.name .. ": " .. inventory.keyName)
+    end
+end)
+```
+
+## KeyId
+
+<TypeFields id="KeyId" />
+
+Input IDs identify keyboard keys or mouse buttons. The input events and `lh.keys.isDown()` use these IDs. `lh.keys.getKeyName()` turns a valid input ID into its Controls label, using the current keyboard layout where available. An invalid ID returns `nil`.
+
+## KeybindId
+
+<TypeFields id="KeybindId" />
+
+Action IDs identify Minecraft bindings, such as `"key.inventory"`. Installed mods can register additional actions. An unbound action has `"key.keyboard.unknown"` as its assigned key.

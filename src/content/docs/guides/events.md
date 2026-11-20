@@ -7,7 +7,7 @@ sidebar:
 
 Code at the top level of a profile runs when the profile loads. Register a callback there to run code again when Minecraft or LuaHUD reports an event.
 
-See [Events Reference](/api/events) for all events.
+See the [Events reference](/api/events/) for all events.
 
 ## Listen for an event
 

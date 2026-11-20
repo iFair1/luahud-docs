@@ -63,6 +63,10 @@ Call `notify()` again and it replaces the text and restarts the three-second lif
 
 All output is cleared on runtime reload or when leaving the world. A `duration` section doesn't survive those transitions.
 
+## Clear current drawings
+
+By running `/luahud clear`, you can remove all currently buffered drawings, including sections with a duration.
+
 ## Canvas drawing
 
 For fixed-size panels with explicit coordinates, see [Drawing with Canvases](/canvas/getting-started/). Standalone canvases use section lifetime and ID replacement rules; [inline canvases](/canvas/inline-canvases/) belong to their parent section.
